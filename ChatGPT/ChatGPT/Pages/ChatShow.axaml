@@ -1,0 +1,33 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:ChatGPT.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ChatGPT.Pages.ChatShow">
+    <Design.DataContext>
+        <viewModels:MainViewModel />
+    </Design.DataContext>
+    
+    <StackPanel Width="250" Height="{Binding Height}">
+        <WrapPanel Height="60" >
+            <Grid Margin="5,20,0,0">
+                <TextBox CornerRadius="4" Watermark="搜索" BorderThickness="0" Background="#e2e2e2" 
+                         FontSize="12" 
+                         Width="195">
+                </TextBox>
+            </Grid>
+        </WrapPanel>
+        <StackPanel Height="{Binding ChatListHeight}">
+            <WrapPanel Background="#c7c6c6" Height="60" Width="250">
+                <StackPanel Margin="10">
+                    <Image Height="40" Width="40" Source="/Assets/t.png"></Image>
+                </StackPanel>
+                <StackPanel Margin="10,10,0,0" >
+                    <TextBlock FontWeight="Black">帅哥聊天群</TextBlock>
+
+                </StackPanel>
+            </WrapPanel>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
