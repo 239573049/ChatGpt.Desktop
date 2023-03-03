@@ -1,4 +1,5 @@
-﻿using ReactiveUI;
+﻿using System.Collections.Generic;
+using ReactiveUI;
 
 namespace ChatGPT.ViewModels;
 
@@ -17,4 +18,13 @@ public class MainViewModel : ViewModelBase
     }
 
     public int ChatListHeight => Height - 60;
+
+    public int Select { get; set; }
+    
+    public List<string> FunctionList { get; set; } = new()
+    {
+        "聊天",
+        "设置",
+        "关于"
+    }; 
 }

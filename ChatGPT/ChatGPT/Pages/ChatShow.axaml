@@ -8,26 +8,43 @@
     <Design.DataContext>
         <viewModels:MainViewModel />
     </Design.DataContext>
-    
+
     <StackPanel Width="250" Height="{Binding Height}">
-        <WrapPanel Height="60" >
+        <WrapPanel Height="60">
             <Grid Margin="5,20,0,0">
-                <TextBox CornerRadius="4" Watermark="搜索" BorderThickness="0" Background="#e2e2e2" 
-                         FontSize="12" 
+                <TextBox CornerRadius="4" Watermark="搜索" BorderThickness="0" Background="#e2e2e2"
+                         FontSize="12"
                          Width="195">
                 </TextBox>
             </Grid>
         </WrapPanel>
         <StackPanel Height="{Binding ChatListHeight}">
-            <WrapPanel Background="#c7c6c6" Height="60" Width="250">
-                <StackPanel Margin="10">
-                    <Image Height="40" Width="40" Source="/Assets/t.png"></Image>
-                </StackPanel>
-                <StackPanel Margin="10,10,0,0" >
-                    <TextBlock FontWeight="Black">帅哥聊天群</TextBlock>
-
-                </StackPanel>
-            </WrapPanel>
+            <ListBox SelectedIndex="{Binding Select}" Items="{Binding FunctionList}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel Name="WrapPanel" Height="60" Width="250">
+                            <StackPanel Margin="10">
+                                <Image Height="40" Width="40" Source="/Assets/t.png"></Image>
+                            </StackPanel>
+                            <StackPanel Margin="5,10,0,0">
+                                <TextBlock FontWeight="Black">文件传输助手</TextBlock>
+                                <TextBlock Foreground="#b1a1a1" Margin="0,5,0,0" FontSize="12">[图片]</TextBlock>
+                            </StackPanel>
+                            <StackPanel Width="100">
+                                <TextBlock Margin="5" Foreground="#b1a1a1" HorizontalAlignment="Right">星期三</TextBlock>
+                            </StackPanel>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.Styles>
+                    <Style Selector="ListBoxItem[IsSelected=True]">
+                        <Setter Property="Background" Value="#c4c4c4"></Setter>
+                    </Style>
+                    <Style Selector="ListBoxItem[IsSelected=False]">
+                        <Setter Property="Background" Value="#ece9e8"></Setter>
+                    </Style>
+                </ListBox.Styles>
+            </ListBox>
         </StackPanel>
     </StackPanel>
 </UserControl>
