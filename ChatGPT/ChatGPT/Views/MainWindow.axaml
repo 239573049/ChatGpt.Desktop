@@ -11,36 +11,45 @@
         ExtendClientAreaTitleBarHeightHint="-1"
         Height="{Binding Height}"
         Width="1060"
-        
         Name="Main">
-    
+
     <Design.DataContext>
         <viewModels:MainViewModel />
     </Design.DataContext>
-    
+
     <StackPanel Name="StackPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <WrapPanel Name="WrapPanel"  VerticalAlignment="Stretch"  Height="{Binding ElementName=StackPanel, Path=Height}">
+        <WrapPanel Name="WrapPanel" VerticalAlignment="Stretch" Height="{Binding ElementName=StackPanel, Path=Height}">
             <StackPanel MaxWidth="55" Width="55">
                 <DockPanel Background="#2E2E2E" Height="{Binding Height}">
-                    <StackPanel  DockPanel.Dock="Top">
+                    <StackPanel DockPanel.Dock="Top">
                         <StackPanel Margin="0,32,0,0"></StackPanel>
                         <StackPanel Margin="8">
-                            <Image  Source="/Assets/avatar.png"></Image>
+                            <Image Source="/Assets/avatar.png"></Image>
                         </StackPanel>
                         <StackPanel Name="ChatStackPanel" Margin="15">
                             <Image Source="/Assets/chat-1.png"></Image>
                         </StackPanel>
                     </StackPanel>
-                    
-                    <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Bottom" >
+
+                    <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Bottom">
                         <StackPanel VerticalAlignment="Bottom" Name="FunctionStackPanel" Margin="15">
                             <Image Source="/Assets/function.png"></Image>
                         </StackPanel>
                     </StackPanel>
+
                 </DockPanel>
             </StackPanel>
+            
+            <Border Width="250" MaxWidth="250" BorderBrush="#D3D3D3" BorderThickness="0,0,1,0">
+                <StackPanel>
+                    <pages:ChatShow />
+                </StackPanel>
+            </Border>
+            
             <StackPanel>
-                <pages:ChatShow/>
+                <StackPanel Height="{Binding Height}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <pages:SendChat DataContext="{Binding SendChatViewModel}"></pages:SendChat>
+                </StackPanel>
             </StackPanel>
         </WrapPanel>
     </StackPanel>

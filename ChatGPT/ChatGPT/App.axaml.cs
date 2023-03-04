@@ -1,8 +1,7 @@
-using Avalonia;
-using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Markup.Xaml;
-using ChatGPT.ViewModels;
-using ChatGPT.Views;
+using System;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
+using Avalonia.Svg.Skia;
 
 namespace ChatGPT;
 
@@ -10,6 +9,9 @@ public partial class App : Application
 {
     public override void Initialize()
     {
+        GC.KeepAlive(typeof(SvgImageExtension).Assembly);
+        GC.KeepAlive(typeof(Avalonia.Svg.Skia.Svg).Assembly);
+
         AvaloniaXamlLoader.Load(this);
     }
 
@@ -30,6 +32,21 @@ public partial class App : Application
             };
         }
 
+        var notifyIcon = new TrayIcon();
+        notifyIcon.Menu ??= new NativeMenu();
+        notifyIcon.ToolTipText = "ChatGPT";
+        
+        var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
+        
+        notifyIcon.Icon = new WindowIcon(assets.Open(new Uri("avares://ChatGPT/Assets/chatgpt.ico")));
+        var exit = new NativeMenuItem()
+        {
+            Header = "退出ChatGPT"
+        };
+        
+        exit.Click += (sender, args) => Environment.Exit(0);
+        notifyIcon.Menu.Add(exit);
+        
         base.OnFrameworkInitializationCompleted();
     }
 }

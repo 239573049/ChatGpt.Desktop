@@ -1,8 +1,12 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:ChatGPT"
+             xmlns:converter="clr-namespace:ChatGPT.Converter"
              RequestedThemeVariant="Light"
              x:Class="ChatGPT.App">
+    <Application.Resources>
+        <converter:HeightConverter x:Key="HeightConverter" />
+    </Application.Resources>
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>

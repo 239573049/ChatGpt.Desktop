@@ -26,5 +26,7 @@ public class MainViewModel : ViewModelBase
         "聊天",
         "设置",
         "关于"
-    }; 
+    };
+
+    public SendChatViewModel SendChatViewModel { get; set; } = new();
 }

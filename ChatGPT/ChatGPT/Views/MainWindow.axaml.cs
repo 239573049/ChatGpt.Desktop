@@ -9,20 +9,15 @@ public partial class MainWindow : Window
         var observer = Observer.Create<Rect>(rect =>
         {
             if (ViewModel is null) return;
-            
-            if(ViewModel.Height != rect.Height)
-                ViewModel.Height = (int)rect.Height;
+
+            ViewModel.SendChatViewModel.Height = (int)rect.Height;
+            ViewModel.SendChatViewModel.Width = (int)rect.Width - 305;
+            ViewModel.Height = (int)rect.Height;
+            ViewModel.SendChatViewModel.ShowChatPanelHeight = (int)rect.Height - ViewModel.SendChatViewModel.SendPanelHeight - 60;
         });
-        
+
         this.GetObservable(BoundsProperty).Subscribe(observer);
-        
-        FunctionStackPanel = this.FindControl<StackPanel>(nameof(FunctionStackPanel));
-        ChatStackPanel = this.FindControl<StackPanel>(nameof(ChatStackPanel));
-        
-        FunctionStackPanel.AddHand();
-        ChatStackPanel.AddHand();
     }
-    
+
     private MainViewModel ViewModel => DataContext as MainViewModel;
-    
 }
