@@ -22,8 +22,11 @@ public partial class App : Application
             .ConfigureHttpClient(options =>
             {
                 var chatGptOptions = MainApp.GetService<ChatGptOptions>();
-                options.DefaultRequestHeaders.Add("Authorization",
-                    "Bearer " + chatGptOptions.Token.TrimStart().TrimEnd());
+                if (!string.IsNullOrWhiteSpace(chatGptOptions?.Token))
+                {
+                    options.DefaultRequestHeaders.Add("Authorization",
+                        "Bearer " + chatGptOptions?.Token.TrimStart().TrimEnd());
+                }
             });
 
         services.AddSingleton<ChatGptOptions>(ChatGptOptions.NewChatGptOptions());
