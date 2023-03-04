@@ -1,4 +1,6 @@
-﻿using ReactiveUI;
+﻿using System.Collections.ObjectModel;
+using ChatGPT.Model;
+using ReactiveUI;
 
 namespace ChatGPT.ViewModels;
 
@@ -26,6 +28,22 @@ public class SendChatViewModel : ViewModelBase
 
     private int showChatPanelHeight = 0;
 
+    /// <summary>
+    /// 聊天消息
+    /// </summary>
+    public ObservableCollection<ChatMessage> messages = new();
+    
+    /// <summary>
+    /// 发送消息绑定对象
+    /// </summary>
+    private string message = string.Empty;
+    
+    public string Message
+    {
+        get => message;
+        set => this.RaiseAndSetIfChanged(ref message, value);
+    }
+    
     /// <summary>
     /// 显示消息面板高度
     /// </summary>
@@ -58,5 +76,24 @@ public class SendChatViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref sendPanelHeight, value);
     }
 
-    public MessageViewModel MessageViewModel { get; set; } = new();
+    
+    private ChatShow chatShow;
+    
+    public Action? ChatShowAction { get; set; }
+    
+    public ChatShow ChatShow
+    {
+        get => chatShow;
+        set
+        {
+            this.RaiseAndSetIfChanged(ref chatShow, value);
+            ChatShowAction?.Invoke();
+        }
+    }
+
+    public ObservableCollection<ChatMessage> Messages
+    {
+        get => messages;
+        set => this.RaiseAndSetIfChanged(ref messages, value);
+    }
 }

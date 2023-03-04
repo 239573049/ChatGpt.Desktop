@@ -10,6 +10,8 @@
         ExtendClientAreaChromeHints="NoChrome"
         ExtendClientAreaTitleBarHeightHint="-1"
         Height="{Binding Height}"
+        MinHeight="500"
+        MinWidth="800"
         Width="1060"
         Name="Main">
 
@@ -31,21 +33,27 @@
                         </StackPanel>
                     </StackPanel>
 
-                    <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Bottom">
-                        <StackPanel VerticalAlignment="Bottom" Name="FunctionStackPanel" Margin="15">
-                            <Image Source="/Assets/function.png"></Image>
+                    <StackPanel Margin="5" VerticalAlignment="Bottom" DockPanel.Dock="Bottom">
+                        <StackPanel VerticalAlignment="Bottom" Name="FunctionStackPanel">
+                            <Menu HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <MenuItem HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <MenuItem.Header>
+                                        <Image Margin="5" Height="20" Width="20" Source="/Assets/function.png"></Image>
+                                    </MenuItem.Header>
+                                    <MenuItem Click="Setting_OnClick" Name="Setting" Header="设置" />
+                                </MenuItem>
+                            </Menu>
                         </StackPanel>
                     </StackPanel>
-
                 </DockPanel>
             </StackPanel>
-            
+
             <Border Width="250" MaxWidth="250" BorderBrush="#D3D3D3" BorderThickness="0,0,1,0">
                 <StackPanel>
-                    <pages:ChatShow />
+                    <pages:ChatShowView Name="ChatShowView"/>
                 </StackPanel>
             </Border>
-            
+
             <StackPanel>
                 <StackPanel Height="{Binding Height}" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <pages:SendChat DataContext="{Binding SendChatViewModel}"></pages:SendChat>

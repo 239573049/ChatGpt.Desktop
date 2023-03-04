@@ -5,22 +5,60 @@
              xmlns:viewModels="clr-namespace:ChatGPT.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ChatGPT.Pages.Message">
-    
+
     <Design.DataContext>
-        <viewModels:MessageViewModel />
+        <viewModels:SendChatViewModel />
     </Design.DataContext>
-    
-    <ScrollViewer HorizontalScrollBarVisibility="Auto"
-                  VerticalScrollBarVisibility="Auto">
-        <ItemsControl Items="{Binding Messages}">
+
+    <ScrollViewer
+        Width="{Binding Width}"
+        HorizontalScrollBarVisibility="Auto"
+        VerticalScrollBarVisibility="Auto">
+        <ItemsControl Width="{Binding Width}" Items="{Binding Messages}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <WrapPanel>
-                        <Image Height="35" Width="35" Source="/Assets/avatar.png"></Image>
-                        <StackPanel>
-                            <TextBlock Margin="5" Text="{Binding Title}"></TextBlock>
+                    <StackPanel HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch">
+                        <StackPanel IsVisible="{Binding IsChatGPT}" HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch">
+                            <WrapPanel Margin="30,5,50,0">
+                                <Image VerticalAlignment="Top" Margin="0,0,-50,0" HorizontalAlignment="Left"
+                                       Height="35" Width="35" Source="/Assets/chatgpt.ico" />
+                                <StackPanel
+                                    Margin="50,0,50,0">
+                                    <!-- 用户昵称 -->
+                                    <!-- <TextBlock FontSize="12" Margin="5" Text="{Binding Title}"></TextBlock> -->
+                                    <StackPanel MinHeight="20" Background="#FFFFFF" Margin="5">
+                                        <Border CornerRadius="4">
+                                            <SelectableTextBlock PointerPressed="Content_OnPointerPressed" TextWrapping='Wrap' Margin="5" FontSize="14"
+                                                                 Text="{Binding Content}">
+                                            </SelectableTextBlock>
+                                        </Border>
+                                    </StackPanel>
+                                </StackPanel>
+                            </WrapPanel>
                         </StackPanel>
-                    </WrapPanel>
+                        <StackPanel Margin="0,5,30,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                    IsVisible="{Binding !IsChatGPT}">
+                            <WrapPanel
+                                HorizontalAlignment="Right"
+                                Margin="50,0,0,0">
+                                <Border Margin="-50,0,50,0" CornerRadius="4">
+                                    <StackPanel
+                                        Background="#89d961">
+                                        <StackPanel MinHeight="20" Background="#89d961" Margin="5">
+                                            <SelectableTextBlock TextWrapping='Wrap' Margin="5" FontSize="14"
+                                                                 Text="{Binding Content}">
+                                            </SelectableTextBlock>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+                                <Image VerticalAlignment="Top" Margin="-50,0,0,0" HorizontalAlignment="Right"
+                                       Height="35" Width="35" Source="/Assets/avatar.png">
+                                </Image>
+                            </WrapPanel>
+                        </StackPanel>
+                    </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

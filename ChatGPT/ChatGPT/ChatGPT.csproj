@@ -16,6 +16,9 @@
         <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.0-preview5" />
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.0-preview5" />
+        <PackageReference Include="FreeSql.Provider.Sqlite" Version="3.2.690" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
         <PackageReference Include="XamlNameReferenceGenerator" Version="1.6.1" />
         <PackageReference Include="Avalonia.Svg.Skia" Version="11.0.0-preview5" />
     </ItemGroup>

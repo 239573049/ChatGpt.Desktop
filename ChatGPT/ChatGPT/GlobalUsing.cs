@@ -8,3 +8,6 @@ global using Avalonia.Controls.ApplicationLifetimes;
 global using Avalonia.Markup.Xaml;
 global using ChatGPT.ViewModels;
 global using ChatGPT.Views;
+global using System;
+global using System.Collections.Generic;
+global using ReactiveUI;

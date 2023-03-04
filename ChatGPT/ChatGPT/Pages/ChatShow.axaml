@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:ChatGPT.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="ChatGPT.Pages.ChatShow">
+             x:Class="ChatGPT.Pages.ChatShowView">
     <Design.DataContext>
         <viewModels:MainViewModel />
     </Design.DataContext>
@@ -19,19 +19,21 @@
             </Grid>
         </WrapPanel>
         <StackPanel Height="{Binding ChatListHeight}">
-            <ListBox SelectedIndex="{Binding Select}" Items="{Binding FunctionList}">
+            <ListBox SelectionChanged="SelectingListBox_OnSelectionChanged" SelectedIndex="{Binding Select}" Items="{Binding FunctionList}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <WrapPanel Name="WrapPanel" Height="60" Width="250">
+                        <WrapPanel DataContext="{Binding GetThis}" Name="WrapPanel" Height="60" Width="250">
                             <StackPanel Margin="10">
-                                <Image Height="40" Width="40" Source="/Assets/t.png"></Image>
+                                <Image Height="40" Width="40" Source="/Assets/chatgpt.ico"></Image>
                             </StackPanel>
                             <StackPanel Margin="5,10,0,0">
-                                <TextBlock FontWeight="Black">文件传输助手</TextBlock>
+                                <TextBlock FontWeight="Black" Text="{Binding Title}"></TextBlock>
                                 <TextBlock Foreground="#b1a1a1" Margin="0,5,0,0" FontSize="12">[图片]</TextBlock>
                             </StackPanel>
                             <StackPanel Width="100">
-                                <TextBlock Margin="5" Foreground="#b1a1a1" HorizontalAlignment="Right">星期三</TextBlock>
+                                <TextBlock Margin="5" Foreground="#b1a1a1" HorizontalAlignment="Right"
+                                           Text="{Binding Date}">
+                                </TextBlock>
                             </StackPanel>
                         </WrapPanel>
                     </DataTemplate>

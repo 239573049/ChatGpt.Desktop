@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using ReactiveUI;
+﻿using ChatGPT.Model;
 
 namespace ChatGPT.ViewModels;
 
@@ -21,12 +20,18 @@ public class MainViewModel : ViewModelBase
 
     public int Select { get; set; }
     
-    public List<string> FunctionList { get; set; } = new()
+    public List<ChatShow> FunctionList { get; set; } = new()
     {
-        "聊天",
-        "设置",
-        "关于"
+        new ChatShow
+        {
+            Date = DateTime.Now.ToString("HH:mm"),
+            Title = "ChatGPT",
+            Key = "ChatGPT"
+        }
     };
 
     public SendChatViewModel SendChatViewModel { get; set; } = new();
+
+    public SettingViewModel SettingViewModel { get; set; } = new();
+
 }
