@@ -8,24 +8,24 @@ public class SendChatViewModel : ViewModelBase
     /// 发送面板高度
     /// </summary>
     private int sendPanelHeight = 180;
-    
+
     /// <summary>
     /// 显示信息面板高度
     /// </summary>
     private int showPanelHeight = 0;
-    
+
     /// <summary>
     /// 窗体高度
     /// </summary>
     private int height = 790;
-    
+
     /// <summary>
     /// 窗口宽度
     /// </summary>
     private int width = 755;
-    
+
     private int showChatPanelHeight = 0;
-    
+
     /// <summary>
     /// 显示消息面板高度
     /// </summary>
@@ -35,13 +35,13 @@ public class SendChatViewModel : ViewModelBase
         get => showChatPanelHeight;
         set => this.RaiseAndSetIfChanged(ref showChatPanelHeight, value);
     }
-    
+
     public int Width
     {
         get => width;
         set => this.RaiseAndSetIfChanged(ref width, value);
     }
-    
+
     public int Height
     {
         get => height;
@@ -51,11 +51,12 @@ public class SendChatViewModel : ViewModelBase
             this.RaisePropertyChanged(nameof(SendPanelHeight));
         }
     }
-    
+
     public int SendPanelHeight
     {
         get => sendPanelHeight;
         set => this.RaiseAndSetIfChanged(ref sendPanelHeight, value);
     }
-    
+
+    public MessageViewModel MessageViewModel { get; set; } = new();
 }

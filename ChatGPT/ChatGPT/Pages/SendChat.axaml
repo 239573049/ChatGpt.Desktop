@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:ChatGPT.ViewModels"
              xmlns:local="clr-namespace:ChatGPT.Converter"
+             xmlns:pages="clr-namespace:ChatGPT.Pages"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ChatGPT.Pages.SendChat">
 
@@ -30,24 +31,27 @@
             </Grid>
         </Border>
         <WrapPanel Height="{Binding ShowChatPanelHeight}">
-
+            <pages:Message DataContext="{Binding MessageViewModel}" />
         </WrapPanel>
-        
-        <Border BorderBrush="#D3D3D3" BorderThickness="0,1,0,0">
+
+        <Border BorderBrush="#D3D3D3" BorderThickness="0,1,0,0" Name="SendBorder"
+                PointerEntered="SendBorder_OnPointerEntered">
             <WrapPanel Width="{Binding Width}" Name="SendPane" Height="{Binding SendPanelHeight}">
-                <TextBox
-                    BorderThickness="0"
-                    Background="Transparent"
-                    Height="{Binding ElementName=SendPane, Path=Height, Converter={StaticResource HeightConverter}, ConverterParameter=60.0}"
-                    Width="{Binding ElementName=SendPane,Path=Width}">
-                </TextBox>
-                <Grid Width="{Binding Width}">
-                    <Button Width="100" Height="30" VerticalAlignment="Bottom" Margin="10" Background="#E9E9E9"
-                            Foreground="#06C191"
-                            HorizontalAlignment="Right">
-                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="发送（S）"></TextBlock>
-                    </Button>
-                </Grid>
+                <WrapPanel>
+                    <TextBox
+                        BorderThickness="0"
+                        Background="Transparent"
+                        Height="{Binding ElementName=SendPane, Path=Height, Converter={StaticResource HeightConverter}, ConverterParameter=60.0}"
+                        Width="{Binding ElementName=SendPane,Path=Width}">
+                    </TextBox>
+                    <Grid Width="{Binding Width}">
+                        <Button Width="100" Height="30" VerticalAlignment="Bottom" Margin="10" Background="#E9E9E9"
+                                Foreground="#06C191"
+                                HorizontalAlignment="Right">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="发送（S）"></TextBlock>
+                        </Button>
+                    </Grid>
+                </WrapPanel>
             </WrapPanel>
         </Border>
     </StackPanel>

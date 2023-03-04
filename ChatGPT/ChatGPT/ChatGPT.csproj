@@ -19,4 +19,15 @@
         <PackageReference Include="XamlNameReferenceGenerator" Version="1.6.1" />
         <PackageReference Include="Avalonia.Svg.Skia" Version="11.0.0-preview5" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Pages\Views\MainView.axaml.cs">
+        <DependentUpon>MainView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Pages\Views\MainWindow.axaml.cs">
+        <DependentUpon>MainWindow.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
 </Project>

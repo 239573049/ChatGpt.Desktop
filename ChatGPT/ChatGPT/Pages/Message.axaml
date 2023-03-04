@@ -1,0 +1,28 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:ChatGPT.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ChatGPT.Pages.Message">
+    
+    <Design.DataContext>
+        <viewModels:MessageViewModel />
+    </Design.DataContext>
+    
+    <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Auto">
+        <ItemsControl Items="{Binding Messages}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <Image Height="35" Width="35" Source="/Assets/avatar.png"></Image>
+                        <StackPanel>
+                            <TextBlock Margin="5" Text="{Binding Title}"></TextBlock>
+                        </StackPanel>
+                    </WrapPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </ScrollViewer>
+</UserControl>
