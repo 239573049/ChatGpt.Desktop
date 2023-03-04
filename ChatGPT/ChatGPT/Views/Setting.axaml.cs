@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using Avalonia.Controls.Notifications;
 using Avalonia.Controls.Primitives;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using ChatGPT.Options;
 using Notification = Avalonia.Controls.Notifications.Notification;
@@ -67,5 +68,12 @@ public partial class Setting : Window
         {
             _manager?.Show(new Notification("提示", "配置存储错误", NotificationType.Error));
         }
+    }
+
+    private async void GitHub_OnPointerPressed(object? sender, PointerPressedEventArgs e)
+    {
+        // 设置粘贴板内容
+        await Application.Current.Clipboard.SetTextAsync("https://github.com/239573049/ChatGpt.Desktop");
+        _manager?.Show(new Notification("提示", "GitHub仓库地址已经复杂到粘贴板！", NotificationType.Success));
     }
 }

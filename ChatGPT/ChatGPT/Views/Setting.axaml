@@ -57,7 +57,8 @@
                                 Text="{Binding Token}"
                                 Watermark="token">
                             </TextBox>
-                            <Button Name="SaveButton" Click="SaveButton_OnClick" Width="330" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <Button Name="SaveButton" Click="SaveButton_OnClick" Width="330" Margin="0,10,0,0"
+                                    HorizontalAlignment="Center" VerticalAlignment="Top">
                                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">保存</TextBlock>
                             </Button>
                         </StackPanel>
@@ -68,7 +69,25 @@
                         关于
                     </TabItem.Header>
                     <TabItem.Content>
-                        关于内容
+                        <StackPanel Margin="50,0,50,10">
+                            <TextBlock
+                                Margin="20"
+                                Background="Transparent"
+                                TextWrapping="Wrap"
+                                FontSize="14"
+                                Name="AboutTextBox">
+                                一个基于avalonia实现的仿webChat的ChatGpt客户端
+                                支持聊天记录，支持聊天连续
+                                &#xD;
+                                <TextBlock Foreground="Red">
+                                    作者：token 邮箱 239573049@qq.com
+                                </TextBlock>
+                                &#xD;
+                                <TextBlock Foreground="Red" Name="GitHub" PointerPressed="GitHub_OnPointerPressed">
+                                    项目地址：https://github.com/239573049/ChatGpt.Desktop
+                                </TextBlock>
+                            </TextBlock>
+                        </StackPanel>
                     </TabItem.Content>
                 </TabItem>
             </TabControl>
