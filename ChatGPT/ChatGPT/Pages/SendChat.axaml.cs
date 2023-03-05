@@ -86,14 +86,6 @@ public partial class SendChat : UserControl
 
     private SendChatViewModel ViewModel => DataContext as SendChatViewModel;
 
-    private void Thumb_OnDragDelta(object? sender, VectorEventArgs e)
-    {
-        var thumb = (Thumb)sender;
-        var wrapPanel = (WrapPanel)thumb.Parent;
-        wrapPanel.Width += e.Vector.X;
-        wrapPanel.Height += e.Vector.Y;
-    }
-
     private void SendBorder_OnPointerEntered(object? sender, PointerEventArgs e)
     {
     }

@@ -1,11 +1,7 @@
-using System;
-using System.Net.Http;
-using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using Avalonia.Svg.Skia;
 using ChatGPT.Options;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Http.Logging;
 
 namespace ChatGPT;
 
@@ -47,13 +43,6 @@ public partial class App : Application
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             desktop.MainWindow = new MainWindow
-            {
-                DataContext = new MainViewModel()
-            };
-        }
-        else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
-        {
-            singleViewPlatform.MainView = new MainView
             {
                 DataContext = new MainViewModel()
             };
