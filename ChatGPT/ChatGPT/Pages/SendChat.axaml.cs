@@ -149,6 +149,7 @@ public partial class SendChat : UserControl
                 // Avatar = bitmap,
                 Title = "token",
                 Content = ViewModel.Message,
+                CreatedTime = DateTime.Now,
                 IsChatGPT = false
             };
 
@@ -199,7 +200,8 @@ public partial class SendChat : UserControl
                 // Avatar = new Bitmap(AvaloniaLocator.Current.GetService<IAssetLoader>().Open(uri)),
                 Title = "ChatGPT",
                 Content = response.choices[0].message.content,
-                IsChatGPT = true
+                IsChatGPT = true,
+                CreatedTime = DateTime.Now
             };
             // 添加到消息列表 来自Token的代码
             ViewModel.messages.Add(chatGptMessage);

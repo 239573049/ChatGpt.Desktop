@@ -11,13 +11,16 @@
     </Design.DataContext>
 
     <ScrollViewer
+        Name="ScrollViewer"
         Width="{Binding Width}"
         HorizontalScrollBarVisibility="Auto"
-        VerticalScrollBarVisibility="Auto">
+        ScrollChanged="ScrollViewer_OnScrollChanged"
+        VerticalScrollBarVisibility="Visible">
         <ItemsControl Width="{Binding Width}" Items="{Binding Messages}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel HorizontalAlignment="Stretch"
+                    <StackPanel 
+                                HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch">
                         <StackPanel IsVisible="{Binding IsChatGPT}" HorizontalAlignment="Stretch"
                                     VerticalAlignment="Stretch">

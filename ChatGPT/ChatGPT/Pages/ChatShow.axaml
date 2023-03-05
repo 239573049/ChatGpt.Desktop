@@ -22,11 +22,11 @@
             <ListBox SelectionChanged="SelectingListBox_OnSelectionChanged" SelectedIndex="{Binding Select}" Items="{Binding FunctionList}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <WrapPanel DataContext="{Binding GetThis}" Name="WrapPanel" Height="60" Width="250">
-                            <StackPanel Margin="10">
+                        <WrapPanel DataContext="{Binding GetThis}" Name="WrapPanel" Width="250">
+                            <StackPanel Margin="5">
                                 <Image Height="40" Width="40" Source="/Assets/chatgpt.ico"></Image>
                             </StackPanel>
-                            <StackPanel Margin="5,10,0,0">
+                            <StackPanel Margin="5,5,0,0">
                                 <TextBlock FontWeight="Black" Text="{Binding Title}"></TextBlock>
                                 <TextBlock Foreground="#b1a1a1" Margin="0,5,0,0" FontSize="12">[图片]</TextBlock>
                             </StackPanel>
@@ -39,6 +39,9 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
                 <ListBox.Styles>
+                    <Style Selector="ListBoxItem">
+                        <Setter Property="MaxHeight" Value="60"></Setter>
+                    </Style>
                     <Style Selector="ListBoxItem[IsSelected=True]">
                         <Setter Property="Background" Value="#c4c4c4"></Setter>
                     </Style>

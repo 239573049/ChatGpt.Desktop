@@ -11,29 +11,33 @@
         <viewModels:SendChatViewModel />
     </Design.DataContext>
 
+    <UserControl.Styles>
+        <StyleInclude Source="/Styles/TextBoxStyle.axaml"></StyleInclude>
+    </UserControl.Styles>
+
     <StackPanel Width="{Binding Width}">
         <Border Width="{Binding Width}" Height="60" BorderBrush="#D3D3D3" BorderThickness="0,0,0,1">
             <Grid>
-                <TextBlock Margin="25,20,0,0" FontWeight="Black" FontSize="20">标题栏</TextBlock>
-                <Button 
-                        Name="Minimize"
-                        Click="Minimize_OnClick"
-                        Height="25" 
-                        Width="35" 
-                        Margin="0,0,70,0" 
-                        VerticalAlignment="Top" Background="Transparent"
-                        HorizontalAlignment="Right">
+                <TextBlock Margin="25,20,0,0" FontWeight="Black" FontSize="20" Text="{Binding ChatShow.Title}"></TextBlock>
+                <Button
+                    Name="Minimize"
+                    Click="Minimize_OnClick"
+                    Height="25"
+                    Width="35"
+                    Margin="0,0,70,0"
+                    VerticalAlignment="Top" Background="Transparent"
+                    HorizontalAlignment="Right">
                     <Svg Height="13" Width="13" Path="/Assets/minimize.svg"></Svg>
                 </Button>
-                <Button 
-                        Name="Maximize"
-                        Click="Maximize_OnClick"
-                        Height="25" 
-                        Width="35" 
-                        Margin="0,0,35,0" 
-                        VerticalAlignment="Top"
-                        Background="Transparent"
-                        HorizontalAlignment="Right">
+                <Button
+                    Name="Maximize"
+                    Click="Maximize_OnClick"
+                    Height="25"
+                    Width="35"
+                    Margin="0,0,35,0"
+                    VerticalAlignment="Top"
+                    Background="Transparent"
+                    HorizontalAlignment="Right">
                     <Svg Height="13" Width="13" Path="/Assets/maximize.svg"></Svg>
                 </Button>
                 <Button Name="Close" Click="Close_OnClick" Height="25" Width="35" VerticalAlignment="Top"
@@ -42,9 +46,9 @@
                 </Button>
             </Grid>
         </Border>
-        
+
         <WrapPanel Width="{Binding Width}" Height="{Binding ShowChatPanelHeight}" Background="#F5F5F5">
-            <pages:Message 
+            <pages:Message
                 Width="{Binding Width}" />
         </WrapPanel>
 
@@ -63,6 +67,11 @@
                         Height="{Binding ElementName=SendPane, Path=Height, Converter={StaticResource HeightConverter}, ConverterParameter=60.0}"
                         Width="{Binding ElementName=SendPane,Path=Width}">
                     </TextBox>
+                    <WrapPanel.Styles>
+                        <Style Selector="TextBox:focus">
+                            <Setter Property="BorderBrush" Value="{x:Null}"></Setter>
+                        </Style>
+                    </WrapPanel.Styles>
                     <Grid Width="{Binding Width}">
                         <Button
                             Name="SendMessage"
