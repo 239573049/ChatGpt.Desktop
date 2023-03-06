@@ -46,22 +46,22 @@ public partial class App : Application
             {
                 DataContext = new MainViewModel()
             };
+            var notifyIcon = new TrayIcon();
+            notifyIcon.Menu ??= new NativeMenu();
+            notifyIcon.ToolTipText = "ChatGPT";
+
+            var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
+
+            notifyIcon.Icon = new WindowIcon(assets.Open(new Uri("avares://ChatGPT/Assets/chatgpt.ico")));
+            var exit = new NativeMenuItem()
+            {
+                Header = "退出ChatGPT"
+            };
+
+            exit.Click += (sender, args) => Environment.Exit(0);
+            notifyIcon.Menu.Add(exit);
+            notifyIcon.Clicked += (sender, args) => { desktop.MainWindow.WindowState = WindowState.Normal; };
         }
-
-        var notifyIcon = new TrayIcon();
-        notifyIcon.Menu ??= new NativeMenu();
-        notifyIcon.ToolTipText = "ChatGPT";
-
-        var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
-
-        notifyIcon.Icon = new WindowIcon(assets.Open(new Uri("avares://ChatGPT/Assets/chatgpt.ico")));
-        var exit = new NativeMenuItem()
-        {
-            Header = "退出ChatGPT"
-        };
-
-        exit.Click += (sender, args) => Environment.Exit(0);
-        notifyIcon.Menu.Add(exit);
 
         base.OnFrameworkInitializationCompleted();
     }

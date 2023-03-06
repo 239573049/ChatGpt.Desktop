@@ -19,14 +19,15 @@ public partial class Setting : Window
         this.AttachDevTools();
 #endif
         TokenTextBox = this.FindControl<TextBox>(nameof(TokenTextBox));
+        ChatGptApi = this.FindControl<TextBox>(nameof(ChatGptApi));
 
         DataContextChanged += (sender, args) =>
         {
             var chatGptOptions = MainApp.GetService<ChatGptOptions>();
-            if (DataContext is SettingViewModel model)
-            {
-                model.Token = chatGptOptions.Token;
-            }
+            if (DataContext is not SettingViewModel model) return;
+            
+            model.Token = chatGptOptions.Token;
+            model.Gpt35ApiUrl = chatGptOptions.Gpt35ApiUrl;
         };
     }
 
@@ -57,6 +58,7 @@ public partial class Setting : Window
         {
             var chatGptOptions = MainApp.GetService<ChatGptOptions>();
             chatGptOptions.Token = TokenTextBox.Text;
+            chatGptOptions.Gpt35ApiUrl = ChatGptApi.Text;
             await chatGptOptions.SaveAsync();
 
             var http = MainApp.GetService<IHttpClientFactory>().CreateClient("chatGpt");

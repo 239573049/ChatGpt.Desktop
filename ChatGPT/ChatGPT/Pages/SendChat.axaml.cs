@@ -7,6 +7,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using ChatGPT.Model;
+using ChatGPT.Options;
 using Notification = Avalonia.Controls.Notifications.Notification;
 
 namespace ChatGPT.Pages;
@@ -170,8 +171,10 @@ public partial class SendChat : UserControl
                 )
                 .ToList();
 
+            var chatOptions = MainApp.GetService<ChatGptOptions>();
+
             // 请求ChatGpt 3.5最新模型 来自Token的代码
-            var responseMessage = await http.PostAsJsonAsync("https://api.openai.com/v1/chat/completions", new
+            var responseMessage = await http.PostAsJsonAsync(chatOptions.Gpt35ApiUrl, new
             {
                 model = "gpt-3.5-turbo",
                 temperature = 0,

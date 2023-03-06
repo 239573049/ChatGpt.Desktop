@@ -57,6 +57,13 @@
                                 Text="{Binding Token}"
                                 Watermark="token">
                             </TextBox>
+                            <TextBox
+                                BorderThickness="0"
+                                Background="Transparent"
+                                Name="ChatGptApi"
+                                Text="{Binding Gpt35ApiUrl}"
+                                Watermark="ChatGpt3.5Api地址">
+                            </TextBox>
                             <Button Name="SaveButton" Click="SaveButton_OnClick" Width="330" Margin="0,10,0,0"
                                     HorizontalAlignment="Center" VerticalAlignment="Top">
                                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">保存</TextBlock>

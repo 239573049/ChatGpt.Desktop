@@ -11,6 +11,12 @@ public class ChatGptOptions
 {
     public string Token { get; set; }
 
+    /// <summary>
+    /// ChatGpt 3.5 api
+    /// 官方地址 http://api.openai.com/v1/chat/completions
+    /// </summary>
+    public string Gpt35ApiUrl = "http://openai.tokengo.top:1800/v1/chat/completions";
+    
     public async Task SaveAsync()
     {
         var json = JsonSerializer.Serialize(this);
