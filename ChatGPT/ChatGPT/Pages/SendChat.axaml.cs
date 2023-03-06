@@ -183,6 +183,12 @@ public partial class SendChat : UserControl
                 messages = message
             });
 
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                _manager?.Show(new Notification("提示", "在请求AI服务时出现错误！响应状态码不准确！", NotificationType.Error));
+                return;
+            }
+
             // 获取返回的消息 来自Token的代码
             var response = await responseMessage.Content.ReadFromJsonAsync<GetChatGPTDto>();
 

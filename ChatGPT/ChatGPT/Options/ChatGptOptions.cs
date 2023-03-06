@@ -1,9 +1,8 @@
-﻿using System.IO;
-using System.Security.Cryptography;
+﻿using ChatGPT.Helper;
+using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using ChatGPT.Helper;
 
 namespace ChatGPT.Options;
 
