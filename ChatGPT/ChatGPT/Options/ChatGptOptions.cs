@@ -15,6 +15,19 @@ public class ChatGptOptions
     /// 官方地址 http://api.openai.com/v1/chat/completions
     /// </summary>
     public string Gpt35ApiUrl = "http://server.tokengo.top:1800/v1/chat/completions";
+
+    private string defaultIconPath;
+
+    /// <summary>
+    /// 默认的Icon目录
+    /// </summary>
+    public string DefaultIconPath
+    {
+        get => string.IsNullOrEmpty(defaultIconPath) ? Path.Combine(AppContext.BaseDirectory, "Icon") : defaultIconPath;
+        set => defaultIconPath = value;
+    }
+
+    public int MessageMaxSize { get; set; } = 100;
     
     public async Task SaveAsync()
     {

@@ -16,7 +16,7 @@
     <ScrollViewer
         Name="ScrollViewer"
         Width="{Binding Width}"
-        HorizontalScrollBarVisibility="Auto"
+        HorizontalScrollBarVisibility="Hidden"
         ScrollChanged="ScrollViewer_OnScrollChanged"
         VerticalScrollBarVisibility="Visible">
         <ItemsControl Width="{Binding Width}" Items="{Binding Messages}">

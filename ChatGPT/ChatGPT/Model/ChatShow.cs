@@ -20,5 +20,15 @@ public class ChatShow
     /// </summary>
     public string Date { get; set; }
 
+    /// <summary>
+    /// 头像
+    /// </summary>
+    public string Avatar { get; set; }
+
+    /// <summary>
+    /// 创建时间
+    /// </summary>
+    public DateTime CreatedTime { get; set; }
+    
     public ChatShow GetThis => this;
 }

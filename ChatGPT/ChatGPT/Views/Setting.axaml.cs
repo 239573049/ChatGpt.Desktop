@@ -18,16 +18,19 @@ public partial class Setting : Window
 #if DEBUG
         this.AttachDevTools();
 #endif
+        MinWidth = MaxWidth = Width = 550;
+        MinHeight = MaxHeight = Height = 440;
         TokenTextBox = this.FindControl<TextBox>(nameof(TokenTextBox));
         ChatGptApi = this.FindControl<TextBox>(nameof(ChatGptApi));
-
+        MessageMaxSize = this.FindControl<TextBox>(nameof(MessageMaxSize));
         DataContextChanged += (sender, args) =>
         {
             var chatGptOptions = MainApp.GetService<ChatGptOptions>();
             if (DataContext is not SettingViewModel model) return;
-            
+
             model.Token = chatGptOptions.Token;
             model.Gpt35ApiUrl = chatGptOptions.Gpt35ApiUrl;
+            model.MessageMaxSize = chatGptOptions.MessageMaxSize;
         };
     }
 
@@ -57,8 +60,9 @@ public partial class Setting : Window
         try
         {
             var chatGptOptions = MainApp.GetService<ChatGptOptions>();
-            chatGptOptions.Token = TokenTextBox.Text;
-            chatGptOptions.Gpt35ApiUrl = ChatGptApi.Text;
+            chatGptOptions.Token = ViewModel.Token;
+            chatGptOptions.Gpt35ApiUrl = ViewModel.Gpt35ApiUrl;
+            chatGptOptions.MessageMaxSize = ViewModel.MessageMaxSize;
             await chatGptOptions.SaveAsync();
 
             var http = MainApp.GetService<IHttpClientFactory>().CreateClient("chatGpt");
@@ -71,6 +75,8 @@ public partial class Setting : Window
             _manager?.Show(new Notification("提示", "配置存储错误", NotificationType.Error));
         }
     }
+
+    public SettingViewModel ViewModel => DataContext as SettingViewModel;
 
     private async void GitHub_OnPointerPressed(object? sender, PointerPressedEventArgs e)
     {

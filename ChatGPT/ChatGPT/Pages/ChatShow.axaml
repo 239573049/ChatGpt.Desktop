@@ -3,28 +3,45 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:ChatGPT.ViewModels"
+             xmlns:converter="clr-namespace:ChatGPT.Converter"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ChatGPT.Pages.ChatShowView">
     <Design.DataContext>
         <viewModels:MainViewModel />
     </Design.DataContext>
-
+    <UserControl.Resources>
+        <converter:BitmapAssetValueConverter x:Key="variableImage"/>
+    </UserControl.Resources>
+    
     <StackPanel Width="250" Height="{Binding Height}">
         <WrapPanel Height="60">
             <Grid Margin="5,20,0,0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="195" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
                 <TextBox CornerRadius="4" Watermark="搜索" BorderThickness="0" Background="#e2e2e2"
                          FontSize="12"
                          Width="195">
                 </TextBox>
+                <Button Name="Add" Click="Add_OnClick" Margin="4,0,0,0" Grid.Column="1">
+                    <Image Margin="4" Height="10" Width="10" Source="/Assets/add.png"></Image>
+                </Button>
+
             </Grid>
         </WrapPanel>
         <StackPanel Height="{Binding ChatListHeight}">
-            <ListBox SelectionChanged="SelectingListBox_OnSelectionChanged" SelectedIndex="{Binding Select}" Items="{Binding FunctionList}">
+            <ListBox SelectionChanged="SelectingListBox_OnSelectionChanged" 
+                     SelectedIndex="{Binding Select}"
+                     Items="{Binding FunctionList}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel DataContext="{Binding GetThis}" Name="WrapPanel" Width="250">
                             <StackPanel Margin="5">
-                                <Image Height="40" Width="40" Source="/Assets/chatgpt.ico"></Image>
+                                <Image Height="40" Width="40" Source="{Binding Avatar, Converter={StaticResource variableImage}}">
+                                </Image>
                             </StackPanel>
                             <StackPanel Margin="5,5,0,0">
                                 <TextBlock FontWeight="Black" Text="{Binding Title}"></TextBlock>

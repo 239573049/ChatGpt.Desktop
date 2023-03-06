@@ -19,11 +19,6 @@ public class ChatMessage
     public string Title { get; set; }
 
     /// <summary>
-    /// 头像
-    /// </summary>
-    // public IImage Avatar { get; set; }
-
-    /// <summary>
     /// 内容
     /// </summary>
     public string Content { get; set; }

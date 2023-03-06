@@ -22,6 +22,7 @@
         <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
         <PackageReference Include="XamlNameReferenceGenerator" Version="1.6.1" />
         <PackageReference Include="Avalonia.Svg.Skia" Version="11.0.0-preview5" />
+        <PackageReference Include="Semi.Avalonia" Version="0.1.0-preview5.3" />
     </ItemGroup>
 
     <ItemGroup>
@@ -33,5 +34,11 @@
         <DependentUpon>MainWindow.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Icon\**">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 </Project>

@@ -9,11 +9,8 @@
         ExtendClientAreaChromeHints="NoChrome"
         ExtendClientAreaTitleBarHeightHint="-1"
         Height="440"
+        Icon="/Assets/chatgpt.ico"
         Width="550"
-        MinHeight="440"
-        MinWidth="550"
-        MaxHeight="440"
-        MaxWidth="550"
         Background="#f5f5f5"
         Title="Setting">
 
@@ -21,6 +18,10 @@
         <viewModels:SettingViewModel />
     </Design.DataContext>
 
+    <Window.Styles>
+        <StyleInclude Source="avares://Semi.Avalonia/Themes/Index.axaml" />
+    </Window.Styles>
+    
     <StackPanel>
         <Border Width="550" Height="60" BorderThickness="0">
             <Grid>
@@ -50,25 +51,38 @@
                     </TabItem.Header>
                     <TabItem.Content>
                         <StackPanel Margin="50,0,50,10">
-                            <WrapPanel Margin="5">
+                            <Grid Margin="5">
                                 <TextBlock>token:</TextBlock>
                                 <TextBox
+                                    Margin="60,0,0,0"
                                     Background="Transparent"
                                     Name="TokenTextBox"
                                     Text="{Binding Token}"
                                     Watermark="token">
                                 </TextBox>
-                            </WrapPanel>
-                            <WrapPanel Margin="5">
+                            </Grid>
+                            <Grid Margin="5">
                                 <TextBlock>ApiUrl:</TextBlock>
                                 <TextBox
+                                    Margin="60,0,0,0"
                                     BorderThickness="1"
                                     Background="Transparent"
                                     Name="ChatGptApi"
                                     Text="{Binding Gpt35ApiUrl}"
                                     Watermark="ChatGpt3.5Api地址">
                                 </TextBox>
-                            </WrapPanel>
+                            </Grid>
+                            <Grid Margin="5">
+                                <TextBlock>消息数量:</TextBlock>
+                                <TextBox
+                                    Margin="60,0,0,0"
+                                    BorderThickness="1"
+                                    Background="Transparent"
+                                    Name="MessageMaxSize"
+                                    Text="{Binding MessageMaxSize}"
+                                    Watermark="消息最大数量">
+                                </TextBox>
+                            </Grid>
                             <Button Name="SaveButton" Click="SaveButton_OnClick" Width="330" Margin="0,10,0,0"
                                     HorizontalAlignment="Center" VerticalAlignment="Top">
                                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">保存</TextBlock>

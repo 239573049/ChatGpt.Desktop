@@ -79,6 +79,9 @@ public class SendChatViewModel : ViewModelBase
     
     private ChatShow chatShow;
     
+    /// <summary>
+    /// 用于定义ChatShow被更改事件
+    /// </summary>
     public Action? ChatShowAction { get; set; }
     
     public ChatShow ChatShow

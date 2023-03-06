@@ -1,0 +1,64 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:ChatGPT.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ChatGPT.Views.AddAlertDialog"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        Height="440"
+        Width="550"
+        Icon="/Assets/chatgpt.ico"
+        Title="AddAlertDialog">
+
+    <Design.DataContext>
+        <viewModels:AddAlertDialogViewModel />
+    </Design.DataContext>
+
+    <StackPanel>
+        <Border Width="550" Height="60" BorderThickness="0">
+            <Grid>
+                <TextBlock Margin="25,20,0,0" FontSize="12">添加对话框</TextBlock>
+                <Button
+                    Name="Minimize"
+                    Click="Minimize_OnClick"
+                    Height="25"
+                    Width="35"
+                    Margin="0,0,35,0"
+                    VerticalAlignment="Top" Background="Transparent"
+                    HorizontalAlignment="Right">
+                    <Svg Height="13" Width="13" Path="/Assets/minimize.svg"></Svg>
+                </Button>
+                <Button
+                    Name="Close" Click="Close_OnClick" Height="25" Width="35" VerticalAlignment="Top"
+                    Background="Transparent" HorizontalAlignment="Right">
+                    <Svg Height="13" Width="13" Path="/Assets/close.svg"></Svg>
+                </Button>
+            </Grid>
+        </Border>
+        <Border Height="380">
+            <StackPanel Margin="50">
+                <WrapPanel Margin="5">
+                    <StackPanel Width="80" Margin="5">
+                        <TextBlock HorizontalAlignment="Center">标题</TextBlock>
+                    </StackPanel>
+                    <TextBox Width="280"></TextBox>
+                </WrapPanel>
+                <WrapPanel Margin="5">
+                    <StackPanel Width="80" Margin="5">
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding Title}">头像</TextBlock>
+                    </StackPanel>
+                    <Button Width="280" Name="OpenImage" Click="OpenImage_OnClick">选择头像文件</Button>
+                </WrapPanel>
+                <StackPanel Margin="5">
+                    <Image HorizontalAlignment="Center" Name="Avatar" Source="/Assets/avatar.png" Height="50" Width="50"></Image>
+                </StackPanel>
+                <StackPanel Margin="5">
+                    <Button HorizontalAlignment="Center" Width="300" Margin="5" Name="Add" Click="Add_OnClick" Classes="Primary">新增</Button>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Window>

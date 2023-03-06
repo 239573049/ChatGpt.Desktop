@@ -14,8 +14,13 @@
     <UserControl.Styles>
         <StyleInclude Source="/Styles/TextBoxStyle.axaml"></StyleInclude>
     </UserControl.Styles>
-
-    <StackPanel Width="{Binding Width}">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <WrapPanel>
+            
         <Border Width="{Binding Width}" Height="60" BorderBrush="#D3D3D3" BorderThickness="0,0,0,1">
             <Grid>
                 <TextBlock Margin="25,20,0,0" FontWeight="Black" FontSize="20" Text="{Binding ChatShow.Title}"></TextBlock>
@@ -74,6 +79,19 @@
                     </WrapPanel.Styles>
                     <Grid Width="{Binding Width}">
                         <Button
+                            Name="ClearMessage"
+                            Click="ClearMessage_OnClick"
+                            Width="100"
+                            Height="30"
+                            VerticalAlignment="Bottom" 
+                            Margin="10,10,130,10" 
+                            Background="#E9E9E9"
+                            Foreground="Red"
+                            Classes="Danger"
+                            HorizontalAlignment="Right">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="清空记录"></TextBlock>
+                        </Button>
+                        <Button
                             Name="SendMessage"
                             Click="SendMessage_OnClick"
                             Width="100"
@@ -92,5 +110,6 @@
                 </WrapPanel>
             </WrapPanel>
         </Border>
-    </StackPanel>
+        </WrapPanel>
+    </Grid>
 </UserControl>

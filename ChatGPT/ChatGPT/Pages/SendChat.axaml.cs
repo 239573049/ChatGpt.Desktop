@@ -1,9 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Avalonia.Controls.Notifications;
-using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using ChatGPT.Model;
@@ -22,48 +22,37 @@ public partial class SendChat : UserControl
     {
         http = MainApp.GetService<IHttpClientFactory>().CreateClient("chatGpt");
         InitializeComponent();
+
         DataContextChanged += async (sender, args) =>
         {
             if (DataContext is not SendChatViewModel model) return;
             if (model.ChatShow != null)
             {
-                var freeSql = MainApp.GetService<IFreeSql>();
-                try
-                {
-                    var values = await freeSql.Select<ChatMessage>()
-                        .Where(x => x.ChatShowKey == model.ChatShow.Key)
-                        .OrderBy(x => x.CreatedTime)
-                        .ToListAsync();
-
-                    foreach (var value in values)
-                    {
-                        model.messages.Add(value);
-                    }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    throw;
-                }
+                await LoadMessage();
             }
-            else
-            {
-                model.ChatShowAction += async () =>
-                {
-                    var freeSql = MainApp.GetService<IFreeSql>();
 
-                    var values = await freeSql.Select<ChatMessage>()
-                        .Where(x => x.Key == model.ChatShow.Key)
-                        .OrderBy(x => x.CreatedTime)
-                        .ToListAsync();
-
-                    foreach (var value in values)
-                    {
-                        model.messages.Add(value);
-                    }
-                };
-            }
+            model.ChatShowAction += async () => { await LoadMessage(); };
         };
+    }
+
+    private async Task LoadMessage()
+    {
+        var freeSql = MainApp.GetService<IFreeSql>();
+
+        var config = MainApp.GetService<ChatGptOptions>();
+
+        var values = await freeSql.Select<ChatMessage>()
+            .Where(x => x.ChatShowKey == ViewModel.ChatShow.Key)
+            .OrderByDescending(x => x.CreatedTime)
+            .Take(config.MessageMaxSize)
+            .ToListAsync();
+
+        ViewModel.Messages = new ObservableCollection<ChatMessage>();
+
+        foreach (var value in values.OrderBy(x => x.CreatedTime))
+        {
+            ViewModel.Messages.Add(value);
+        }
     }
 
     private void InitializeComponent()
@@ -154,16 +143,11 @@ public partial class SendChat : UserControl
 
             // 获取消息记录用于AI联系上下文分析 来自Token的代码
             var message = ViewModel.messages
+                .Where(x => !x.IsChatGPT)
                 .OrderByDescending(x => x.CreatedTime) // 拿到最近的5条消息
-                .Take(5)
+                .Take(10)
                 .OrderBy(x => x.CreatedTime) // 按时间排序
-                .Select(x => x.IsChatGPT
-                    ? new
-                    {
-                        role = "assistant",
-                        content = x.Content
-                    }
-                    : new
+                .Select(x => new
                     {
                         role = "user",
                         content = x.Content
@@ -221,5 +205,17 @@ public partial class SendChat : UserControl
             // 异常处理 
             _manager?.Show(new Notification("提示", "在请求AI服务时出现错误！请联系管理员！", NotificationType.Error));
         }
+    }
+
+    /// <summary>
+    /// 清空消息
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private async void ClearMessage_OnClick(object? sender, RoutedEventArgs e)
+    {
+        var freesql = MainApp.GetService<IFreeSql>();
+        await freesql.Delete<ChatMessage>().Where(x=>x.ChatShowKey == ViewModel.ChatShow.Key).ExecuteAffrowsAsync();
+        await LoadMessage();
     }
 }

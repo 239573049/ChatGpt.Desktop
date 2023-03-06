@@ -1,4 +1,5 @@
-﻿using ChatGPT.Model;
+﻿using System.Collections.ObjectModel;
+using ChatGPT.Model;
 
 namespace ChatGPT.ViewModels;
 
@@ -18,20 +19,25 @@ public class MainViewModel : ViewModelBase
 
     public int ChatListHeight => Height - 60;
 
-    public int Select { get; set; }
-    
-    public List<ChatShow> FunctionList { get; set; } = new()
+    private int select;
+
+    public int Select
     {
-        new ChatShow
-        {
-            Date = DateTime.Now.ToString("HH:mm"),
-            Title = "ChatGPT",
-            Key = "ChatGPT"
-        }
-    };
+        get => select;
+        set => this.RaiseAndSetIfChanged(ref select, value);
+    }
+
+    private ObservableCollection<ChatShow> functionList = new();
+
+    public ObservableCollection<ChatShow> FunctionList
+    {
+        get => functionList;
+        set => this.RaiseAndSetIfChanged(ref functionList, value);
+    }
 
     public SendChatViewModel SendChatViewModel { get; set; } = new();
 
     public SettingViewModel SettingViewModel { get; set; } = new();
 
+    public AddAlertDialogViewModel AddAlertDialogViewModel { get; set; } = new();
 }
