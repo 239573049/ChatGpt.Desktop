@@ -32,6 +32,10 @@
 
 ![img](./img/home1.png)
 
+## 获取ChatGpt token
+
+实现需要一个ChatGpt账号并且登录然后访问一下地址，创建token
+https://platform.openai.com/account/api-keys
 
 
 ## 结尾
