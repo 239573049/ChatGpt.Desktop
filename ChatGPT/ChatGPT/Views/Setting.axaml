@@ -50,20 +50,25 @@
                     </TabItem.Header>
                     <TabItem.Content>
                         <StackPanel Margin="50,0,50,10">
-                            <TextBox
-                                BorderThickness="0"
-                                Background="Transparent"
-                                Name="TokenTextBox"
-                                Text="{Binding Token}"
-                                Watermark="token">
-                            </TextBox>
-                            <TextBox
-                                BorderThickness="0"
-                                Background="Transparent"
-                                Name="ChatGptApi"
-                                Text="{Binding Gpt35ApiUrl}"
-                                Watermark="ChatGpt3.5Api地址">
-                            </TextBox>
+                            <WrapPanel Margin="5">
+                                <TextBlock>token:</TextBlock>
+                                <TextBox
+                                    Background="Transparent"
+                                    Name="TokenTextBox"
+                                    Text="{Binding Token}"
+                                    Watermark="token">
+                                </TextBox>
+                            </WrapPanel>
+                            <WrapPanel Margin="5">
+                                <TextBlock>ApiUrl:</TextBlock>
+                                <TextBox
+                                    BorderThickness="1"
+                                    Background="Transparent"
+                                    Name="ChatGptApi"
+                                    Text="{Binding Gpt35ApiUrl}"
+                                    Watermark="ChatGpt3.5Api地址">
+                                </TextBox>
+                            </WrapPanel>
                             <Button Name="SaveButton" Click="SaveButton_OnClick" Width="330" Margin="0,10,0,0"
                                     HorizontalAlignment="Center" VerticalAlignment="Top">
                                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">保存</TextBlock>
