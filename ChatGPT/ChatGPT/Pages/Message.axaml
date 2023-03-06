@@ -4,6 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:ChatGPT.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:avedit="https://github.com/avaloniaui/avaloniaedit"
+             xmlns:ctxt="clr-namespace:ColorTextBlock.Avalonia;assembly=ColorTextBlock.Avalonia"
+             xmlns:md="clr-namespace:Markdown.Avalonia;assembly=Markdown.Avalonia"
              x:Class="ChatGPT.Pages.Message">
 
     <Design.DataContext>
@@ -33,9 +36,31 @@
                                     <!-- <TextBlock FontSize="12" Margin="5" Text="{Binding Title}"></TextBlock> -->
                                     <StackPanel MinHeight="20" Background="#FFFFFF" Margin="5">
                                         <Border CornerRadius="4">
-                                            <SelectableTextBlock PointerPressed="Content_OnPointerPressed" TextWrapping='Wrap' Margin="5" FontSize="14"
-                                                                 Text="{Binding Content}">
-                                            </SelectableTextBlock>
+                                            <!-- <SelectableTextBlock PointerPressed="Content_OnPointerPressed" TextWrapping='Wrap' Margin="5" FontSize="14" -->
+                                            <!--                      Text="{Binding Content}"> -->
+                                            <!-- </SelectableTextBlock> -->
+                                            <md:MarkdownScrollViewer  PointerPressed="Content_OnPointerPressed" Margin="4"  Markdown="{Binding Content}">
+                                               <md:MarkdownScrollViewer.Styles>
+                                                   <Style Selector="Border.CodeBlock">
+                                                       <Style.Setters>
+                                                           <Setter Property="BorderBrush"     Value="#f4f4f4"/>
+                                                           <Setter Property="BorderThickness" Value="1"/>
+                                                           <Setter Property="Padding"         Value="12,8"></Setter>
+                                                           <Setter Property="Background"      Value="#f8f8f8"/>
+                                                       </Style.Setters>
+                                                   </Style>
+
+                                                   <Style Selector="TextBlock.CodeBlock">
+                                                       <Style.Setters>
+                                                           <Setter Property="Foreground"      Value="#f8f8f8"/>
+                                                       </Style.Setters>
+                                                   </Style>
+
+                                                   <Style Selector="avedit|TextEditor">
+                                                       <Setter Property="Background"    Value="#f8f8f8" />
+                                                   </Style>
+                                               </md:MarkdownScrollViewer.Styles>
+                                            </md:MarkdownScrollViewer>
                                         </Border>
                                     </StackPanel>
                                 </StackPanel>
