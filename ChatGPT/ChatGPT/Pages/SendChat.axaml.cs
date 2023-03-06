@@ -157,6 +157,8 @@ public partial class SendChat : UserControl
 
             var chatOptions = MainApp.GetService<ChatGptOptions>();
 
+            http.DefaultRequestHeaders.Remove("Authorization");
+            http.DefaultRequestHeaders.Add("Authorization", $"Bearer {chatOptions.Token.TrimStart().TrimEnd()}");
             // 请求ChatGpt 3.5最新模型 来自Token的代码
             var responseMessage = await http.PostAsJsonAsync(chatOptions.Gpt35ApiUrl, new
             {

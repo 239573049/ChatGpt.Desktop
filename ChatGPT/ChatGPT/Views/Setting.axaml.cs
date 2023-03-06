@@ -65,9 +65,6 @@ public partial class Setting : Window
             chatGptOptions.MessageMaxSize = ViewModel.MessageMaxSize;
             await chatGptOptions.SaveAsync();
 
-            var http = MainApp.GetService<IHttpClientFactory>().CreateClient("chatGpt");
-            http.DefaultRequestHeaders.Remove("Authorization");
-            http.DefaultRequestHeaders.Add("Authorization", $"Bearer {chatGptOptions.Token.TrimStart().TrimEnd()}");
             _manager?.Show(new Notification("提示", "配置存储成功", NotificationType.Success));
         }
         catch (Exception)

@@ -56,7 +56,9 @@
                     <Image HorizontalAlignment="Center" Name="Avatar" Source="/Assets/avatar.png" Height="50" Width="50"></Image>
                 </StackPanel>
                 <StackPanel Margin="5">
-                    <Button HorizontalAlignment="Center" Width="300" Margin="5" Name="Add" Click="Add_OnClick" Classes="Primary">新增</Button>
+                    <Button HorizontalAlignment="Center" Width="300" Margin="5" Name="Add" Click="Add_OnClick" Classes="Primary">
+						<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">新增</TextBlock>
+					</Button>
                 </StackPanel>
             </StackPanel>
         </Border>
