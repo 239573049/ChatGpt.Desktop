@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:ChatGPT.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:ctxt="clr-namespace:ColorTextBlock.Avalonia;assembly=ColorTextBlock.Avalonia"
+             xmlns:md="clr-namespace:Markdown.Avalonia;assembly=Markdown.Avalonia"
              x:Class="ChatGPT.Pages.Message">
 
     <Design.DataContext>
@@ -33,9 +35,11 @@
                                     <!-- <TextBlock FontSize="12" Margin="5" Text="{Binding Title}"></TextBlock> -->
                                     <StackPanel MinHeight="20" Background="#FFFFFF" Margin="5">
                                         <Border CornerRadius="4">
-                                            <SelectableTextBlock PointerPressed="Content_OnPointerPressed" TextWrapping='Wrap' Margin="5" FontSize="14"
-                                                                 Text="{Binding Content}">
-                                            </SelectableTextBlock>
+                                            <!-- <SelectableTextBlock PointerPressed="Content_OnPointerPressed" TextWrapping='Wrap' Margin="5" FontSize="14" -->
+                                            <!--                      Text="{Binding Content}"> -->
+                                            <!-- </SelectableTextBlock> -->
+                                            <md:MarkdownScrollViewer PointerPressed="Content_OnPointerPressed"  Margin="5" Markdown="{Binding Content}">
+                                            </md:MarkdownScrollViewer>
                                         </Border>
                                     </StackPanel>
                                 </StackPanel>
