@@ -128,11 +128,6 @@ public partial class SendChat : UserControl
                 return;
             }
             
-            // 获取当前程序集 assets图片
-            // var uri = new Uri("avares://ChatGPT/Assets/avatar.png");
-            // // 通过uri获取Stream
-            // var bitmap = new Bitmap(AvaloniaLocator.Current.GetService<IAssetLoader>().Open(uri));
-
             var model = new ChatMessage
             {
                 ChatShowKey = ViewModel.ChatShow.Key,
