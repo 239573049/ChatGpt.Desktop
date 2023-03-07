@@ -53,6 +53,21 @@ public partial class App : Application
             var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
 
             notifyIcon.Icon = new WindowIcon(assets.Open(new Uri("avares://ChatGPT/Assets/chatgpt.ico")));
+
+            
+            var setting = new NativeMenuItem()
+            {
+                Header = "设置"
+            };
+            
+            setting.Click += (sender, args) =>
+            {
+                var setting = new Setting();
+                setting.Show();
+            };
+            
+            notifyIcon.Menu.Add(setting);
+            
             var exit = new NativeMenuItem()
             {
                 Header = "退出ChatGPT"
@@ -60,7 +75,12 @@ public partial class App : Application
 
             exit.Click += (sender, args) => Environment.Exit(0);
             notifyIcon.Menu.Add(exit);
-            notifyIcon.Clicked += (sender, args) => { desktop.MainWindow.WindowState = WindowState.Normal; };
+            
+            notifyIcon.Clicked += (sender, args) =>
+            {
+                desktop.MainWindow.ShowInTaskbar = true;
+                desktop.MainWindow.WindowState = WindowState.Normal;
+            };
         }
 
         base.OnFrameworkInitializationCompleted();
