@@ -1,9 +1,14 @@
-﻿using System.Net.Http;
+﻿using System.IO;
+using System.Linq;
+using System.Net.Http;
 using Avalonia.Controls.Notifications;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform.Storage;
 using ChatGPT.Options;
+using Token.Events;
 using Notification = Avalonia.Controls.Notifications.Notification;
 
 namespace ChatGPT.Views;
@@ -29,7 +34,9 @@ public partial class Setting : Window
             if (DataContext is not SettingViewModel model) return;
 
             model.Token = chatGptOptions.Token;
+            model.Avatar = chatGptOptions.Avatar;
             model.Gpt35ApiUrl = chatGptOptions.Gpt35ApiUrl;
+            model.Avatar = chatGptOptions.Avatar;
             model.MessageMaxSize = chatGptOptions.MessageMaxSize;
         };
     }
@@ -80,5 +87,60 @@ public partial class Setting : Window
         // 设置粘贴板内容
         await Application.Current.Clipboard.SetTextAsync("https://github.com/239573049/ChatGpt.Desktop");
         _manager?.Show(new Notification("提示", "GitHub仓库地址已经复杂到粘贴板！", NotificationType.Success));
+    }
+
+    List<FilePickerFileType>? GetFileTypes()
+    {
+        return new List<FilePickerFileType>
+        {
+            FilePickerFileTypes.ImageAll
+        };
+    }
+
+    private IStorageProvider? GetStorageProvider()
+    {
+        var topLevel = GetTopLevel(this);
+        return topLevel?.StorageProvider;
+    }
+
+    private async void UpdateAvatar_OnClick(object? sender, RoutedEventArgs e)
+    {
+        IStorageProvider? sp = GetStorageProvider();
+        if (sp is null) return;
+
+        var result = await sp.OpenFilePickerAsync(new FilePickerOpenOptions
+        {
+            Title = "选择对话框图片",
+            FileTypeFilter = GetFileTypes(),
+            AllowMultiple = false,
+        });
+
+        var options = MainApp.GetService<ChatGptOptions>();
+
+        // 创建文件夹
+        if (!Directory.Exists(options.DefaultIconPath))
+        {
+            Directory.CreateDirectory(options.DefaultIconPath);
+        }
+
+        using var value = result.FirstOrDefault();
+        await using var fileStream =
+            File.Create(Path.Combine(options.DefaultIconPath, Guid.NewGuid().ToString("N") + value.Name));
+        await (await value.OpenReadAsync()).CopyToAsync(fileStream);
+        await fileStream.FlushAsync();
+        fileStream.Close();
+        value.Dispose();
+
+        // 设置图片
+        ViewModel.Avatar = fileStream.Name;
+
+        // 修改配置文件
+        options.Avatar = fileStream.Name;
+        // 保存配置
+        await options.SaveAsync();
+
+        var keyLoadEventBus = MainApp.GetService<IKeyLoadEventBus>();
+
+        await keyLoadEventBus.PushAsync("Avatar", true);
     }
 }

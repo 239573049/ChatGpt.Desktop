@@ -44,11 +44,11 @@
                     <StackPanel Width="80" Margin="5">
                         <TextBlock HorizontalAlignment="Center">标题</TextBlock>
                     </StackPanel>
-                    <TextBox Width="280"></TextBox>
+                    <TextBox Width="280" Text="{Binding Title}"></TextBox>
                 </WrapPanel>
                 <WrapPanel Margin="5">
                     <StackPanel Width="80" Margin="5">
-                        <TextBlock HorizontalAlignment="Center" Text="{Binding Title}">头像</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" >头像</TextBlock>
                     </StackPanel>
                     <Button Width="280" Name="OpenImage" Click="OpenImage_OnClick">选择头像文件</Button>
                 </WrapPanel>

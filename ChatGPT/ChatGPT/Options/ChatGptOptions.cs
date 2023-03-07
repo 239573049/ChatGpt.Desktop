@@ -28,7 +28,12 @@ public class ChatGptOptions
     }
 
     public int MessageMaxSize { get; set; } = 100;
-    
+
+    /// <summary>
+    /// 用户头像
+    /// </summary>
+    public string Avatar { get; set; } = "./Icon/avatar.png";
+
     public async Task SaveAsync()
     {
         var json = JsonSerializer.Serialize(this);

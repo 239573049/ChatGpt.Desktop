@@ -1,4 +1,5 @@
-﻿using FreeSql.DataAnnotations;
+﻿using ChatGPT.Options;
+using FreeSql.DataAnnotations;
 
 namespace ChatGPT.Model;
 
@@ -18,6 +19,18 @@ public class ChatMessage : ViewModelBase
     public string Title { get; set; }
 
     private string content = string.Empty;
+
+    private string avatar = string.Empty;
+
+    /// <summary>
+    /// 头像
+    /// </summary>
+    [Column(IsIgnore = true)]
+    public string Avatar
+    {
+        get => avatar;
+        set => this.RaiseAndSetIfChanged(ref avatar, value);
+    }
 
     /// <summary>
     /// 内容

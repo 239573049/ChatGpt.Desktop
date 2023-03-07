@@ -7,6 +7,9 @@
 
     <ItemGroup>
         <AvaloniaResource Include="Assets\**" />
+        <None Include="Icon\avatar.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
         <TrimmerRootDescriptor Include="Roots.xml" />
     </ItemGroup>
 
@@ -20,6 +23,7 @@
         <PackageReference Include="Markdown.Avalonia" Version="11.0.0-a9" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
         <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
+        <PackageReference Include="Token.EventBus" Version="1.3.5" />
         <PackageReference Include="XamlNameReferenceGenerator" Version="1.6.1" />
         <PackageReference Include="Avalonia.Svg.Skia" Version="11.0.0-preview5" />
         <PackageReference Include="Semi.Avalonia" Version="0.1.0-preview5.3" />

@@ -7,6 +7,14 @@ public class SettingViewModel : ViewModelBase
     private string gpt35ApiUrl = string.Empty;
 
     private int messageMaxSize;
+
+    private string avatar = string.Empty;
+    
+    public string Avatar
+    {
+        get => avatar;
+        set => this.RaiseAndSetIfChanged(ref avatar, value);
+    }
     
     public int MessageMaxSize
     {
