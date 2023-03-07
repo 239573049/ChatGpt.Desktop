@@ -1,6 +1,4 @@
-﻿using ReactiveUI;
-
-namespace ChatGPT.ViewModels;
+﻿namespace ChatGPT.ViewModels;
 
 public class ViewModelBase : ReactiveObject
 {

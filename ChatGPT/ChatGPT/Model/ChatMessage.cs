@@ -1,9 +1,8 @@
-﻿using Avalonia.Media;
-using FreeSql.DataAnnotations;
+﻿using FreeSql.DataAnnotations;
 
 namespace ChatGPT.Model;
 
-public class ChatMessage
+public class ChatMessage : ViewModelBase
 {
     [Column(IsIdentity = true, IsPrimary = true)]
     public string Key { get; set; } = Guid.NewGuid().ToString();
@@ -18,10 +17,16 @@ public class ChatMessage
     /// </summary>
     public string Title { get; set; }
 
+    private string content = string.Empty;
+
     /// <summary>
     /// 内容
     /// </summary>
-    public string Content { get; set; }
+    public string Content
+    {
+        get => content;
+        set => this.RaiseAndSetIfChanged(ref content, value);
+    }
 
     /// <summary>
     /// 创建时间

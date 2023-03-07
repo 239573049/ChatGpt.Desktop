@@ -148,10 +148,10 @@ public partial class SendChat : UserControl
                 .Take(10)
                 .OrderBy(x => x.CreatedTime) // 按时间排序
                 .Select(x => new
-                    {
-                        role = "user",
-                        content = x.Content
-                    }
+                {
+                    role = "user",
+                    content = x.Content
+                }
                 )
                 .ToList();
 
@@ -159,6 +159,20 @@ public partial class SendChat : UserControl
 
             http.DefaultRequestHeaders.Remove("Authorization");
             http.DefaultRequestHeaders.Add("Authorization", $"Bearer {chatOptions.Token.TrimStart().TrimEnd()}");
+
+
+            var chatGptMessage = new ChatMessage
+            {
+                ChatShowKey = ViewModel.ChatShow.Key,
+                // Avatar = new Bitmap(AvaloniaLocator.Current.GetService<IAssetLoader>().Open(uri)),
+                Title = "ChatGPT",
+                Content = "等待回复中...",
+                IsChatGPT = true,
+                CreatedTime = DateTime.Now
+            };
+            // 添加到消息列表 来自Token的代码
+            ViewModel.messages.Add(chatGptMessage);
+
             // 请求ChatGpt 3.5最新模型 来自Token的代码
             var responseMessage = await http.PostAsJsonAsync(chatOptions.Gpt35ApiUrl, new
             {
@@ -178,20 +192,8 @@ public partial class SendChat : UserControl
             // 获取返回的消息 来自Token的代码
             var response = await responseMessage.Content.ReadFromJsonAsync<GetChatGPTDto>();
 
-            // 获取当前程序集 assets图片
-            // uri = new Uri("avares://ChatGPT/Assets/chatgpt.ico");
+            chatGptMessage.Content = response.choices[0].message.content;
 
-            var chatGptMessage = new ChatMessage
-            {
-                ChatShowKey = ViewModel.ChatShow.Key,
-                // Avatar = new Bitmap(AvaloniaLocator.Current.GetService<IAssetLoader>().Open(uri)),
-                Title = "ChatGPT",
-                Content = response.choices[0].message.content,
-                IsChatGPT = true,
-                CreatedTime = DateTime.Now
-            };
-            // 添加到消息列表 来自Token的代码
-            ViewModel.messages.Add(chatGptMessage);
 
             var freeSql = MainApp.GetService<IFreeSql>();
             await freeSql
@@ -217,7 +219,7 @@ public partial class SendChat : UserControl
     private async void ClearMessage_OnClick(object? sender, RoutedEventArgs e)
     {
         var freesql = MainApp.GetService<IFreeSql>();
-        await freesql.Delete<ChatMessage>().Where(x=>x.ChatShowKey == ViewModel.ChatShow.Key).ExecuteAffrowsAsync();
+        await freesql.Delete<ChatMessage>().Where(x => x.ChatShowKey == ViewModel.ChatShow.Key).ExecuteAffrowsAsync();
         await LoadMessage();
     }
 }
