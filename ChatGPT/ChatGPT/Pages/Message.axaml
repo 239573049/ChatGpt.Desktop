@@ -22,9 +22,9 @@
         <ItemsControl Width="{Binding Width}" Items="{Binding Messages}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel 
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch">
+                    <StackPanel
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
                         <StackPanel IsVisible="{Binding IsChatGPT}" HorizontalAlignment="Stretch"
                                     VerticalAlignment="Stretch">
                             <WrapPanel Margin="30,5,50,0">
@@ -39,27 +39,28 @@
                                             <!-- <SelectableTextBlock PointerPressed="Content_OnPointerPressed" TextWrapping='Wrap' Margin="5" FontSize="14" -->
                                             <!--                      Text="{Binding Content}"> -->
                                             <!-- </SelectableTextBlock> -->
-                                            <md:MarkdownScrollViewer  PointerPressed="Content_OnPointerPressed" Margin="4"  Markdown="{Binding Content}">
-                                               <md:MarkdownScrollViewer.Styles>
-                                                   <Style Selector="Border.CodeBlock">
-                                                       <Style.Setters>
-                                                           <Setter Property="BorderBrush"     Value="#f4f4f4"/>
-                                                           <Setter Property="BorderThickness" Value="1"/>
-                                                           <Setter Property="Padding"         Value="12,8"></Setter>
-                                                           <Setter Property="Background"      Value="#f8f8f8"/>
-                                                       </Style.Setters>
-                                                   </Style>
+                                            <md:MarkdownScrollViewer PointerPressed="Content_OnPointerPressed"
+                                                                     Margin="4" Markdown="{Binding Content}">
+                                                <md:MarkdownScrollViewer.Styles>
+                                                    <Style Selector="Border.CodeBlock">
+                                                        <Style.Setters>
+                                                            <Setter Property="BorderBrush" Value="#f4f4f4" />
+                                                            <Setter Property="BorderThickness" Value="1" />
+                                                            <Setter Property="Padding" Value="12,8"></Setter>
+                                                            <Setter Property="Background" Value="#f8f8f8" />
+                                                        </Style.Setters>
+                                                    </Style>
 
-                                                   <Style Selector="TextBlock.CodeBlock">
-                                                       <Style.Setters>
-                                                           <Setter Property="Foreground"      Value="#f8f8f8"/>
-                                                       </Style.Setters>
-                                                   </Style>
+                                                    <Style Selector="TextBlock.CodeBlock">
+                                                        <Style.Setters>
+                                                            <Setter Property="Foreground" Value="#f8f8f8" />
+                                                        </Style.Setters>
+                                                    </Style>
 
-                                                   <Style Selector="avedit|TextEditor">
-                                                       <Setter Property="Background"    Value="#f8f8f8" />
-                                                   </Style>
-                                               </md:MarkdownScrollViewer.Styles>
+                                                    <Style Selector="avedit|TextEditor">
+                                                        <Setter Property="Background" Value="#f8f8f8" />
+                                                    </Style>
+                                                </md:MarkdownScrollViewer.Styles>
                                             </md:MarkdownScrollViewer>
                                         </Border>
                                     </StackPanel>
