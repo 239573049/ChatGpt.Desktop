@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:ChatGPT.ViewModels"
         xmlns:pages="clr-namespace:ChatGPT.Pages"
+        xmlns:converter="clr-namespace:ChatGPT.Converter"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="ChatGPT.Views.MainWindow"
         ExtendClientAreaToDecorationsHint="True"
@@ -20,6 +21,10 @@
         <viewModels:MainViewModel />
     </Design.DataContext>
 
+    <Window.Resources>
+        <converter:BitmapAssetValueConverter x:Key="variableImage"/>
+    </Window.Resources>
+    
     <StackPanel Name="StackPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <WrapPanel Name="WrapPanel" VerticalAlignment="Stretch" Height="{Binding ElementName=StackPanel, Path=Height}">
 
@@ -34,7 +39,7 @@
                         <StackPanel DockPanel.Dock="Top">
                             <StackPanel Margin="0,32,0,0"></StackPanel>
                             <StackPanel Margin="8">
-                                <Image Source="/Assets/avatar.png"></Image>
+                                <Image Source="{Binding Avatar, Converter={StaticResource variableImage}}"></Image>
                             </StackPanel>
                             <StackPanel Name="ChatStackPanel" Margin="15">
                                 <Image Source="/Assets/chat-1.png"></Image>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Avalonia.Controls.Notifications;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Media.Imaging;
 using ChatGPT.Model;
 using ChatGPT.Options;
 using Notification = Avalonia.Controls.Notifications.Notification;
@@ -51,6 +52,11 @@ public partial class SendChat : UserControl
 
         foreach (var value in values.OrderBy(x => x.CreatedTime))
         {
+            if (!value.IsChatGPT)
+            {
+                value.Avatar = config.Avatar;
+            }
+
             ViewModel.Messages.Add(value);
         }
     }
@@ -127,11 +133,11 @@ public partial class SendChat : UserControl
                 _manager?.Show(new Notification("提示", "请先前往设置添加token", NotificationType.Error));
                 return;
             }
-            
+
             var model = new ChatMessage
             {
                 ChatShowKey = ViewModel.ChatShow.Key,
-                // Avatar = bitmap,
+                Avatar = chatOptions.Avatar,
                 Title = "token",
                 Content = ViewModel.Message,
                 CreatedTime = DateTime.Now,
@@ -151,10 +157,10 @@ public partial class SendChat : UserControl
                 .Take(10)
                 .OrderBy(x => x.CreatedTime) // 按时间排序
                 .Select(x => new
-                {
-                    role = "user",
-                    content = x.Content
-                }
+                    {
+                        role = "user",
+                        content = x.Content
+                    }
                 )
                 .ToList();
 
@@ -165,7 +171,6 @@ public partial class SendChat : UserControl
             var chatGptMessage = new ChatMessage
             {
                 ChatShowKey = ViewModel.ChatShow.Key,
-                // Avatar = new Bitmap(AvaloniaLocator.Current.GetService<IAssetLoader>().Open(uri)),
                 Title = "ChatGPT",
                 Content = "等待回复中...",
                 IsChatGPT = true,

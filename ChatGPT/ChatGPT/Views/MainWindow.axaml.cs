@@ -1,5 +1,7 @@
 using Avalonia.Interactivity;
+using ChatGPT.Options;
 using ChatGPT.Pages;
+using Token.Events;
 
 namespace ChatGPT.Views;
 
@@ -24,9 +26,19 @@ public partial class MainWindow : Window
 
         ChatShowView = this.Find<ChatShowView>(nameof(ChatShowView));
 
-        ChatShowView.OnClick += view =>
+        ChatShowView.OnClick += view => { ViewModel.SendChatViewModel.ChatShow = view; };
+
+        DataContextChanged += (sender, args) =>
         {
-            ViewModel.SendChatViewModel.ChatShow = view;
+            var options = MainApp.GetService<ChatGptOptions>();
+            ViewModel.Avatar = options.Avatar;
+            var keyLoadEventBus = MainApp.GetService<IKeyLoadEventBus>();
+            
+            keyLoadEventBus.Subscription("Avatar", (v) =>
+            {
+                var options = MainApp.GetService<ChatGptOptions>();
+                ViewModel.Avatar = options.Avatar;
+            });
         };
     }
 

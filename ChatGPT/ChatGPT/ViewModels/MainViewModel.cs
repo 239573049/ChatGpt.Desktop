@@ -35,6 +35,14 @@ public class MainViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref functionList, value);
     }
 
+    private string avatar = string.Empty;
+
+    public string Avatar
+    {
+        get => avatar;
+        set => this.RaiseAndSetIfChanged(ref avatar, value);
+    }
+
     public SendChatViewModel SendChatViewModel { get; set; } = new();
 
     public SettingViewModel SettingViewModel { get; set; } = new();

@@ -1,9 +1,12 @@
-﻿using Avalonia.Controls.Notifications;
+﻿using System.Linq;
+using Avalonia.Controls.Notifications;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.VisualTree;
+using ChatGPT.Options;
 using Markdown.Avalonia;
+using Token.Events;
 using Notification = Avalonia.Controls.Notifications.Notification;
 
 namespace ChatGPT.Pages;
@@ -21,6 +24,17 @@ public partial class Message : UserControl
     private void InitializeComponent()
     {
         AvaloniaXamlLoader.Load(this);
+
+        var keyLoadEventBus = MainApp.GetService<IKeyLoadEventBus>();
+
+        keyLoadEventBus.Subscription("Avatar", (v) =>
+        {
+            var options = MainApp.GetService<ChatGptOptions>();
+            foreach (var message in ViewModel.Messages.Where(x => !x.IsChatGPT))
+            {
+                message.Avatar = options.Avatar;
+            }
+        });
     }
 
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
@@ -43,16 +57,17 @@ public partial class Message : UserControl
             {
                 return;
             }
-        
+
             // 设置粘贴板内容
             await Application.Current.Clipboard.SetTextAsync(block.HereMarkdown);
             _manager?.Show(new Notification("提示", "内容已经复杂到粘贴板！", NotificationType.Success));
         }
-        
     }
 
+    public SendChatViewModel? ViewModel => DataContext as SendChatViewModel;
+
     private double _count;
-    
+
     private void ScrollViewer_OnScrollChanged(object? sender, ScrollChangedEventArgs e)
     {
         if (ScrollViewer.Extent.Height != _count)

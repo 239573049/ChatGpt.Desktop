@@ -20,10 +20,17 @@ public class ChatMessage : ViewModelBase
 
     private string content = string.Empty;
 
+    private string avatar = string.Empty;
+
     /// <summary>
     /// 头像
     /// </summary>
-    public string Avatar => MainApp.GetService<ChatGptOptions>().Avatar;
+    [Column(IsIgnore = true)]
+    public string Avatar
+    {
+        get => avatar;
+        set => this.RaiseAndSetIfChanged(ref avatar, value);
+    }
 
     /// <summary>
     /// 内容

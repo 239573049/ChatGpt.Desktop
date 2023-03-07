@@ -102,6 +102,7 @@
                             <Image Height="50" Width="50"
                                    Source="{Binding Avatar, Converter={StaticResource variableImage}}">
                             </Image>
+                            <Button Click="UpdateAvatar_OnClick" Name="UpdateAvatar">更新头像</Button>
                         </StackPanel>
                     </TabItem.Content>
                 </TabItem>

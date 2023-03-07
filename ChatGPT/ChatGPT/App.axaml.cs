@@ -2,6 +2,7 @@ using Avalonia.Platform;
 using Avalonia.Svg.Skia;
 using ChatGPT.Options;
 using Microsoft.Extensions.DependencyInjection;
+using Token.Extensions;
 
 namespace ChatGPT;
 
@@ -13,7 +14,7 @@ public partial class App : Application
         GC.KeepAlive(typeof(Avalonia.Svg.Skia.Svg).Assembly);
 
         var services = MainApp.CreateServiceCollection();
-
+        services.AddEventBus();
         services.AddHttpClient("chatGpt")
             .ConfigureHttpClient(options =>
             {
