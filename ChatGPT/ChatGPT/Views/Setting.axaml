@@ -3,6 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:ChatGPT.ViewModels"
+        xmlns:converter="clr-namespace:ChatGPT.Converter"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="ChatGPT.Views.Setting"
         ExtendClientAreaToDecorationsHint="True"
@@ -18,10 +19,14 @@
         <viewModels:SettingViewModel />
     </Design.DataContext>
 
+    <Window.Resources>
+        <converter:BitmapAssetValueConverter x:Key="variableImage" />
+    </Window.Resources>
+
     <Window.Styles>
         <StyleInclude Source="avares://Semi.Avalonia/Themes/Index.axaml" />
     </Window.Styles>
-    
+
     <StackPanel>
         <Border Width="550" Height="60" BorderThickness="0">
             <Grid>
@@ -87,6 +92,16 @@
                                     HorizontalAlignment="Center" VerticalAlignment="Top">
                                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">保存</TextBlock>
                             </Button>
+                        </StackPanel>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>用户</TabItem.Header>
+                    <TabItem.Content>
+                        <StackPanel Margin="50,0,50,10">
+                            <Image Height="50" Width="50"
+                                   Source="{Binding Avatar, Converter={StaticResource variableImage}}">
+                            </Image>
                         </StackPanel>
                     </TabItem.Content>
                 </TabItem>

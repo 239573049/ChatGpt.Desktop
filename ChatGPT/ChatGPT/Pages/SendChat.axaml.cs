@@ -120,6 +120,14 @@ public partial class SendChat : UserControl
                 return;
             }
 
+            var chatOptions = MainApp.GetService<ChatGptOptions>();
+
+            if (string.IsNullOrEmpty(chatOptions.Token))
+            {
+                _manager?.Show(new Notification("提示", "请先前往设置添加token", NotificationType.Error));
+                return;
+            }
+            
             // 获取当前程序集 assets图片
             // var uri = new Uri("avares://ChatGPT/Assets/avatar.png");
             // // 通过uri获取Stream
@@ -154,8 +162,6 @@ public partial class SendChat : UserControl
                 }
                 )
                 .ToList();
-
-            var chatOptions = MainApp.GetService<ChatGptOptions>();
 
             http.DefaultRequestHeaders.Remove("Authorization");
             http.DefaultRequestHeaders.Add("Authorization", $"Bearer {chatOptions.Token.TrimStart().TrimEnd()}");

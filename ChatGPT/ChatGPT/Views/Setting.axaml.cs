@@ -29,6 +29,7 @@ public partial class Setting : Window
             if (DataContext is not SettingViewModel model) return;
 
             model.Token = chatGptOptions.Token;
+            model.Avatar = chatGptOptions.Avatar;
             model.Gpt35ApiUrl = chatGptOptions.Gpt35ApiUrl;
             model.MessageMaxSize = chatGptOptions.MessageMaxSize;
         };

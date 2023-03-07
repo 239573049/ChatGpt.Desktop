@@ -7,12 +7,17 @@
              xmlns:avedit="https://github.com/avaloniaui/avaloniaedit"
              xmlns:ctxt="clr-namespace:ColorTextBlock.Avalonia;assembly=ColorTextBlock.Avalonia"
              xmlns:md="clr-namespace:Markdown.Avalonia;assembly=Markdown.Avalonia"
+             xmlns:converter="clr-namespace:ChatGPT.Converter"
              x:Class="ChatGPT.Pages.Message">
 
     <Design.DataContext>
         <viewModels:SendChatViewModel />
     </Design.DataContext>
 
+    <UserControl.Resources>
+        <converter:BitmapAssetValueConverter x:Key="variableImage"/>
+    </UserControl.Resources>
+    
     <ScrollViewer
         Name="ScrollViewer"
         Width="{Binding Width}"
@@ -83,7 +88,7 @@
                                     </StackPanel>
                                 </Border>
                                 <Image VerticalAlignment="Top" Margin="-50,0,0,0" HorizontalAlignment="Right"
-                                       Height="35" Width="35" Source="/Assets/avatar.png">
+                                       Height="35" Width="35" Source="{Binding Avatar, Converter={StaticResource variableImage}}">
                                 </Image>
                             </WrapPanel>
                         </StackPanel>
