@@ -185,6 +185,7 @@ public partial class SendChat : UserControl
 
             if (!responseMessage.IsSuccessStatusCode)
             {
+                chatGptMessage.Content = "在请求AI服务时出现错误！响应状态码不准确！";
                 _manager?.Show(new Notification("提示", "在请求AI服务时出现错误！响应状态码不准确！", NotificationType.Error));
                 return;
             }
