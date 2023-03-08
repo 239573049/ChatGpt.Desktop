@@ -12,9 +12,8 @@ public class ChatGptOptions
 
     /// <summary>
     /// ChatGpt 3.5 api
-    /// 官方地址 http://api.openai.com/v1/chat/completions
     /// </summary>
-    public string Gpt35ApiUrl = "http://server.tokengo.top:1800/v1/chat/completions";
+    public string Gpt35ApiUrl = "http://api.openai.com/v1/chat/completions";
 
     private string defaultIconPath;
 
