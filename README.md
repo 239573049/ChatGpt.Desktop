@@ -42,8 +42,6 @@ https://platform.openai.com/account/api-keys
 
 欢迎大佬给项目PR，来自热爱开源的token
 
-共享token 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
-
 学习交流qq群：737776595
 
 wx: ![wx](./img/wx.jpg)
