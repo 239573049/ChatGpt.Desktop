@@ -13,9 +13,17 @@ public class ChatGptOptions
     /// <summary>
     /// ChatGpt 3.5 api
     /// </summary>
-    public string Gpt35ApiUrl = "http://api.openai.com/v1/chat/completions";
+    public string Gpt35ApiUrl = "https://api.openai.com/v1/chat/completions";
 
     private string defaultIconPath;
+
+    /// <summary>
+    /// 温度
+    /// </summary>
+    public int Temperature { get; set; } = 0;
+
+    public int MaxTokens { get; set; } = 500;
+
 
     /// <summary>
     /// 默认的Icon目录

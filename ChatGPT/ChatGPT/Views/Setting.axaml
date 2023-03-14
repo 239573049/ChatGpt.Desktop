@@ -78,6 +78,28 @@
                                 </TextBox>
                             </Grid>
                             <Grid Margin="5">
+                                <TextBlock>Maxtoken:</TextBlock>
+                                <TextBox
+                                    Margin="60,0,0,0"
+                                    BorderThickness="1"
+                                    Background="Transparent"
+                                    Name="maxTokens"
+                                    Text="{Binding Max_tokens}"
+                                    Watermark="最大tokens">
+                                </TextBox>
+                            </Grid>
+                            <Grid Margin="5">
+                                <TextBlock>温度:</TextBlock>
+                                <TextBox
+                                    Margin="60,0,0,0"
+                                    BorderThickness="1"
+                                    Background="Transparent"
+                                    Name="Temperature"
+                                    Text="{Binding Temperature}"
+                                    Watermark="温度">
+                                </TextBox>
+                            </Grid>
+                            <Grid Margin="5">
                                 <TextBlock>消息数量:</TextBlock>
                                 <TextBox
                                     Margin="60,0,0,0"

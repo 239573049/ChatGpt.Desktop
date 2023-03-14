@@ -183,8 +183,8 @@ public partial class SendChat : UserControl
             var responseMessage = await http.PostAsJsonAsync(chatOptions.Gpt35ApiUrl, new
             {
                 model = "gpt-3.5-turbo",
-                temperature = 0,
-                max_tokens = 2560,
+                temperature = chatOptions.Temperature,
+                max_tokens = chatOptions.MaxTokens,
                 user = "token",
                 messages = message
             });

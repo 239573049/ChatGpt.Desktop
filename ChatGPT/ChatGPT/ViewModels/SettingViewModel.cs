@@ -10,6 +10,22 @@ public class SettingViewModel : ViewModelBase
 
     private string avatar = string.Empty;
     
+    private int max_tokens = 500;
+    
+    public int Max_tokens
+    {
+        get => max_tokens;
+        set => this.RaiseAndSetIfChanged(ref max_tokens, value);
+    }
+
+    private int temperature;
+
+    public int Temperature
+    {
+        get => temperature;
+        set => this.RaiseAndSetIfChanged(ref temperature, value);
+    }
+    
     public string Avatar
     {
         get => avatar;

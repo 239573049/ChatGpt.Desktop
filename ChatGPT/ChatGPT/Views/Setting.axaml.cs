@@ -28,13 +28,17 @@ public partial class Setting : Window
         TokenTextBox = this.FindControl<TextBox>(nameof(TokenTextBox));
         ChatGptApi = this.FindControl<TextBox>(nameof(ChatGptApi));
         MessageMaxSize = this.FindControl<TextBox>(nameof(MessageMaxSize));
+        maxTokens = this.FindControl<TextBox>(nameof(maxTokens));
+        Temperature = this.FindControl<TextBox>(nameof(Temperature));
         DataContextChanged += (sender, args) =>
         {
             var chatGptOptions = MainApp.GetService<ChatGptOptions>();
             if (DataContext is not SettingViewModel model) return;
 
             model.Token = chatGptOptions.Token;
+            model.Max_tokens = chatGptOptions.MaxTokens;
             model.Avatar = chatGptOptions.Avatar;
+            model.Temperature = chatGptOptions.Temperature;
             model.Gpt35ApiUrl = chatGptOptions.Gpt35ApiUrl;
             model.Avatar = chatGptOptions.Avatar;
             model.MessageMaxSize = chatGptOptions.MessageMaxSize;
@@ -133,9 +137,10 @@ public partial class Setting : Window
 
         // 设置图片
         ViewModel.Avatar = fileStream.Name;
-
+        options.MaxTokens = int.Parse(maxTokens.Text);
         // 修改配置文件
         options.Avatar = fileStream.Name;
+        options.Temperature = int.Parse(Temperature.Text);
         // 保存配置
         await options.SaveAsync();
 

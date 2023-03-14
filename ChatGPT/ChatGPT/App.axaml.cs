@@ -63,7 +63,10 @@ public partial class App : Application
             
             setting.Click += (sender, args) =>
             {
-                var setting = new Setting();
+                var setting = new Setting()
+                {
+                    DataContext = new SettingViewModel()
+                };
                 setting.Show();
             };
             
