@@ -56,11 +56,11 @@
                                                         </Style.Setters>
                                                     </Style>
 
-                                                    <Style Selector="TextBlock.CodeBlock">
-                                                        <Style.Setters>
-                                                            <Setter Property="Foreground" Value="#f8f8f8" />
-                                                        </Style.Setters>
-                                                    </Style>
+                                                     <Style Selector="TextBlock.CodeBlock"> 
+                                                         <Style.Setters> 
+                                                             <Setter Property="Foreground" Value="#ff195b" /> 
+                                                         </Style.Setters> 
+                                                     </Style> 
 
                                                     <Style Selector="avedit|TextEditor">
                                                         <Setter Property="Background" Value="#f8f8f8" />
