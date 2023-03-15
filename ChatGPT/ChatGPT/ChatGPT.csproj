@@ -7,9 +7,6 @@
 
     <ItemGroup>
         <AvaloniaResource Include="Assets\**" />
-        <None Include="Icon\avatar.png">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
         <TrimmerRootDescriptor Include="Roots.xml" />
     </ItemGroup>
 
