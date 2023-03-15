@@ -63,5 +63,5 @@ https://platform.openai.com/account/api-keys
 
 学习交流qq群：737776595
 
-wx: ![wx](./img/wx.jpg)
+wx: ![ea3eb63ece772ca89b413d420032242](https://user-images.githubusercontent.com/61819790/224886889-07397fc9-3762-41c2-8d98-68ae13c98a3f.jpg)
 
