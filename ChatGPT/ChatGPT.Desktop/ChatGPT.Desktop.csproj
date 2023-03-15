@@ -10,7 +10,13 @@
 
     <PropertyGroup>
         <ApplicationManifest>app.manifest</ApplicationManifest>
+        <UseWindowsForms>False</UseWindowsForms>
+        <ApplicationIcon>chatgpt.ico</ApplicationIcon>
     </PropertyGroup>
+
+    <ItemGroup>
+      <Content Include="chatgpt.ico" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Avalonia.Desktop" Version="11.0.0-preview5" />
