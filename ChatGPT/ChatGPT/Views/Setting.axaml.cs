@@ -72,6 +72,8 @@ public partial class Setting : Window
         {
             var chatGptOptions = MainApp.GetService<ChatGptOptions>();
             chatGptOptions.Token = ViewModel.Token;
+            chatGptOptions.Temperature = ViewModel.Temperature;
+            chatGptOptions.MaxTokens = ViewModel.Max_tokens;
             chatGptOptions.Gpt35ApiUrl = ViewModel.Gpt35ApiUrl;
             chatGptOptions.MessageMaxSize = ViewModel.MessageMaxSize;
             await chatGptOptions.SaveAsync();

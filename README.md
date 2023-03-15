@@ -15,6 +15,25 @@
 4.  得到答案
 5.  右键回复内容可直接复制内容
 
+## 搭建ChatGpt代理
+
+实现准备一台海外服务器，新加坡或者其他国家的，
+
+需要准备docker和docker compose的环境
+
+使用以下脚本部署代理服务，请注意代理服务只代理api.openai.com的接口，部署完成再应用中设置`ApiUrl`为服务器的地址，http://服务器ip:服务器端口//v1/chat/completions
+
+```yml
+services:
+  chatgpt:
+    image: registry.cn-shenzhen.aliyuncs.com/tokengo/chatgpt-gateway
+    container_name: chatgpt
+    ports:
+      - 1080:80
+```
+
+
+
 ## 参与贡献
 
 1.  Fork 本仓库
