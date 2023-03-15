@@ -197,11 +197,20 @@ public partial class SendChat : UserControl
                 return;
             }
 
+            var re = await responseMessage.Content.ReadAsStringAsync();
             // 获取返回的消息 来自Token的代码
             var response = await responseMessage.Content.ReadFromJsonAsync<GetChatGPTDto>();
 
+            if (!string.IsNullOrEmpty(response?.error.message))
+            {
+                chatGptMessage.Content = "在请求AI服务时出现错误！" + response?.error.message;
+                _manager?.Show(new Notification("提示", "在请求AI服务时出现错误！" + response?.error.message,
+                    NotificationType.Error));
+                return;
+            }
+            
             chatGptMessage.Content = response.choices[0].message.content;
-
+            
 
             var freeSql = MainApp.GetService<IFreeSql>();
             await freeSql

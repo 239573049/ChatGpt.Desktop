@@ -30,6 +30,7 @@ public partial class Setting : Window
         MessageMaxSize = this.FindControl<TextBox>(nameof(MessageMaxSize));
         maxTokens = this.FindControl<TextBox>(nameof(maxTokens));
         Temperature = this.FindControl<TextBox>(nameof(Temperature));
+
         DataContextChanged += (sender, args) =>
         {
             var chatGptOptions = MainApp.GetService<ChatGptOptions>();
@@ -71,11 +72,13 @@ public partial class Setting : Window
         try
         {
             var chatGptOptions = MainApp.GetService<ChatGptOptions>();
+            
             chatGptOptions.Token = ViewModel.Token;
             chatGptOptions.Temperature = ViewModel.Temperature;
             chatGptOptions.MaxTokens = ViewModel.Max_tokens;
             chatGptOptions.Gpt35ApiUrl = ViewModel.Gpt35ApiUrl;
             chatGptOptions.MessageMaxSize = ViewModel.MessageMaxSize;
+            
             await chatGptOptions.SaveAsync();
 
             _manager?.Show(new Notification("提示", "配置存储成功", NotificationType.Success));
