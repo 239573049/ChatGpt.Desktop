@@ -39,6 +39,7 @@ public partial class Setting : Window
             model.Token = chatGptOptions.Token;
             model.Max_tokens = chatGptOptions.MaxTokens;
             model.Avatar = chatGptOptions.Avatar;
+            model.MDRendering = chatGptOptions.MDRendering;
             model.Temperature = chatGptOptions.Temperature;
             model.Gpt35ApiUrl = chatGptOptions.Gpt35ApiUrl;
             model.Avatar = chatGptOptions.Avatar;
@@ -78,7 +79,13 @@ public partial class Setting : Window
             chatGptOptions.MaxTokens = ViewModel.Max_tokens;
             chatGptOptions.Gpt35ApiUrl = ViewModel.Gpt35ApiUrl;
             chatGptOptions.MessageMaxSize = ViewModel.MessageMaxSize;
-            
+            if (ViewModel.MDRendering != chatGptOptions.MDRendering)
+            {
+                chatGptOptions.MDRendering = ViewModel.MDRendering;
+                var keyLoadEventBus = MainApp.GetService<IKeyLoadEventBus>();
+
+                await keyLoadEventBus.PushAsync("MDRendering", true);
+            }
             await chatGptOptions.SaveAsync();
 
             _manager?.Show(new Notification("提示", "配置存储成功", NotificationType.Success));

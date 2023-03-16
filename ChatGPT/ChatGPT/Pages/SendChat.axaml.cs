@@ -47,7 +47,7 @@ public partial class SendChat : UserControl
             .OrderByDescending(x => x.CreatedTime)
             .Take(config.MessageMaxSize)
             .ToListAsync();
-
+        
         ViewModel.Messages = new ObservableCollection<ChatMessage>();
 
         foreach (var value in values.OrderBy(x => x.CreatedTime))
@@ -55,6 +55,10 @@ public partial class SendChat : UserControl
             if (!value.IsChatGPT)
             {
                 value.Avatar = config.Avatar;
+            }
+            else
+            {
+                value.MDRendering = config.MDRendering;
             }
 
             ViewModel.Messages.Add(value);
@@ -133,6 +137,12 @@ public partial class SendChat : UserControl
                 _manager?.Show(new Notification("提示", "请先前往设置添加token", NotificationType.Error));
                 return;
             }
+            
+            if (string.IsNullOrEmpty(ViewModel.Message))
+            {
+                _manager?.Show(new Notification("提示", "请输入内容", NotificationType.Error));
+                return;
+            }
 
             var model = new ChatMessage
             {
@@ -140,6 +150,7 @@ public partial class SendChat : UserControl
                 Avatar = chatOptions.Avatar,
                 Title = "token",
                 Content = ViewModel.Message,
+                MDRendering = chatOptions.MDRendering,
                 CreatedTime = DateTime.Now,
                 IsChatGPT = false
             };
@@ -197,11 +208,10 @@ public partial class SendChat : UserControl
                 return;
             }
 
-            var re = await responseMessage.Content.ReadAsStringAsync();
             // 获取返回的消息 来自Token的代码
             var response = await responseMessage.Content.ReadFromJsonAsync<GetChatGPTDto>();
 
-            if (!string.IsNullOrEmpty(response?.error.message))
+            if (!string.IsNullOrEmpty(response?.error?.message))
             {
                 chatGptMessage.Content = "在请求AI服务时出现错误！" + response?.error.message;
                 _manager?.Show(new Notification("提示", "在请求AI服务时出现错误！" + response?.error.message,

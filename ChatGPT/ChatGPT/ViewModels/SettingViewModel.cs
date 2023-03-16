@@ -11,6 +11,14 @@ public class SettingViewModel : ViewModelBase
     private string avatar = string.Empty;
     
     private int max_tokens = 500;
+
+    private bool mDRendering;
+    
+    public bool MDRendering
+    {
+        get => mDRendering;
+        set => this.RaiseAndSetIfChanged(ref mDRendering, value);
+    }
     
     public int Max_tokens
     {

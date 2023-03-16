@@ -15,9 +15,9 @@
     </Design.DataContext>
 
     <UserControl.Resources>
-        <converter:BitmapAssetValueConverter x:Key="variableImage"/>
+        <converter:BitmapAssetValueConverter x:Key="variableImage" />
     </UserControl.Resources>
-    
+
     <ScrollViewer
         Name="ScrollViewer"
         Width="{Binding Width}"
@@ -37,13 +37,13 @@
                                        Height="35" Width="35" Source="/Assets/chatgpt.ico" />
                                 <StackPanel
                                     Margin="50,0,50,0">
-                                    <!-- 用户昵称 -->
-                                    <!-- <TextBlock FontSize="12" Margin="5" Text="{Binding Title}"></TextBlock> -->
                                     <StackPanel MinHeight="20" Background="#FFFFFF" Margin="5">
-                                        <Border CornerRadius="4">
-                                            <!-- <SelectableTextBlock PointerPressed="Content_OnPointerPressed" TextWrapping='Wrap' Margin="5" FontSize="14" -->
-                                            <!--                      Text="{Binding Content}"> -->
-                                            <!-- </SelectableTextBlock> -->
+                                        <Border CornerRadius="4" IsVisible="{Binding !MDRendering}">
+                                            <SelectableTextBlock TextWrapping='Wrap' Margin="5" FontSize="14"
+                                                                 Text="{Binding Content}">
+                                            </SelectableTextBlock>
+                                        </Border>
+                                        <Border CornerRadius="4" IsVisible="{Binding MDRendering}">
                                             <md:MarkdownScrollViewer PointerPressed="Content_OnPointerPressed"
                                                                      Margin="4" Markdown="{Binding Content}">
                                                 <md:MarkdownScrollViewer.Styles>
@@ -56,11 +56,11 @@
                                                         </Style.Setters>
                                                     </Style>
 
-                                                     <Style Selector="TextBlock.CodeBlock"> 
-                                                         <Style.Setters> 
-                                                             <Setter Property="Foreground" Value="#ff195b" /> 
-                                                         </Style.Setters> 
-                                                     </Style> 
+                                                    <Style Selector="TextBlock.CodeBlock">
+                                                        <Style.Setters>
+                                                            <Setter Property="Foreground" Value="#ff195b" />
+                                                        </Style.Setters>
+                                                    </Style>
 
                                                     <Style Selector="avedit|TextEditor">
                                                         <Setter Property="Background" Value="#f8f8f8" />
@@ -88,7 +88,8 @@
                                     </StackPanel>
                                 </Border>
                                 <Image VerticalAlignment="Top" Margin="-50,0,0,0" HorizontalAlignment="Right"
-                                       Height="35" Width="35" Source="{Binding Avatar, Converter={StaticResource variableImage}}">
+                                       Height="35" Width="35"
+                                       Source="{Binding Avatar, Converter={StaticResource variableImage}}">
                                 </Image>
                             </WrapPanel>
                         </StackPanel>

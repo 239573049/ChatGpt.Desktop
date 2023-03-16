@@ -22,6 +22,14 @@ public class ChatMessage : ViewModelBase
 
     private string avatar = string.Empty;
 
+    private bool mDRendering;
+    
+    public bool MDRendering
+    {
+        get => mDRendering;
+        set => this.RaiseAndSetIfChanged(ref mDRendering, value);
+    }
+    
     /// <summary>
     /// 头像
     /// </summary>

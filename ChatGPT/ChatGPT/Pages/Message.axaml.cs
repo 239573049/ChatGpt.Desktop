@@ -1,9 +1,6 @@
 ﻿using System.Linq;
 using Avalonia.Controls.Notifications;
-using Avalonia.Controls.Primitives;
 using Avalonia.Input;
-using Avalonia.Media;
-using Avalonia.VisualTree;
 using ChatGPT.Options;
 using Markdown.Avalonia;
 using Token.Events;
@@ -33,6 +30,15 @@ public partial class Message : UserControl
             foreach (var message in ViewModel.Messages.Where(x => !x.IsChatGPT))
             {
                 message.Avatar = options.Avatar;
+            }
+        });
+        
+        keyLoadEventBus.Subscription("MDRendering", (v) =>
+        {
+            var options = MainApp.GetService<ChatGptOptions>();
+            foreach (var message in ViewModel.Messages.Where(x => x.IsChatGPT))
+            {
+                message.MDRendering = options.MDRendering;
             }
         });
     }

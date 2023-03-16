@@ -24,6 +24,7 @@ public class ChatGptOptions
 
     public int MaxTokens { get; set; } = 500;
 
+    public bool MDRendering { get; set; } = true;
 
     /// <summary>
     /// 默认的Icon目录

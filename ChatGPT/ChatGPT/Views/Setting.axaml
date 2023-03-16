@@ -110,6 +110,10 @@
                                     Watermark="消息最大数量">
                                 </TextBox>
                             </Grid>
+                            <Grid Margin="5">
+                                <CheckBox Content="MD渲染" IsChecked="{Binding MDRendering}" 
+                                          Margin="60,0,0,0"/>
+                            </Grid>
                             <Button Name="SaveButton" Click="SaveButton_OnClick" Width="330" Margin="0,10,0,0"
                                     HorizontalAlignment="Center" VerticalAlignment="Top">
                                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">保存</TextBlock>
