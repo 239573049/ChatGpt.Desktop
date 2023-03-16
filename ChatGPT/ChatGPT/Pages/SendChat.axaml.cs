@@ -47,7 +47,7 @@ public partial class SendChat : UserControl
             .OrderByDescending(x => x.CreatedTime)
             .Take(config.MessageMaxSize)
             .ToListAsync();
-        
+
         ViewModel.Messages = new ObservableCollection<ChatMessage>();
 
         foreach (var value in values.OrderBy(x => x.CreatedTime))
@@ -137,7 +137,7 @@ public partial class SendChat : UserControl
                 _manager?.Show(new Notification("提示", "请先前往设置添加token", NotificationType.Error));
                 return;
             }
-            
+
             if (string.IsNullOrEmpty(ViewModel.Message))
             {
                 _manager?.Show(new Notification("提示", "请输入内容", NotificationType.Error));
@@ -218,9 +218,9 @@ public partial class SendChat : UserControl
                     NotificationType.Error));
                 return;
             }
-            
+
             chatGptMessage.Content = response.choices[0].message.content;
-            
+
 
             var freeSql = MainApp.GetService<IFreeSql>();
             await freeSql
@@ -234,7 +234,7 @@ public partial class SendChat : UserControl
         catch (Exception e)
         {
             // 异常处理 
-            _manager?.Show(new Notification("提示", "在请求AI服务时出现错误！请联系管理员！", NotificationType.Error));
+            _manager?.Show(new Notification("提示", "在请求AI服务时出现错误！" + e.Message, NotificationType.Error));
         }
     }
 

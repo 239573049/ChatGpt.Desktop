@@ -74,7 +74,7 @@
                     </TextBox>
                     <WrapPanel.Styles>
                         <Style Selector="TextBox:focus">
-                            <Setter Property="BorderBrush" Value="{x:Null}"></Setter>
+                            <!--<Setter Property="BorderBrush" Value="{x:Null}"></Setter>-->
                         </Style>
                     </WrapPanel.Styles>
                     <Grid Width="{Binding Width}">
