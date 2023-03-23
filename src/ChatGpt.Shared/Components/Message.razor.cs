@@ -7,7 +7,7 @@ public partial class Message
     protected override async Task OnInitializedAsync()
     {
         Messages = new List<MessageModule>();
-
         await base.OnInitializedAsync();
     }
+
 }

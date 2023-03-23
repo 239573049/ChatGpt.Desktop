@@ -4,22 +4,47 @@
 <div>
     @foreach (var item in Messages)
     {
-        <MCard>
+        <MCard Class="message">
             @if (item.ChatGpt)
             {
                 <MCardTitle>
-                    ChatGpt 3.5
+                    <MAvatar>
+                        <MImage Src="https://tokeniot.oss-cn-shenzhen.aliyuncs.com/icon/logo.png" Alt="Jack"></MImage>
+                    </MAvatar>
                 </MCardTitle>
             }
             else
             {
                 <MCardTitle>
-                    我
+                    <MAvatar>
+                        <MImage Src="https://cdn.masastack.com/stack/images/website/masa-blazor/jack.png" Alt="Jack"></MImage>
+                    </MAvatar>
                 </MCardTitle>
             }
             <MCardText>
-                @item.Content
+                <MCard MinHeight="40" Outlined>
+                <MMarkdownIt Source="@item.Content" Class="markdown-parser__basic" />
+                </MCard>
             </MCardText>
         </MCard>
     }
 </div>
+
+<style>
+    .message {
+        margin: 5px;
+    }
+
+    .m-sheet.m-card:not(.m-sheet--outlined) {
+        box-shadow:none !important;
+    }
+    
+    .markdown-parser__basic img {
+        max-width: 100%;
+    }
+    
+    .markdown-parser__basic blockquote {
+        border-left: 4px lightgray solid;
+        padding-left: 16px;
+    }
+</style>

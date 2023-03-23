@@ -18,4 +18,16 @@ public class MessageModule
     public DateTime CreatedTime { get; set; }
 
     public bool ChatGpt { get; set; }
+
+    public MessageModule()
+    {
+    }
+
+    public MessageModule(string key, string content, bool chatGpt)
+    {
+        Key = key;
+        Content = content;
+        ChatGpt = chatGpt;
+        CreatedTime = DateTime.Now;
+    }
 }

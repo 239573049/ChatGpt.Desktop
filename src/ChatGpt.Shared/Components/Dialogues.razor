@@ -18,7 +18,7 @@
         else
         {
             <MTextField @bind-Value="newDialoguesModule.Title"
-                        Solo Style="max-height: 36px" OnBlur="() => CreateDialogues()">
+                        Solo Style="max-height: 36px" OnBlur="CreateDialogues">
             </MTextField>
         }
     </MCardTitle>
@@ -34,12 +34,7 @@
         _show = false;
         if (string.IsNullOrEmpty(newDialoguesModule.Title)) return;
 
-        DialoguesModules.Add(new DialoguesModule()
-        {
-            Title = newDialoguesModule.Title,
-            Key = Guid.NewGuid().ToString(),
-            CreatedTime = DateTime.Now
-        });
+        DialoguesModules.Add(new DialoguesModule(Guid.NewGuid().ToString(), newDialoguesModule.Title));
         newDialoguesModule = new DialoguesModule();
     }
 
