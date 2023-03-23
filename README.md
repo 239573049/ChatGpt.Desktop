@@ -63,5 +63,5 @@ https://platform.openai.com/account/api-keys
 
 学习交流qq群：737776595
 
-wx: ![ea3eb63ece772ca89b413d420032242](https://user-images.githubusercontent.com/61819790/224886889-07397fc9-3762-41c2-8d98-68ae13c98a3f.jpg)
+wx: ![3586dff12f4a5be0aa7d17102016391](https://user-images.githubusercontent.com/61819790/227106693-e456ba3d-1698-4e3a-9d3d-9c4c9d8dfcc7.jpg)
 
