@@ -1,0 +1,25 @@
+﻿@namespace ChatGpt.Shared
+
+
+<div>
+    @foreach (var item in Messages)
+    {
+        <MCard>
+            @if (item.ChatGpt)
+            {
+                <MCardTitle>
+                    ChatGpt 3.5
+                </MCardTitle>
+            }
+            else
+            {
+                <MCardTitle>
+                    我
+                </MCardTitle>
+            }
+            <MCardText>
+                @item.Content
+            </MCardText>
+        </MCard>
+    }
+</div>

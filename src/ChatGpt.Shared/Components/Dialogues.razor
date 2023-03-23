@@ -1,0 +1,52 @@
+﻿@using ChatGpt.Shared.Module
+@namespace ChatGpt.Shared
+
+@foreach (var item in DialoguesModules)
+{
+    <MCard OnClick="async ()=> await OnClick.InvokeAsync(item)" Outlined Class="dialogues">
+        <MCardTitle>@item.Title <MIcon Style="float:right;">mdi-close</MIcon></MCardTitle>
+    </MCard>
+}
+
+<MCard Outlined Class="dialogues">
+    <MCardTitle>
+        @*当点击新增显示输入框，输入框离开焦点显示新增按钮*@
+        @if (!_show)
+        {
+            <MButton Block OnClick="() => _show = true" Text>新增</MButton>
+        }
+        else
+        {
+            <MTextField @bind-Value="newDialoguesModule.Title"
+                        Solo Style="max-height: 36px" OnBlur="() => CreateDialogues()">
+            </MTextField>
+        }
+    </MCardTitle>
+</MCard>
+
+@code
+{
+    private bool _show;
+    private DialoguesModule newDialoguesModule = new();
+
+    private void CreateDialogues()
+    {
+        _show = false;
+        if (string.IsNullOrEmpty(newDialoguesModule.Title)) return;
+
+        DialoguesModules.Add(new DialoguesModule()
+        {
+            Title = newDialoguesModule.Title,
+            Key = Guid.NewGuid().ToString(),
+            CreatedTime = DateTime.Now
+        });
+        newDialoguesModule = new DialoguesModule();
+    }
+
+}
+
+<style>
+    .dialogues {
+        margin: 5px;
+    }
+</style>

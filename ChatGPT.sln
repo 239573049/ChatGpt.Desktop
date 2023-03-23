@@ -1,8 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatGPT", "ChatGPT\ChatGPT\ChatGPT.csproj", "{614BCB08-7905-4C02-AB39-0B0E2989D040}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33513.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{23B46894-32D2-4685-9E97-49AD1FA479E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatGPT.Desktop", "ChatGPT\ChatGPT.Desktop\ChatGPT.Desktop.csproj", "{A383259B-0FAE-4130-B43B-DDE23992097E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatGpt.Shared", "src\ChatGpt.Shared\ChatGpt.Shared.csproj", "{D145BC77-BB78-477E-BB79-5CE577BB6332}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatGpt.Server", "src\ChatGpt.Server\ChatGpt.Server.csproj", "{4F05A8EA-22F2-459F-9933-01AC6CA676AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,13 +15,23 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{614BCB08-7905-4C02-AB39-0B0E2989D040}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{614BCB08-7905-4C02-AB39-0B0E2989D040}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{614BCB08-7905-4C02-AB39-0B0E2989D040}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{614BCB08-7905-4C02-AB39-0B0E2989D040}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A383259B-0FAE-4130-B43B-DDE23992097E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A383259B-0FAE-4130-B43B-DDE23992097E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A383259B-0FAE-4130-B43B-DDE23992097E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A383259B-0FAE-4130-B43B-DDE23992097E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D145BC77-BB78-477E-BB79-5CE577BB6332}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D145BC77-BB78-477E-BB79-5CE577BB6332}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D145BC77-BB78-477E-BB79-5CE577BB6332}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D145BC77-BB78-477E-BB79-5CE577BB6332}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F05A8EA-22F2-459F-9933-01AC6CA676AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F05A8EA-22F2-459F-9933-01AC6CA676AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F05A8EA-22F2-459F-9933-01AC6CA676AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F05A8EA-22F2-459F-9933-01AC6CA676AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D145BC77-BB78-477E-BB79-5CE577BB6332} = {23B46894-32D2-4685-9E97-49AD1FA479E9}
+		{4F05A8EA-22F2-459F-9933-01AC6CA676AA} = {23B46894-32D2-4685-9E97-49AD1FA479E9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5C5F439-B8BC-4AC0-BD6F-A332969CEC97}
 	EndGlobalSection
 EndGlobal

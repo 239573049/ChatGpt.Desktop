@@ -1,0 +1,17 @@
+﻿@namespace ChatGpt.Shared
+
+@page "/"
+
+<MApp Id="inspire">
+    <MNavigationDrawer App>
+        <Dialogues OnClick="OnClick" @bind-DialoguesModule="DialoguesModule" />
+    </MNavigationDrawer>
+
+    <MAppBar App>
+        <MToolbarTitle>@DialoguesModule.Title</MToolbarTitle>
+    </MAppBar>
+
+    <MMain>
+        <Message/>
+    </MMain>
+</MApp>
