@@ -7,7 +7,7 @@ public class ChatGptOptions
     /// <summary>
     /// Token
     /// </summary>
-    public string Token { get; set; } = "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";
+    public string Token { get; set; } = "";
 
     /// <summary>
     /// 
