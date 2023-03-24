@@ -2,12 +2,15 @@
 @inherits LayoutComponentBase
 @inject NavigationManager NavigationManager
 
-<MApp>
-    @Body
-</MApp>
+<CascadingValue Value="ChatGptOptions" Name="@nameof(ChatGptOptions)">
+    <MApp>
+        @Body
+    </MApp>
+</CascadingValue>
 
 
 @code {
     private string ComputedHref = "https://github.com/239573049";
 
+    public ChatGptOptions ChatGptOptions { get; set; } = new ();
 }

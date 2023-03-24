@@ -1,36 +1,44 @@
 ﻿@namespace ChatGpt.Shared
 
+@inject ChatGptJsInterop ChatGptJsInterop
 
-<div>
-    @foreach (var item in Messages)
+<div id="content" style="content">
+    @if (Messages != null)
     {
-        <MCard Class="message">
-            @if (item.ChatGpt)
-            {
-                <MCardTitle>
-                    <MAvatar>
-                        <MImage Src="https://tokeniot.oss-cn-shenzhen.aliyuncs.com/icon/logo.png" Alt="Jack"></MImage>
-                    </MAvatar>
-                </MCardTitle>
-            }
-            else
-            {
-                <MCardTitle>
-                    <MAvatar>
-                        <MImage Src="https://cdn.masastack.com/stack/images/website/masa-blazor/jack.png" Alt="Jack"></MImage>
-                    </MAvatar>
-                </MCardTitle>
-            }
-            <MCardText>
-                <MCard MinHeight="40" Outlined>
-                <MMarkdownIt Source="@item.Content" Class="markdown-parser__basic" />
-                </MCard>
-            </MCardText>
-        </MCard>
+        @foreach (var item in Messages)
+        {
+            <MCard Class="message">
+                @if (item.ChatGpt)
+                {
+                    <MCardTitle>
+                        <MAvatar>
+                            <MImage Src="https://tokeniot.oss-cn-shenzhen.aliyuncs.com/icon/logo.png" Alt="Jack"></MImage>
+                        </MAvatar>
+                    </MCardTitle>
+                }
+                else
+                {
+                    <MCardTitle>
+                        <MAvatar>
+                            <MImage Src="https://cdn.masastack.com/stack/images/website/masa-blazor/jack.png" Alt="Jack"></MImage>
+                        </MAvatar>
+                    </MCardTitle>
+                }
+                <MCardText>
+                    <MCard MinHeight="40" Outlined>
+                        <MMarkdownIt Style="margin: 5px; min-height: 10px" Source="@item.Content" Class="markdown-parser__basic"/>
+                    </MCard>
+                </MCardText>
+            </MCard>
+        }
     }
 </div>
 
 <style>
+    .m-navigation-drawer__content::-webkit-scrollbar {
+        width: 0 !important;
+    }
+
     .message {
         margin: 5px;
     }
@@ -46,5 +54,9 @@
     .markdown-parser__basic blockquote {
         border-left: 4px lightgray solid;
         padding-left: 16px;
+    }
+
+    html {
+        overflow-y:auto;
     }
 </style>

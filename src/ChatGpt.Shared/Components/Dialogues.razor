@@ -1,10 +1,11 @@
 ﻿@using ChatGpt.Shared.Module
 @namespace ChatGpt.Shared
+@inject StorageJsInterop StorageJsInterop
 
 @foreach (var item in DialoguesModules)
 {
-    <MCard OnClick="async ()=> await OnClick.InvokeAsync(item)" Outlined Class="dialogues">
-        <MCardTitle>@item.Title <MIcon Style="float:right;">mdi-close</MIcon></MCardTitle>
+    <MCard Outlined Class="dialogues">
+        <MCardTitle><span class="text-button" @onclick="async ()=> await OnClick.InvokeAsync(item)">@item.Title</span> <MIcon OnClick="async ()=>await OnClose(item)" Style="float:right;">mdi-close</MIcon></MCardTitle>
     </MCard>
 }
 
@@ -24,24 +25,14 @@
     </MCardTitle>
 </MCard>
 
-@code
-{
-    private bool _show;
-    private DialoguesModule newDialoguesModule = new();
-
-    private void CreateDialogues()
-    {
-        _show = false;
-        if (string.IsNullOrEmpty(newDialoguesModule.Title)) return;
-
-        DialoguesModules.Add(new DialoguesModule(Guid.NewGuid().ToString(), newDialoguesModule.Title));
-        newDialoguesModule = new DialoguesModule();
-    }
-
-}
-
 <style>
     .dialogues {
         margin: 5px;
+    }
+    
+    .text-button {
+        user-select: none;
+        cursor: pointer;
+        min-width: 180px;
     }
 </style>

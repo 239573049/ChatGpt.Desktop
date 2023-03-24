@@ -1,17 +1,20 @@
 ﻿@namespace ChatGpt.Shared
 
 @page "/"
+@inject StorageJsInterop StorageJsInterop
+@inject IHttpClientFactory HttpClientFactory
 
 <MApp Id="inspire">
     <MNavigationDrawer App>
-        <Dialogues OnClick="OnClick" @bind-DialoguesModule="DialoguesModule" />
+        <Dialogues OnClick="OnClickAsync" @bind-DialoguesModule="DialoguesModule" />
     </MNavigationDrawer>
 
     <MAppBar App>
-        <MToolbarTitle>@DialoguesModule.Title</MToolbarTitle>
+        <MToolbarTitle>@DialoguesModule?.Title</MToolbarTitle>
     </MAppBar>
 
     <MMain>
-        <Message/>
+        <Message @bind-Messages="Messages" @ref="Message" />
     </MMain>
+    <SendMessage SubmitChanged="OnSubmit" />
 </MApp>

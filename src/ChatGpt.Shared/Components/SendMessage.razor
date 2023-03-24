@@ -1,0 +1,15 @@
+﻿@namespace ChatGpt.Shared
+
+<MFooter App
+         Color="transparent"
+         Height="72"
+         Inset>
+    <MTextField BackgroundColor="grey lighten-1"
+                Dense
+                Flat
+                HideDetails="@("true")"
+                @bind-Value="value"
+                Rounded
+                OnKeyDown="async (e) => await KeySubmit(e)"
+                Solo></MTextField>
+</MFooter>

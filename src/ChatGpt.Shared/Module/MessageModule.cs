@@ -19,6 +19,11 @@ public class MessageModule
 
     public bool ChatGpt { get; set; }
 
+    /// <summary>
+    /// 对话框Id
+    /// </summary>
+    public string DialoguesKey { get; set; }
+
     public MessageModule()
     {
     }

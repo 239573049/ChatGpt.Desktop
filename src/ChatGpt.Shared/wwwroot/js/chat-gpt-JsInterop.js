@@ -1,6 +1,20 @@
-// This is a JavaScript module that is loaded on demand. It can export any number of
-// functions, and may import other JavaScript modules if required.
+function addEventListener(id) {
+    var obj = document.getElementById(id);
+    obj.addEventListener('scroll', function () {
+        var scrollTop =  obj.scrollTop;
+        console.log(obj,scrollTop);
+    });
+}
 
-export function showPrompt(message) {
-  return prompt(message, 'Type anything here');
+function ElementsByTagName(tag) {
+    var obj = document.getElementsByTagName('html');
+    obj.addEventListener('scroll', function () {
+        var scrollTop = obj.scrollTop;
+        console.log(obj, scrollTop);
+    });
+}
+
+export {
+    addEventListener,
+    ElementsByTagName
 }
