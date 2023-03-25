@@ -1,11 +1,12 @@
 # ChatGpt.Desktop
 
 ## 介绍
-一个基于avalonia实现的仿webChat的ChatGpt客户端
-支持聊天记录，支持聊天连续
+Blazor实现的ChatGpt界面，支持Web ，桌面，App程序，多端运行
+支持多个对话框，
 
 ## 软件架构
-使用`Avalonia`作为跨平台支持 `.NET 7`，界面仿制`WebChat`
+使用`Blazor`作为跨平台UI，
+使用Masa Blazor界面
 
 ## 使用说明
 
