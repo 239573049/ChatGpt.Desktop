@@ -21,9 +21,7 @@ public class StorageJsInterop : JSModule
     public async ValueTask<T?> GetValue<T>(string key) where T : class
     {
         var value = await GetValue(key);
-        if (string.IsNullOrEmpty(value))
-            return null;
-        return JsonSerializer.Deserialize<T>(value);
+        return string.IsNullOrEmpty(value) ? null : JsonSerializer.Deserialize<T>(value);
     }
     public async ValueTask<string> GetValue(string key)
     {

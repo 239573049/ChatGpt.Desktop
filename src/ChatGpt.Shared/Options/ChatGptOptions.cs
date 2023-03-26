@@ -2,7 +2,7 @@
 
 public class ChatGptOptions
 {
-    public string HttpUrl { get; set; } = "https://api.openai.com/{0}/{1}";
+    public string HttpUrl { get; set; } = "https://api.openai.com/v1/chat/completions";
 
     /// <summary>
     /// Token
@@ -18,4 +18,9 @@ public class ChatGptOptions
     /// 最大token
     /// </summary>
     public int MaxTokens { get; set; } = 2000;
+
+    /// <summary>
+    /// 是否Dark主题
+    /// </summary>
+    public bool Dark { get; set; }
 }

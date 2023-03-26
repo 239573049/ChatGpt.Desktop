@@ -2,19 +2,109 @@
 
 @page "/"
 @inject StorageJsInterop StorageJsInterop
-@inject IHttpClientFactory HttpClientFactory
+@inject HttpClient HttpClient
 
-<MApp Id="inspire">
-    <MNavigationDrawer App>
-        <Dialogues OnClick="OnClickAsync" @bind-DialoguesModule="DialoguesModule" />
+<MApp Dark="ChatGptOptions.Dark" Id="inspire">
+    <MNavigationDrawer @bind-Value="MiniVisible" App Dark="ChatGptOptions.Dark">
+        <Dialogues OnClick="OnClickAsync" @bind-DialoguesModule="DialoguesModule"/>
     </MNavigationDrawer>
 
-    <MAppBar App>
+    <MAppBar Dark="ChatGptOptions.Dark" App>
+        <MButton OnClick="() => MiniVisible = !MiniVisible" Icon>
+            <MIcon>
+                @(MiniVisible ? "mdi-dock-left" : "mdi-dock-right")
+            </MIcon>
+        </MButton>
         <MToolbarTitle>@DialoguesModule?.Title</MToolbarTitle>
+        <MSpacer></MSpacer>
+
+        <MMenu
+            Bottom
+            Left>
+            <ActivatorContent>
+                <MButton
+                    Dark
+                    Icon
+                    Color="@(ChatGptOptions.Dark ? "" : "rgba(32,33,35,.5)")"
+                    @attributes="@context.Attrs">
+                    <MIcon>mdi-dots-vertical</MIcon>
+                </MButton>
+            </ActivatorContent>
+
+            <ChildContent>
+                <MList>
+                    <PModal
+                        @bind-Value="settingVisible"
+                        Persistent
+                        Title="ChatGpt设置"
+                        Width="500"
+                        OnSave="HandleOnSaveSetting"
+                        OnCancel="HandleOnCancelSetting">
+                        <ActivatorContent>
+                            <MListItem @attributes="@context.Attrs">
+                                <MListItemContent>
+                                    <MListItemTitle>
+                                        设置
+                                    </MListItemTitle>
+                                </MListItemContent>
+                            </MListItem>
+                        </ActivatorContent>
+                        <ChildContent>
+                            <MRow>
+                                <MCol Cols="12">
+                                    <MTextField @bind-Value="ChatGptOptions.HttpUrl"
+                                                Label="ChatGpt3.5API"
+                                                Dense
+                                                Outlined
+                                                HideDetails="@("auto")"/>
+                                </MCol>
+                                <MCol Cols="12">
+                                    <MTextField @bind-Value="ChatGptOptions.Token"
+                                                Label="Token"
+                                                Dense
+                                                Outlined
+                                                HideDetails="@("auto")"/>
+                                </MCol>
+                                <MCol Cols="12">
+                                    <MTextField @bind-Value="ChatGptOptions.MaxTokens"
+                                                Label="最大Token"
+                                                Dense
+                                                Outlined
+                                                HideDetails="@("auto")"/>
+                                </MCol>
+
+                                <MCol Cols="12">
+                                    <MTextField @bind-Value="ChatGptOptions.Temperature"
+                                                Label="温度"
+                                                Dense
+                                                Outlined
+                                                HideDetails="@("auto")"/>
+                                </MCol>
+
+                            </MRow>
+                        </ChildContent>
+                    </PModal>
+
+                    <MListItem OnClick="OnClear">
+                        <MListItemContent>
+                            <MListItemTitle>
+                                清空当前对话
+                            </MListItemTitle>
+                        </MListItemContent>
+                    </MListItem>
+                </MList>
+            </ChildContent>
+        </MMenu>
+        <MButton Dark="ChatGptOptions.Dark" OnClick="SerDark" Icon>
+            <MIcon>
+                @(ChatGptOptions.Dark ? "mdi-white-balance-sunny" : "mdi-weather-night")
+            </MIcon>
+        </MButton>
     </MAppBar>
 
     <MMain>
-        <Message @bind-Messages="Messages" @ref="Message" />
+        <ChatGpt.Shared.Message @bind-Messages="Messages" @ref="Message"/>
     </MMain>
-    <SendMessage SubmitChanged="OnSubmit" />
+    <SendMessage SubmitChanged="OnSubmit"/>
+    <PEnqueuedSnackbars @ref="_enqueuedSnackbars"></PEnqueuedSnackbars>
 </MApp>

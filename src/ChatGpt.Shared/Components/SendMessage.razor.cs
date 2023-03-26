@@ -7,6 +7,9 @@ partial class SendMessage
     [Parameter]
     public EventCallback<string> SubmitChanged { get; set; }
 
+    [Parameter]
+    public EventCallback<ChatGptOptions> ChatGptOptionsChanged { get; set; }
+
     private string? value;
 
     private async Task KeySubmit(KeyboardEventArgs args)

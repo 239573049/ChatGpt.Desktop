@@ -1,16 +1,12 @@
 ﻿@namespace ChatGpt.Shared
 @inherits LayoutComponentBase
-@inject NavigationManager NavigationManager
+@inject StorageJsInterop StorageJsInterop
 
-<CascadingValue Value="ChatGptOptions" Name="@nameof(ChatGptOptions)">
-    <MApp>
-        @Body
-    </MApp>
-</CascadingValue>
-
+<MApp>
+    @Body
+</MApp>
 
 @code {
     private string ComputedHref = "https://github.com/239573049";
 
-    public ChatGptOptions ChatGptOptions { get; set; } = new ();
 }

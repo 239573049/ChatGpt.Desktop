@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo</title>
+    <base href="/" />
+    <link href="Demo.styles.css" rel="stylesheet" />
+    <link href="_content/Masa.Blazor/css/masa-blazor.min.css" rel="stylesheet" />
+    <link href="https://cdn.masastack.com/npm/@mdi/font@7.1.96/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.masastack.com/npm/materialicons/materialicons.css" rel="stylesheet">
+    <link href="https://cdn.masastack.com/npm/fontawesome/v5.0.13/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/github.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/languages/go.min.js"></script>
+    <style>
+        html, body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        h1:focus {
+            outline: none;
+        }
+
+        a, .btn-link {
+            color: #0071c1;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #1b6ec2;
+            border-color: #1861ac;
+        }
+
+        .valid.modified:not([type=checkbox]) {
+            outline: 1px solid #26b050;
+        }
+
+        .invalid {
+            outline: 1px solid red;
+        }
+
+        .validation-message {
+            color: red;
+        }
+
+        #blazor-error-ui {
+            background: lightyellow;
+            bottom: 0;
+            box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+            display: none;
+            left: 0;
+            padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+            #blazor-error-ui .dismiss {
+                cursor: pointer;
+                position: absolute;
+                right: 0.75rem;
+                top: 0.5rem;
+            }
+    </style>
+</head>
+
+<body>
+    <div id="app">加载中...</div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <script src="_framework/blazor.webview.js"></script>
+    <script src="_content/BlazorComponent/js/blazor-component.js"></script>
+</body>
+</html>

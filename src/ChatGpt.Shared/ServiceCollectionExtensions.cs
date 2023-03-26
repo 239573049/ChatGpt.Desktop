@@ -9,7 +9,12 @@ public static class ServiceCollectionExtensions
         services.AddMasaBlazor();
         services.AddScoped<StorageJsInterop>();
         services.AddScoped<ChatGptJsInterop>();
-        services.AddHttpClient();
+        services.AddScoped((_) =>
+        {
+            var message = new HttpClientHandler();
+            message.ServerCertificateCustomValidationCallback += (_, _, _, _) => true;
+            return new HttpClient(message);
+        });
         return services;
     }
 }
