@@ -14,7 +14,13 @@ internal class Program
         appBuilder.RootComponents.Add<App>("#app");
 
         appBuilder.Services.AddBlazorDesktop()
-            .AddChatGpt();
+            .AddChatGpt()
+            .AddScoped((_) =>
+        {
+            var message = new HttpClientHandler();
+            message.ServerCertificateCustomValidationCallback += (_, _, _, _) => true;
+            return new HttpClient(message);
+        });
 
         var app = appBuilder.Build();
 
