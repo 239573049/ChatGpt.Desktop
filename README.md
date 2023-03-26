@@ -1,8 +1,11 @@
 # ChatGpt.Desktop
 
 ## 介绍
-Blazor实现的ChatGpt界面，支持Web ，桌面，App程序，多端运行
-支持多个对话框，
+Blazor实现的ChatGpt界面简洁的界面，让用户更容易理解，支持多个对话，
+
+## 支持平台：
+
+Android，IOS，Mac，Linux，Win，Web
 
 ## 软件架构
 使用`Blazor`作为跨平台UI，
@@ -10,11 +13,11 @@ Blazor实现的ChatGpt界面，支持Web ，桌面，App程序，多端运行
 
 ## 使用说明
 
-1.  打开设置 => 设置ChatGpt的token
-2.  保存设置
-3.  输入需要提问的问题
-4.  得到答案
-5.  右键回复内容可直接复制内容
+1.  打开右上角功能按钮点击设置
+1.  设置token，如果自己有代理服务器可以修改api地址为自己代理服务器
+1.  设置完成，保存，
+1.  发送消息，得到答案
+1.  消息会保存到浏览器缓存，可以在设置中清楚当前对话缓存
 
 ## 搭建ChatGpt代理
 
@@ -33,7 +36,21 @@ services:
       - 1080:80
 ```
 
+## 如何使用Web Server
 
+当前项目根目录下存在`docker-compose.yml`文件，可以在服务器直接运行，这是一个Blazor Server的项目镜像，如果将其部署到国外服务器就无需翻墙即可访问`ChatGpt Api`
+
+```yaml
+services:
+  chat-server:
+    image: registry.cn-shenzhen.aliyuncs.com/tokengo/chat-server
+    build:
+      context: .
+      dockerfile: ./src/ChatGpt.Server/Dockerfile
+    container_name: chat-server
+    ports:
+      - 1800:80
+```
 
 ## 参与贡献
 
@@ -44,9 +61,7 @@ services:
 
 ## 预览图
 
-![img](./img/setting-chat.png)
-
-![img](./img/setting-about.png)
+![img](./img/setting.png)
 
 ![img](./img/home.png)
 
@@ -64,5 +79,5 @@ https://platform.openai.com/account/api-keys
 
 学习交流qq群：737776595
 
-wx: ![ea3eb63ece772ca89b413d420032242](https://user-images.githubusercontent.com/61819790/224886889-07397fc9-3762-41c2-8d98-68ae13c98a3f.jpg)
+wx: ![ea3eb63ece772ca89b413d420032242](./img/wx.jpg)
 

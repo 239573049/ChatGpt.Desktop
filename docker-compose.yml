@@ -1,0 +1,9 @@
+services:
+  chat-server:
+    image: registry.cn-shenzhen.aliyuncs.com/tokengo/chat-server
+    build:
+      context: .
+      dockerfile: ./src/ChatGpt.Server/Dockerfile
+    container_name: chat-server
+    ports:
+      - 1800:80
