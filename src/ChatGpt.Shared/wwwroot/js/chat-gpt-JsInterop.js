@@ -14,7 +14,18 @@ function ElementsByTagName(tag) {
     });
 }
 
+function setClipboard(value) {
+    const clipboard = navigator.clipboard;
+    // 将文本复制到剪贴板中
+    clipboard.writeText(value).then(() => {
+        console.log('Text copied to clipboard');
+    }).catch((error) => {
+        console.error('Failed to copy text: ', error);
+    });
+}
+
 export {
     addEventListener,
+    setClipboard,
     ElementsByTagName
 }

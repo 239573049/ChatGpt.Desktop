@@ -1,6 +1,3 @@
-
-using System.Text.Json;
-
 namespace ChatGpt.Shared.Interop;
 
 public class ChatGptJsInterop : JSModule
@@ -12,6 +9,11 @@ public class ChatGptJsInterop : JSModule
     public async ValueTask AddEventListener(string id)
     {
         await InvokeVoidAsync("addEventListener", id);
+    }
+
+    public async ValueTask SetClipboard(string value)
+    {
+        await InvokeVoidAsync("setClipboard", value);
     }
     public async ValueTask ElementsByTagName(string tag)
     {

@@ -14,17 +14,12 @@ public partial class Message
     [Parameter]
     public EventCallback<List<MessageModule>> MessagesChanged { get; set; }
 
+    [Parameter]
+    public EventCallback<MessageModule> OnCopy { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
     }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            //await ChatGptJsInterop.ElementsByTagName("html");
-        }
-        await base.OnAfterRenderAsync(firstRender);
-    }
 }

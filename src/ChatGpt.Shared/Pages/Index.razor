@@ -2,6 +2,7 @@
 
 @page "/"
 @inject StorageJsInterop StorageJsInterop
+@inject ChatGptJsInterop ChatGptJsInterop
 @inject HttpClient HttpClient
 
 <MApp Dark="ChatGptOptions.Dark" Id="inspire">
@@ -103,7 +104,7 @@
     </MAppBar>
 
     <MMain>
-        <ChatGpt.Shared.Message @bind-Messages="Messages" @ref="Message"/>
+        <ChatGpt.Shared.Message OnCopy="OnCopy" @bind-Messages="Messages" @ref="Message" />
     </MMain>
     <SendMessage SubmitChanged="OnSubmit"/>
     <PEnqueuedSnackbars @ref="_enqueuedSnackbars"></PEnqueuedSnackbars>

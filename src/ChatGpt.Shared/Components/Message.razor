@@ -25,11 +25,14 @@
                     </MCardTitle>
                 }
                 <MCardText>
-                    <MCard MinHeight="40" Outlined>
-                        <MMarkdownIt Style="margin: 5px; min-height: 10px" Source="@item.Content" Class="markdown-parser__basic"/>
-                    </MCard>
-                </MCardText>
-            </MCard>
+                    <MCard MinHeight="40" Class="container" Outlined>
+                    <MButton Icon OnClick="async()=>await OnCopy.InvokeAsync(item)" Class="top-button">
+                            <MIcon>mdi-content-copy</MIcon>
+                    </MButton>
+                    <MMarkdownIt Style="margin: 5px; min-height: 10px" Source="@item.Content" Class="markdown-parser__basic" />
+                </MCard>
+            </MCardText>
+        </MCard>
         }
     }
 </div>
@@ -44,19 +47,29 @@
     }
 
     .m-sheet.m-card:not(.m-sheet--outlined) {
-        box-shadow:none !important;
+        box-shadow: none !important;
     }
-    
+
     .markdown-parser__basic img {
         max-width: 100%;
     }
-    
+
     .markdown-parser__basic blockquote {
         border-left: 4px lightgray solid;
         padding-left: 16px;
     }
 
     html {
-        overflow-y:auto;
+        overflow-y: auto;
+    }
+
+    .container {
+        position: relative;
+    }
+
+    .top-button {
+        position: absolute;
+        top: 0;
+        right: 0;
     }
 </style>
