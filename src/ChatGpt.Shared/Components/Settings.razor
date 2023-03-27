@@ -51,17 +51,17 @@
             </MCol>
 
             <MCol Cols="12">
+                <MTextField @bind-Value="ChatGptOptions.Avatar"
+                            Label="用户头像Url（为空使用默认头像）"
+                                Dense
+                                Outlined
+                            HideDetails="@("auto")" />
+            </MCol>
+
+            <MCol Cols="12">
                 <MSwitch @bind-Value="ChatGptOptions.InContext"
                          Label="@(ChatGptOptions.InContext?"启用关联上下文":"禁用关联上下文")">
                 </MSwitch>
-            </MCol>
-            
-            <MCol Cols="12">
-                <MTextField @bind-Value="ChatGptOptions.Avatar"
-                            Label="用户头像Url（为空使用默认头像）"
-                            Dense
-                            Outlined
-                            HideDetails="@("auto")" />
             </MCol>
             
             @if (ChatGptOptions.InContext)
