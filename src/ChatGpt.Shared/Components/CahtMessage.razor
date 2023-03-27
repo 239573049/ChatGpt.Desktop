@@ -20,19 +20,20 @@
                 {
                     <MCardTitle>
                         <MAvatar>
-                            <MImage Src="https://cdn.masastack.com/stack/images/website/masa-blazor/jack.png" Alt="Jack"></MImage>
+                            <MImage 
+                                Src="@(string.IsNullOrEmpty(ChatGptOptions?.Avatar) ? "https://blog-simple.oss-cn-shenzhen.aliyuncs.com/Avatar.jpg" : ChatGptOptions.Avatar)" Alt="Jack"></MImage>
                         </MAvatar>
                     </MCardTitle>
                 }
                 <MCardText>
                     <MCard MinHeight="40" Class="container" Outlined>
-                    <MButton Icon OnClick="async()=>await OnCopy.InvokeAsync(item)" Class="top-button">
+                        <MButton Icon OnClick="async () => await OnCopy.InvokeAsync(item)" Class="top-button">
                             <MIcon>mdi-content-copy</MIcon>
-                    </MButton>
-                    <MMarkdownIt Style="margin: 5px; min-height: 10px" Source="@item.Content" Class="markdown-parser__basic" />
-                </MCard>
-            </MCardText>
-        </MCard>
+                        </MButton>
+                        <MMarkdownIt Style="margin: 5px; min-height: 10px" Source="@item.Content" Class="markdown-parser__basic"/>
+                    </MCard>
+                </MCardText>
+            </MCard>
         }
     }
 </div>

@@ -1,8 +1,6 @@
 ﻿using System.Net;
 using System.Net.Http.Json;
-using System.Text.Json;
 using BlazorComponent;
-using ChatGpt.Shared.Interop;
 using Masa.Blazor.Presets;
 
 namespace ChatGpt.Shared;
@@ -21,12 +19,12 @@ public partial class Index
 
     public DialoguesModule DialoguesModule { get; set; }
 
-    private Message Message;
+    private CahtMessage Message;
 
     public List<MessageModule> Messages { get; set; }
 
     [CascadingParameter(Name = nameof(ChatGptOptions))]
-    public ChatGptOptions ChatGptOptions { get; set; } = new ();
+    public ChatGptOptions ChatGptOptions { get; set; } = new();
 
     /// <summary>
     /// Masa弹窗组件
@@ -46,7 +44,7 @@ public partial class Index
         ChatGptOptions.Dark = !ChatGptOptions.Dark;
         await StorageJsInterop.SetValue(nameof(ChatGptOptions), ChatGptOptions);
     }
-    
+
     /// <summary>
     /// 清空当前会话
     /// </summary>
@@ -57,7 +55,7 @@ public partial class Index
 
         Messages = new List<MessageModule>();
     }
-    
+
     /// <summary>
     /// 提交请求
     /// </summary>
@@ -71,7 +69,7 @@ public partial class Index
             // 权限不足
             _enqueuedSnackbars?.EnqueueSnackbar(new SnackbarOptions()
             {
-                Content = $"还未设置请求token",
+                Content = "还未设置请求token",
                 Type = AlertTypes.Warning,
                 Closeable = true
             });
@@ -96,7 +94,29 @@ public partial class Index
                 HttpClient.DefaultRequestHeaders.Remove("Authorization");
             }
             // 添加token
-            HttpClient.DefaultRequestHeaders.Add("Authorization", "Bearer "+ChatGptOptions.Token);
+            HttpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + ChatGptOptions.Token);
+
+            List<object> messages = new List<object>();
+            if (ChatGptOptions.InContext)
+            {
+                var query = Messages.Where(x => ChatGptOptions.CarryChatGptMessage || x.ChatGpt == false)
+                    .OrderByDescending(x => x.CreatedTime)
+                    .Take(ChatGptOptions.InContextMaxMessage)
+                    .Select(x=>new
+                    {
+                        role = x.ChatGpt ?"assistant":"user",// assistant 是ChatGpt的角色 User是自己的角色
+                        content = x.Content
+                    })
+                    .ToList();
+                
+                messages.AddRange(query);
+                
+            }
+            messages.Add(new
+                {
+                    role = "user", // 角色
+                    content = value // 发送内容
+                });
             
             // ChatGpt需要的参数
             var values = new
@@ -105,14 +125,7 @@ public partial class Index
                 temperature = ChatGptOptions.Temperature,
                 max_tokens = ChatGptOptions.MaxTokens,
                 user = "token",
-                messages = new object[]
-                {
-                    new
-                    {
-                        role = "user", // 角色
-                        content = value // 发送内容
-                    }
-                }
+                messages
             };
 
             var message = await HttpClient.PostAsJsonAsync(ChatGptOptions.HttpUrl, values);

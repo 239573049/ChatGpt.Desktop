@@ -23,4 +23,25 @@ public class ChatGptOptions
     /// 是否Dark主题
     /// </summary>
     public bool Dark { get; set; }
+
+    /// <summary>
+    /// 联系上下文
+    /// </summary>
+    public bool InContext { get; set; }
+
+    /// <summary>
+    /// 联系上下文最大数量
+    /// </summary>
+    public byte InContextMaxMessage { get; set; } = 2;
+
+    /// <summary>
+    /// 关联上下文是否携带ChatGpt发送的信息
+    /// （如果携带会导致大量消耗token）
+    /// </summary>
+    public bool CarryChatGptMessage { get; set; }
+
+    /// <summary>
+    /// 用户头像
+    /// </summary>
+    public string Avatar { get; set; }
 }

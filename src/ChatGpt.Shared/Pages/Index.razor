@@ -34,57 +34,10 @@
 
             <ChildContent>
                 <MList>
-                    <PModal
-                        @bind-Value="settingVisible"
-                        Persistent
-                        Title="ChatGpt设置"
-                        Width="500"
-                        OnSave="HandleOnSaveSetting"
-                        OnCancel="HandleOnCancelSetting">
-                        <ActivatorContent>
-                            <MListItem @attributes="@context.Attrs">
-                                <MListItemContent>
-                                    <MListItemTitle>
-                                        设置
-                                    </MListItemTitle>
-                                </MListItemContent>
-                            </MListItem>
-                        </ActivatorContent>
-                        <ChildContent>
-                            <MRow>
-                                <MCol Cols="12">
-                                    <MTextField @bind-Value="ChatGptOptions.HttpUrl"
-                                                Label="ChatGpt3.5API"
-                                                Dense
-                                                Outlined
-                                                HideDetails="@("auto")"/>
-                                </MCol>
-                                <MCol Cols="12">
-                                    <MTextField @bind-Value="ChatGptOptions.Token"
-                                                Label="Token"
-                                                Dense
-                                                Outlined
-                                                HideDetails="@("auto")"/>
-                                </MCol>
-                                <MCol Cols="12">
-                                    <MTextField @bind-Value="ChatGptOptions.MaxTokens"
-                                                Label="最大Token"
-                                                Dense
-                                                Outlined
-                                                HideDetails="@("auto")"/>
-                                </MCol>
-
-                                <MCol Cols="12">
-                                    <MTextField @bind-Value="ChatGptOptions.Temperature"
-                                                Label="温度"
-                                                Dense
-                                                Outlined
-                                                HideDetails="@("auto")"/>
-                                </MCol>
-
-                            </MRow>
-                        </ChildContent>
-                    </PModal>
+                    <Settings @bind-Value="settingVisible" 
+                    OnSave="HandleOnSaveSetting" 
+                    OnCancel="HandleOnCancelSetting" 
+                    @bind-ChatGptOptions="ChatGptOptions" />
 
                     <MListItem OnClick="OnClear">
                         <MListItemContent>
@@ -104,7 +57,7 @@
     </MAppBar>
 
     <MMain>
-        <ChatGpt.Shared.Message OnCopy="OnCopy" @bind-Messages="Messages" @ref="Message" />
+        <CahtMessage ChatGptOptions="ChatGptOptions" OnCopy="OnCopy" @bind-Messages="Messages" @ref="Message" />
     </MMain>
     <SendMessage SubmitChanged="OnSubmit"/>
     <PEnqueuedSnackbars @ref="_enqueuedSnackbars"></PEnqueuedSnackbars>

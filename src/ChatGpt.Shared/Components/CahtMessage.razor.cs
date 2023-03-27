@@ -1,6 +1,6 @@
 ﻿namespace ChatGpt.Shared;
 
-public partial class Message
+public partial class CahtMessage
 {
     [Parameter]
     public string DialoguesKey { get; set; }
@@ -17,6 +17,9 @@ public partial class Message
     [Parameter]
     public EventCallback<MessageModule> OnCopy { get; set; }
 
+    [Parameter]
+    public ChatGptOptions? ChatGptOptions { get; set; }
+    
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
