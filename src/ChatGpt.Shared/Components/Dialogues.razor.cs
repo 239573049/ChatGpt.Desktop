@@ -12,12 +12,12 @@ public partial class Dialogues
     public DialoguesModule DialoguesModule { get; set; }
 
     private bool _show;
-    
+
     private DialoguesModule newDialoguesModule = new();
 
     [Parameter]
     public EventCallback<DialoguesModule> DialoguesModuleChanged { get; set; }
-    
+
     public List<DialoguesModule>? DialoguesModules { get; set; } = new();
 
 
@@ -28,7 +28,7 @@ public partial class Dialogues
 
         DialoguesModules!.Add(new DialoguesModule(Guid.NewGuid().ToString(), newDialoguesModule.Title));
 
-        await StorageJsInterop.SetValue(nameof(DialoguesModule), DialoguesModules);
+        await StorageJsInterop.SetValue(nameof(DialoguesModule), DialoguesModules).ConfigureAwait(false);
 
         newDialoguesModule = new DialoguesModule();
     }
@@ -41,15 +41,15 @@ public partial class Dialogues
         }
 
         DialoguesModules.Remove(module);
-        await StorageJsInterop.SetValue(nameof(DialoguesModule), DialoguesModules);
-        await OnClick.InvokeAsync(DialoguesModules[0]);
+        await StorageJsInterop.SetValue(nameof(DialoguesModule), DialoguesModules).ConfigureAwait(false);
+        await OnClick.InvokeAsync(DialoguesModules[0]).ConfigureAwait(false);
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            DialoguesModules = await StorageJsInterop.GetValue<List<DialoguesModule>>(nameof(DialoguesModule));
+            DialoguesModules = await StorageJsInterop.GetValue<List<DialoguesModule>>(nameof(DialoguesModule)).ConfigureAwait(false);
             if (DialoguesModules == null)
             {
                 DialoguesModules = new List<DialoguesModule>()
@@ -61,13 +61,13 @@ public partial class Dialogues
                         CreatedTime = DateTime.Now
                     }
                 };
-                await StorageJsInterop.SetValue(nameof(DialoguesModule), DialoguesModules);
+                await StorageJsInterop.SetValue(nameof(DialoguesModule), DialoguesModules).ConfigureAwait(false);
             }
 
 
-            await OnClick.InvokeAsync(DialoguesModules[0]);
-            await DialoguesModuleChanged.InvokeAsync(DialoguesModules[0]);
+            await OnClick.InvokeAsync(DialoguesModules[0]).ConfigureAwait(false);
+            await DialoguesModuleChanged.InvokeAsync(DialoguesModules[0]).ConfigureAwait(false);
         }
-        await base.OnAfterRenderAsync(firstRender);
+        await base.OnAfterRenderAsync(firstRender).ConfigureAwait(false);
     }
 }

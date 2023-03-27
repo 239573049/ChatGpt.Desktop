@@ -14,6 +14,9 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
     <IsPackable>false</IsPackable>
+    <DockerFastModeProjectMountDirectory>/home/site/wwwroot</DockerFastModeProjectMountDirectory>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,6 +27,7 @@
     <PackageReference Include="Microsoft.SemanticKernel" Version="0.8.48.1-preview" />
     <PackageReference Include="Microsoft.SemanticKernel.Skills.Document" Version="0.8.48.1-preview" />
     <PackageReference Include="Microsoft.SemanticKernel.Skills.Web" Version="0.8.48.1-preview" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
   </ItemGroup>
 
   <ItemGroup>

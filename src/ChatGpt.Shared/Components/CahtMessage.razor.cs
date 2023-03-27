@@ -19,10 +19,5 @@ public partial class CahtMessage
 
     [Parameter]
     public ChatGptOptions? ChatGptOptions { get; set; }
-    
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-    }
 
 }

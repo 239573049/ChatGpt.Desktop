@@ -14,6 +14,12 @@ function ElementsByTagName(tag) {
     });
 }
 
+function scrollToBottom() {
+    var element = document.documentElement;
+    var bottom = element.scrollHeight - element.clientHeight;
+    element.scrollTop = bottom;
+}
+
 function setClipboard(value) {
     const clipboard = navigator.clipboard;
     // 将文本复制到剪贴板中
@@ -27,5 +33,6 @@ function setClipboard(value) {
 export {
     addEventListener,
     setClipboard,
+    scrollToBottom,
     ElementsByTagName
 }

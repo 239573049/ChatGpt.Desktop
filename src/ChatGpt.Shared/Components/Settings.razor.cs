@@ -17,7 +17,7 @@ public partial class Settings
     public EventCallback<ChatGptOptions> ChatGptOptionsChanged { get; set; }
 
     [Parameter]
-    public EventCallback<ModalActionEventArgs> OnSave{ get; set; }
+    public EventCallback<ModalActionEventArgs> OnSave { get; set; }
 
     [Parameter]
     public EventCallback<ModalActionEventArgs> OnCancel { get; set; }

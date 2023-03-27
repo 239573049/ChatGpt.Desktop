@@ -62,3 +62,37 @@
     <SendMessage SubmitChanged="OnSubmit"/>
     <PEnqueuedSnackbars @ref="_enqueuedSnackbars"></PEnqueuedSnackbars>
 </MApp>
+
+<style>
+    /* 隐藏默认滚动条 */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* 自定义滚动条样式 */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    /* 滚动条轨道 */
+    ::-webkit-scrollbar-track {
+        background-color: #f5f5f5;
+    }
+
+    /* 滚动条滑块 */
+    ::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 5px;
+    }
+
+        /* 滚动条滑块悬停状态 */
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #999;
+        }
+
+    /* 滚动条角落 */
+    ::-webkit-scrollbar-corner {
+        background-color: #f5f5f5;
+    }
+</style>

@@ -10,31 +10,31 @@ public class StorageJsInterop : JSModule
 
     public async ValueTask SetValue<T>(string key, T value) where T : class
     {
-        await SetValue(key, JsonSerializer.Serialize(value));
+        await SetValue(key, JsonSerializer.Serialize(value)).ConfigureAwait(false);
     }
 
     public async ValueTask SetValue(string key, string value)
     {
-        await InvokeVoidAsync("setValue", key, value);
+        await InvokeVoidAsync("setValue", key, value).ConfigureAwait(false);
     }
 
     public async ValueTask<T?> GetValue<T>(string key) where T : class
     {
-        var value = await GetValue(key);
+        var value = await GetValue(key).ConfigureAwait(false);
         return string.IsNullOrEmpty(value) ? null : JsonSerializer.Deserialize<T>(value);
     }
     public async ValueTask<string> GetValue(string key)
     {
-        return await InvokeAsync<string>("getValue", key);
+        return await InvokeAsync<string>("getValue", key).ConfigureAwait(false);
     }
 
     public async ValueTask RemoveValue(string key)
     {
-        await InvokeVoidAsync("removeValue", key);
+        await InvokeVoidAsync("removeValue", key).ConfigureAwait(false);
     }
 
     public async ValueTask Clear()
     {
-        await InvokeVoidAsync("clear");
+        await InvokeVoidAsync("clear").ConfigureAwait(false);
     }
 }
