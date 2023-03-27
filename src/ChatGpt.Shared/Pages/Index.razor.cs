@@ -35,7 +35,7 @@ public partial class Index
     {
         DialoguesModule = dialoguesModule;
 
-        Messages = await StorageJsInterop.GetValue<List<MessageModule>>(dialoguesModule.Key).ConfigureAwait(false) ??
+        Messages = await StorageJsInterop.GetValue<List<MessageModule>>(dialoguesModule.Key) ??
                    new List<MessageModule>();
 
         ScrollToBottom();
@@ -44,7 +44,7 @@ public partial class Index
     private async Task SerDark()
     {
         ChatGptOptions.Dark = !ChatGptOptions.Dark;
-        await StorageJsInterop.SetValue(nameof(ChatGptOptions), ChatGptOptions).ConfigureAwait(false);
+        await StorageJsInterop.SetValue(nameof(ChatGptOptions), ChatGptOptions);
     }
 
     /// <summary>
@@ -53,7 +53,7 @@ public partial class Index
     /// <returns></returns>
     private async Task OnClear()
     {
-        await StorageJsInterop.RemoveValue(DialoguesModule.Key).ConfigureAwait(false);
+        await StorageJsInterop.RemoveValue(DialoguesModule.Key);
 
         Messages = new List<MessageModule>();
     }
@@ -62,8 +62,8 @@ public partial class Index
     {
         _ = Task.Run(async () =>
         {
-            await Task.Delay(100).ConfigureAwait(false);
-            await ChatGptJsInterop.ScrollToBottom().ConfigureAwait(false);
+            await Task.Delay(100);
+            await ChatGptJsInterop.ScrollToBottom();
         });
     }
 
@@ -95,7 +95,7 @@ public partial class Index
         });
 
         // 将信息持久化
-        await StorageJsInterop.SetValue(DialoguesModule.Key, Messages).ConfigureAwait(false);
+        await StorageJsInterop.SetValue(DialoguesModule.Key, Messages);
 
         ScrollToBottom();
 
@@ -141,7 +141,7 @@ public partial class Index
                 messages
             };
 
-            var message = await HttpClient.PostAsJsonAsync(ChatGptOptions.HttpUrl, values).ConfigureAwait(false);
+            var message = await HttpClient.PostAsJsonAsync(ChatGptOptions.HttpUrl, values);
             // 如果是401可能是token设置有问题，或者token失效
             if (message.StatusCode == HttpStatusCode.Unauthorized)
             {
@@ -156,7 +156,7 @@ public partial class Index
             else if (message.IsSuccessStatusCode)
             {
                 // 发送成功解析结构
-                var chatGpt = await message.Content.ReadFromJsonAsync<GetChatGPTDto>().ConfigureAwait(false);
+                var chatGpt = await message.Content.ReadFromJsonAsync<GetChatGPTDto>();
                 if (!string.IsNullOrEmpty(chatGpt?.choices.FirstOrDefault()?.message.content))
                 {
                     Messages.Add(new MessageModule(Guid.NewGuid().ToString(),
@@ -165,7 +165,7 @@ public partial class Index
                         DialoguesKey = DialoguesModule.Key
                     });
 
-                    await StorageJsInterop.SetValue(DialoguesModule.Key, Messages).ConfigureAwait(false);
+                    await StorageJsInterop.SetValue(DialoguesModule.Key, Messages);
 
                     ScrollToBottom();
                 }
@@ -174,7 +174,7 @@ public partial class Index
             {
                 _enqueuedSnackbars?.EnqueueSnackbar(new SnackbarOptions
                 {
-                    Content = $"发送严重错误：" + await message.Content.ReadAsStringAsync().ConfigureAwait(false),
+                    Content = $"发送严重错误：" + await message.Content.ReadAsStringAsync(),
                     Type = AlertTypes.Error,
                     Closeable = true
                 });
@@ -198,7 +198,7 @@ public partial class Index
     /// <returns></returns>
     private async Task OnCopy(MessageModule message)
     {
-        await ChatGptJsInterop.SetClipboard(message.Content).ConfigureAwait(false);
+        await ChatGptJsInterop.SetClipboard(message.Content);
         _enqueuedSnackbars?.EnqueueSnackbar(new SnackbarOptions()
         {
             Content = $"内容已复制到粘贴板",
@@ -209,7 +209,7 @@ public partial class Index
 
     private async Task HandleOnSaveSetting()
     {
-        await StorageJsInterop.SetValue(nameof(ChatGptOptions), ChatGptOptions).ConfigureAwait(false);
+        await StorageJsInterop.SetValue(nameof(ChatGptOptions), ChatGptOptions);
         settingVisible = false;
     }
 
@@ -222,9 +222,9 @@ public partial class Index
     {
         if (firstRender)
         {
-            var json = await StorageJsInterop.GetValue<ChatGptOptions?>(nameof(ChatGptOptions)).ConfigureAwait(false);
+            var json = await StorageJsInterop.GetValue<ChatGptOptions?>(nameof(ChatGptOptions));
             ChatGptOptions = json ?? new ChatGptOptions();
         }
-        await base.OnAfterRenderAsync(firstRender).ConfigureAwait(false);
+        await base.OnAfterRenderAsync(firstRender);
     }
 }

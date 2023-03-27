@@ -8,20 +8,20 @@ public class ChatGptJsInterop : JSModule
 
     public async ValueTask AddEventListener(string id)
     {
-        await InvokeVoidAsync("addEventListener", id).ConfigureAwait(false);
+        await InvokeVoidAsync("addEventListener", id);
     }
 
     public async ValueTask SetClipboard(string value)
     {
-        await InvokeVoidAsync("setClipboard", value).ConfigureAwait(false);
+        await InvokeVoidAsync("setClipboard", value);
     }
 
     public async ValueTask ScrollToBottom()
     {
-        await InvokeVoidAsync("scrollToBottom").ConfigureAwait(false);
+        await InvokeVoidAsync("scrollToBottom");
     }
     public async ValueTask ElementsByTagName(string tag)
     {
-        await InvokeVoidAsync("ElementsByTagName", tag).ConfigureAwait(false);
+        await InvokeVoidAsync("ElementsByTagName", tag);
     }
 }

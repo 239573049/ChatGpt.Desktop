@@ -18,8 +18,8 @@ partial class SendMessage
         {
             var newValue = value;
             value = string.Empty;
-            await Task.Delay(50).ConfigureAwait(false);
-            await SubmitChanged.InvokeAsync(newValue).ConfigureAwait(false);
+            await Task.Delay(50);
+            await SubmitChanged.InvokeAsync(newValue);
         }
     }
 }

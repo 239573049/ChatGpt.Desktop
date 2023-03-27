@@ -28,7 +28,7 @@ public partial class Dialogues
 
         DialoguesModules!.Add(new DialoguesModule(Guid.NewGuid().ToString(), newDialoguesModule.Title));
 
-        await StorageJsInterop.SetValue(nameof(DialoguesModule), DialoguesModules).ConfigureAwait(false);
+        await StorageJsInterop.SetValue(nameof(DialoguesModule), DialoguesModules);
 
         newDialoguesModule = new DialoguesModule();
     }
@@ -41,15 +41,15 @@ public partial class Dialogues
         }
 
         DialoguesModules.Remove(module);
-        await StorageJsInterop.SetValue(nameof(DialoguesModule), DialoguesModules).ConfigureAwait(false);
-        await OnClick.InvokeAsync(DialoguesModules[0]).ConfigureAwait(false);
+        await StorageJsInterop.SetValue(nameof(DialoguesModule), DialoguesModules);
+        await OnClick.InvokeAsync(DialoguesModules[0]);
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            DialoguesModules = await StorageJsInterop.GetValue<List<DialoguesModule>>(nameof(DialoguesModule)).ConfigureAwait(false);
+            DialoguesModules = await StorageJsInterop.GetValue<List<DialoguesModule>>(nameof(DialoguesModule));
             if (DialoguesModules == null)
             {
                 DialoguesModules = new List<DialoguesModule>()
@@ -61,13 +61,13 @@ public partial class Dialogues
                         CreatedTime = DateTime.Now
                     }
                 };
-                await StorageJsInterop.SetValue(nameof(DialoguesModule), DialoguesModules).ConfigureAwait(false);
+                await StorageJsInterop.SetValue(nameof(DialoguesModule), DialoguesModules);
             }
 
 
-            await OnClick.InvokeAsync(DialoguesModules[0]).ConfigureAwait(false);
-            await DialoguesModuleChanged.InvokeAsync(DialoguesModules[0]).ConfigureAwait(false);
+            await OnClick.InvokeAsync(DialoguesModules[0]);
+            await DialoguesModuleChanged.InvokeAsync(DialoguesModules[0]);
         }
-        await base.OnAfterRenderAsync(firstRender).ConfigureAwait(false);
+        await base.OnAfterRenderAsync(firstRender);
     }
 }
