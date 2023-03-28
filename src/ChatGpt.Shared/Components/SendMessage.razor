@@ -4,12 +4,11 @@
          Color="transparent"
          Height="72"
          Inset>
-    <MTextField BackgroundColor="grey lighten-1"
+    <MTextField BackgroundColor="@(ChatGptOptions.Dark?"grey lighten-1":"#333333")"
                 Dense
                 Flat
                 HideDetails="@("true")"
                 @bind-Value="value"
-                Rounded
                 OnKeyDown="async (e) => await KeySubmit(e)"
                 Solo></MTextField>
     <MButton Text OnClick="OnClick">发送</MButton>

@@ -8,7 +8,7 @@ partial class SendMessage
     public EventCallback<string> SubmitChanged { get; set; }
 
     [Parameter]
-    public EventCallback<ChatGptOptions> ChatGptOptionsChanged { get; set; }
+    public ChatGptOptions ChatGptOptions { get; set; } = new();
 
     private string? value;
 
@@ -19,7 +19,7 @@ partial class SendMessage
             await OnClick();
         }
     }
-    
+
     private async Task OnClick()
     {
         var newValue = value;

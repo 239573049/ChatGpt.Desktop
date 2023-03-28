@@ -16,9 +16,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="wwwroot\**">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
 	  <None Update="chatgpt.ico">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
@@ -29,4 +26,5 @@
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	</ItemGroup>
+
 </Project>

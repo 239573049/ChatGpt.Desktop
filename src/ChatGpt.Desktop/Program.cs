@@ -1,4 +1,5 @@
-﻿using ChatGpt.Shared;
+﻿using System.Drawing;
+using ChatGpt.Shared;
 using Microsoft.Extensions.DependencyInjection;
 using Photino.Blazor;
 
@@ -26,7 +27,8 @@ internal class Program
 
         app.MainWindow
             .SetTitle("ChatGpt Desktop")
-            .SetIconFile("./chatgpt.ico");
+            .SetIconFile("./chatgpt.ico")
+            .SetSize(new Size(400, 600));
 
         AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
         {

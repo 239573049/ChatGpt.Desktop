@@ -74,6 +74,11 @@ public partial class Index
     /// <returns></returns>
     private async Task OnSubmit(string value)
     {
+        if (string.IsNullOrEmpty(value))
+        {
+            return;
+        }
+
         // 发送前确定是否设置了token
         if (string.IsNullOrEmpty(ChatGptOptions.Token))
         {
@@ -139,14 +144,14 @@ public partial class Index
                 messages
             };
 
-            var messageModule = new MessageModule(Guid.NewGuid().ToString(),"请稍后AI分析中。。。", true)
+            var messageModule = new MessageModule(Guid.NewGuid().ToString(), "请稍后AI分析中。。。", true)
             {
                 DialoguesKey = DialoguesModule.Key
             };
             Messages.Add(messageModule);
 
             StateHasChanged();
-            
+
             ScrollToBottom();
 
             var message = await HttpClient.PostAsJsonAsync(ChatGptOptions.HttpUrl, values);

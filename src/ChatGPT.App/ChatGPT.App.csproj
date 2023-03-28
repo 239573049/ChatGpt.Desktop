@@ -36,7 +36,7 @@
       <AndroidPackageFormat>apk</AndroidPackageFormat>
       <AndroidCreatePackagePerAbi>True</AndroidCreatePackagePerAbi>
       <ApplicationId>com.token.chatgpt.app</ApplicationId>
-      <ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+      <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
       <AndroidKeyStore>False</AndroidKeyStore>
       <AndroidSigningStorePass>010426</AndroidSigningStorePass>
     </PropertyGroup>
@@ -52,39 +52,39 @@
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|AnyCPU'">
       <AndroidCreatePackagePerAbi>True</AndroidCreatePackagePerAbi>
       <ApplicationId>com.token.chatgpt.app</ApplicationId>
-      <ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+      <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
       <AndroidKeyStore>False</AndroidKeyStore>
       <AndroidSigningStorePass>010426</AndroidSigningStorePass>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
       <ApplicationId>com.token.chatgpt.app</ApplicationId>
-      <ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+      <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-maccatalyst|AnyCPU'">
       <ApplicationId>com.token.chatgpt.app</ApplicationId>
-      <ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+      <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-windows10.0.19041.0|AnyCPU'">
       <ApplicationId>com.token.chatgpt.app</ApplicationId>
-      <ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+      <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
       <ApplicationId>com.token.chatgpt.app</ApplicationId>
-      <ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+      <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-maccatalyst|AnyCPU'">
       <ApplicationId>com.token.chatgpt.app</ApplicationId>
-      <ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+      <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-windows10.0.19041.0|AnyCPU'">
       <ApplicationId>com.token.chatgpt.app</ApplicationId>
-      <ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+      <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
     </PropertyGroup>
 
     <ItemGroup>

@@ -60,7 +60,7 @@
     <MMain>
         <CahtMessage ChatGptOptions="ChatGptOptions" OnCopy="OnCopy" @bind-Messages="Messages" @ref="Message" />
     </MMain>
-    <SendMessage SubmitChanged="OnSubmit"/>
+    <SendMessage ChatGptOptions="ChatGptOptions" SubmitChanged="OnSubmit"/>
     <PEnqueuedSnackbars @ref="_enqueuedSnackbars"></PEnqueuedSnackbars>
 </MApp>
 
