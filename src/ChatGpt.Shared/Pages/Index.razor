@@ -19,6 +19,12 @@
         <MToolbarTitle>@DialoguesModule?.Title</MToolbarTitle>
         <MSpacer></MSpacer>
 
+        <MButton Dark="ChatGptOptions.Dark" OnClick="SerDark" Icon>
+            <MIcon>
+                @(ChatGptOptions.Dark ? "mdi-white-balance-sunny" : "mdi-weather-night")
+            </MIcon>
+        </MButton>
+        
         <MMenu
             Bottom
             Left>
@@ -49,11 +55,6 @@
                 </MList>
             </ChildContent>
         </MMenu>
-        <MButton Dark="ChatGptOptions.Dark" OnClick="SerDark" Icon>
-            <MIcon>
-                @(ChatGptOptions.Dark ? "mdi-white-balance-sunny" : "mdi-weather-night")
-            </MIcon>
-        </MButton>
     </MAppBar>
 
     <MMain>

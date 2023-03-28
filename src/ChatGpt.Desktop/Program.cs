@@ -25,7 +25,8 @@ internal class Program
         var app = appBuilder.Build();
 
         app.MainWindow
-            .SetTitle("ChatGpt Desktop");
+            .SetTitle("ChatGpt Desktop")
+            .SetIconFile("./chatgpt.ico");
 
         AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
         {

@@ -97,8 +97,6 @@ public partial class Index
         // 将信息持久化
         await StorageJsInterop.SetValue(DialoguesModule.Key, Messages);
 
-        ScrollToBottom();
-
         try
         {
             // httpclient是否存在token存在即删除
@@ -141,6 +139,16 @@ public partial class Index
                 messages
             };
 
+            var messageModule = new MessageModule(Guid.NewGuid().ToString(),"请稍后AI分析中。。。", true)
+            {
+                DialoguesKey = DialoguesModule.Key
+            };
+            Messages.Add(messageModule);
+
+            StateHasChanged();
+            
+            ScrollToBottom();
+
             var message = await HttpClient.PostAsJsonAsync(ChatGptOptions.HttpUrl, values);
             // 如果是401可能是token设置有问题，或者token失效
             if (message.StatusCode == HttpStatusCode.Unauthorized)
@@ -159,11 +167,7 @@ public partial class Index
                 var chatGpt = await message.Content.ReadFromJsonAsync<GetChatGPTDto>();
                 if (!string.IsNullOrEmpty(chatGpt?.choices.FirstOrDefault()?.message.content))
                 {
-                    Messages.Add(new MessageModule(Guid.NewGuid().ToString(),
-                        chatGpt?.choices.FirstOrDefault()?.message.content!, true)
-                    {
-                        DialoguesKey = DialoguesModule.Key
-                    });
+                    messageModule.Content = chatGpt?.choices.FirstOrDefault()?.message.content;
 
                     await StorageJsInterop.SetValue(DialoguesModule.Key, Messages);
 

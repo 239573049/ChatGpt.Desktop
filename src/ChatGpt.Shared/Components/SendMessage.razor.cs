@@ -16,10 +16,15 @@ partial class SendMessage
     {
         if (args.Key == "Enter")
         {
-            var newValue = value;
-            value = string.Empty;
-            await Task.Delay(50);
-            await SubmitChanged.InvokeAsync(newValue);
+            await OnClick();
         }
+    }
+    
+    private async Task OnClick()
+    {
+        var newValue = value;
+        value = string.Empty;
+        await Task.Delay(50);
+        await SubmitChanged.InvokeAsync(newValue);
     }
 }

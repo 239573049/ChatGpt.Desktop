@@ -21,13 +21,26 @@ function scrollToBottom() {
 }
 
 function setClipboard(value) {
-    const clipboard = navigator.clipboard;
-    // 将文本复制到剪贴板中
-    clipboard.writeText(value).then(() => {
-        console.log('Text copied to clipboard');
-    }).catch((error) => {
-        console.error('Failed to copy text: ', error);
-    });
+    if (window.clipboardData && window.clipboardData.setData) {
+        // For IE
+        window.clipboardData.setData('Text', value);
+    } else if (document.queryCommandSupported && document.queryCommandSupported('copy')) {
+        // For other browsers that support copy command
+        var textarea = document.createElement('textarea');
+        textarea.textContent = value;
+        textarea.style.position = 'fixed';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+        } catch (ex) {
+            console.warn('Copy to clipboard failed.', ex);
+        } finally {
+            document.body.removeChild(textarea);
+        }
+    } else {
+        console.warn('Copy to clipboard not supported.');
+    }
 }
 
 export {
