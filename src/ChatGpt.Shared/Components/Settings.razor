@@ -21,35 +21,97 @@
     <ChildContent>
         <MRow>
             <MCol Cols="12">
-                <MTextField @bind-Value="ChatGptOptions.HttpUrl"
-                            Label="ChatGpt3.5API"
-                                Dense
-                                Outlined
-                            HideDetails="@("auto")" />
+                <MRadioGroup @bind-Value="ChatGptOptions.Model"
+                                  Column>
+                    <MRadio Label="ChatGpt3.5 聊天模型"
+                            Value="ModelType.ChatGpt">
+                    </MRadio>
+                    <MRadio Label="DALL·E图片模型"
+                            Value="ModelType.DALLE">
+                    </MRadio>
+                </MRadioGroup>
             </MCol>
-            <MCol Cols="12">
-                <MTextField @bind-Value="ChatGptOptions.Token"
-                            Label="Token"
-                                Dense
-                                Outlined
-                            HideDetails="@("auto")" />
-            </MCol>
-            <MCol Cols="12">
-                <MTextField @bind-Value="ChatGptOptions.MaxTokens"
-                            Label="最大Token"
-                                Dense
-                                Outlined
-                            HideDetails="@("auto")" />
-            </MCol>
+            @if(ChatGptOptions.Model == ModelType.ChatGpt)
+            {
 
-            <MCol Cols="12">
-                <MTextField @bind-Value="ChatGptOptions.Temperature"
-                            Label="温度"
-                                Dense
-                                Outlined
-                            HideDetails="@("auto")" />
-            </MCol>
+                <MCol Cols="12">
+                    <MTextField @bind-Value="ChatGptOptions.HttpUrl"
+                                Label="ChatGpt3.5API"
+                                    Dense
+                                    Outlined
+                                HideDetails="@("auto")" />
+                </MCol>
+                <MCol Cols="12">
+                    <MTextField @bind-Value="ChatGptOptions.Token"
+                                Label="Token"
+                                    Dense
+                                    Outlined
+                                HideDetails="@("auto")" />
+                </MCol>
+                <MCol Cols="12">
+                    <MTextField @bind-Value="ChatGptOptions.MaxTokens"
+                                Label="最大Token"
+                                    Dense
+                                    Outlined
+                                HideDetails="@("auto")" />
+                </MCol>
 
+                <MCol Cols="12">
+                    <MTextField @bind-Value="ChatGptOptions.Temperature"
+                                Label="温度"
+                                    Dense
+                                    Outlined
+                                HideDetails="@("auto")" />
+                </MCol>
+                <MCol Cols="12">
+                    <MSwitch @bind-Value="ChatGptOptions.InContext"
+                             Label="@(ChatGptOptions.InContext?"启用关联上下文":"禁用关联上下文")">
+                    </MSwitch>
+                </MCol>
+
+                @if (ChatGptOptions.InContext)
+                {
+                    <MCol Cols="12">
+                        <MTextField @bind-Value="ChatGptOptions.InContextMaxMessage"
+                                    Label="关联上下文最大条数"
+                                        Dense
+                                        Outlined
+                                    HideDetails="@("auto")" />
+                    </MCol>
+
+                    <MCol Cols="12">
+                        <MSwitch @bind-Value="ChatGptOptions.CarryChatGptMessage"
+                                 Label="@(ChatGptOptions.CarryChatGptMessage?"启用携带ChatGpt信息":"禁用携带ChatGpt信息")">
+                        </MSwitch>
+                    </MCol>
+                }
+            }
+            else if(ModelType.DALLE == ChatGptOptions.Model)
+            {
+                <MCol Cols="12">
+                    <MTextField @bind-Value="ChatGptOptions.DDLLEHttpUrl"
+                                Label="图像模型API"
+                                    Dense
+                                    Outlined
+                                HideDetails="@("auto")" />
+                </MCol>
+                <MCol Cols="12">
+                    <MTextField @bind-Value="ChatGptOptions.DDLLEWidth"
+                                Label="图片宽度"
+                                    Dense
+                                    Outlined
+                                HideDetails="@("auto")" />
+                </MCol>
+                <MCol Cols="12">
+                    <MTextField @bind-Value="ChatGptOptions.DDLLEHeight"
+                                Label="图片高度"
+                                    Dense
+                                    Outlined
+                                HideDetails="@("auto")" />
+                </MCol>
+            }
+
+            <MDivider>基本设置</MDivider>
             <MCol Cols="12">
                 <MTextField @bind-Value="ChatGptOptions.Avatar"
                             Label="用户头像Url（为空使用默认头像）"
@@ -58,28 +120,6 @@
                             HideDetails="@("auto")" />
             </MCol>
 
-            <MCol Cols="12">
-                <MSwitch @bind-Value="ChatGptOptions.InContext"
-                         Label="@(ChatGptOptions.InContext?"启用关联上下文":"禁用关联上下文")">
-                </MSwitch>
-            </MCol>
-            
-            @if (ChatGptOptions.InContext)
-            {
-                <MCol Cols="12">
-                    <MTextField @bind-Value="ChatGptOptions.InContextMaxMessage"
-                                Label="关联上下文最大条数"
-                                Dense
-                                Outlined
-                                HideDetails="@("auto")" />
-                </MCol>
-
-                <MCol Cols="12">
-                    <MSwitch @bind-Value="ChatGptOptions.CarryChatGptMessage"
-                             Label="@(ChatGptOptions.CarryChatGptMessage?"启用携带ChatGpt信息":"禁用携带ChatGpt信息")">
-                    </MSwitch>
-                </MCol>
-            }
         </MRow>
     </ChildContent>
 </PModal>

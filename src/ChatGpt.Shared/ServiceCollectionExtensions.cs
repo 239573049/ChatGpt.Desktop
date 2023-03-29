@@ -1,4 +1,5 @@
-﻿using ChatGpt.Shared.Interop;
+﻿using ChatGpt.Shared;
+using ChatGpt.Shared.Interop;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -14,6 +15,8 @@ public static class ServiceCollectionExtensions
         services.AddMasaBlazor();
         services.AddScoped<StorageJsInterop>();
         services.AddScoped<ChatGptJsInterop>();
+        services.AddScoped<ApiClient>();
+
         return services;
     }
 }

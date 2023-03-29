@@ -5,6 +5,26 @@ public class ChatGptOptions
     public string HttpUrl { get; set; } = "https://api.openai.com/v1/chat/completions";
 
     /// <summary>
+    /// 当前模型
+    /// </summary>
+    public ModelType Model { get; set; } = ModelType.ChatGpt;
+
+    /// <summary>
+    /// DALLE模型Api
+    /// </summary>
+    public string DDLLEHttpUrl { get; set; } = "https://api.openai.com/v1/images/generations";
+
+    /// <summary>
+    /// 图片宽度
+    /// </summary>
+    public int DDLLEWidth { get; set; } = 1024;
+
+    /// <summary>
+    /// 图片高度
+    /// </summary>
+    public int DDLLEHeight { get; set; } = 1024;
+
+    /// <summary>
     /// Token
     /// </summary>
     public string Token { get; set; } = "";
@@ -22,7 +42,7 @@ public class ChatGptOptions
     /// <summary>
     /// 是否Dark主题
     /// </summary>
-    public bool Dark { get; set; }
+    public bool Dark { get; set; } = true;
 
     /// <summary>
     /// 联系上下文

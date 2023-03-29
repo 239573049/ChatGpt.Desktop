@@ -1,6 +1,8 @@
 ﻿using System.Net;
 using System.Net.Http.Json;
 using BlazorComponent;
+using ChatGpt.Shared.Module;
+using Masa.Blazor.Popup.Components;
 using Masa.Blazor.Presets;
 
 namespace ChatGpt.Shared;
@@ -104,90 +106,117 @@ public partial class Index
 
         try
         {
-            // httpclient是否存在token存在即删除
-            if (HttpClient.DefaultRequestHeaders.Any(x => x.Key == "Authorization"))
+            ApiClient.SetToken(ChatGptOptions.Token);
+
+            if (ChatGptOptions.Model == ModelType.ChatGpt)
             {
-                HttpClient.DefaultRequestHeaders.Remove("Authorization");
-            }
-            // 添加token
-            HttpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + ChatGptOptions.Token);
+                List<object> messages = new();
 
-            List<object> messages = new List<object>();
-            if (ChatGptOptions.InContext)
-            {
-                var query = Messages.Where(x => ChatGptOptions.CarryChatGptMessage || x.ChatGpt == false)
-                    .OrderByDescending(x => x.CreatedTime)
-                    .Take(ChatGptOptions.InContextMaxMessage)
-                    .Select(x => new
-                    {
-                        role = x.ChatGpt ? "assistant" : "user",// assistant 是ChatGpt的角色 User是自己的角色
-                        content = x.Content
-                    })
-                    .ToList();
-
-                messages.AddRange(query);
-
-            }
-            messages.Add(new
-            {
-                role = "user", // 角色
-                content = value // 发送内容
-            });
-
-            // ChatGpt需要的参数
-            var values = new
-            {
-                model = "gpt-3.5-turbo", // 使用的模型
-                temperature = ChatGptOptions.Temperature,
-                max_tokens = ChatGptOptions.MaxTokens,
-                user = "token",
-                messages
-            };
-
-            var messageModule = new MessageModule(Guid.NewGuid().ToString(), "请稍后AI分析中。。。", true)
-            {
-                DialoguesKey = DialoguesModule.Key
-            };
-            Messages.Add(messageModule);
-
-            StateHasChanged();
-
-            ScrollToBottom();
-
-            var message = await HttpClient.PostAsJsonAsync(ChatGptOptions.HttpUrl, values);
-            // 如果是401可能是token设置有问题，或者token失效
-            if (message.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                // 权限不足
-                _enqueuedSnackbars?.EnqueueSnackbar(new SnackbarOptions()
+                if (ChatGptOptions.InContext)
                 {
-                    Content = $"token可能错误或者无法使用",
-                    Type = AlertTypes.Error,
-                    Closeable = true
+                    var query = Messages.Where(x => ChatGptOptions.CarryChatGptMessage || x.ChatGpt == false)
+                        .OrderByDescending(x => x.CreatedTime)
+                        .Take(ChatGptOptions.InContextMaxMessage)
+                        .Select(x => new
+                        {
+                            role = x.ChatGpt ? "assistant" : "user",// assistant 是ChatGpt的角色 User是自己的角色
+                            content = x.Content
+                        })
+                        .ToList();
+
+                    messages.AddRange(query);
+
+                }
+                messages.Add(new
+                {
+                    role = "user", // 角色
+                    content = value // 发送内容
                 });
-            }
-            else if (message.IsSuccessStatusCode)
-            {
-                // 发送成功解析结构
-                var chatGpt = await message.Content.ReadFromJsonAsync<GetChatGPTDto>();
-                if (!string.IsNullOrEmpty(chatGpt?.choices.FirstOrDefault()?.message.content))
+
+                // ChatGpt需要的参数
+                var values = new
                 {
-                    messageModule.Content = chatGpt?.choices.FirstOrDefault()?.message.content;
+                    model = "gpt-3.5-turbo", // 使用的模型
+                    temperature = ChatGptOptions.Temperature,
+                    max_tokens = ChatGptOptions.MaxTokens,
+                    user = "token",
+                    messages
+                };
 
-                    await StorageJsInterop.SetValue(DialoguesModule.Key, Messages);
+                var messageModule = new MessageModule(Guid.NewGuid().ToString(), "请稍后AI分析中。。。", true)
+                {
+                    DialoguesKey = DialoguesModule.Key
+                };
+                Messages.Add(messageModule);
 
-                    ScrollToBottom();
+                StateHasChanged();
+
+                ScrollToBottom();
+
+                try
+                {
+                    var chatGpt = await ApiClient.CreateChatGptClient(ChatGptOptions.HttpUrl, values);
+
+                    if (!string.IsNullOrEmpty(chatGpt?.choices.FirstOrDefault()?.message.content))
+                    {
+                        messageModule.Content = chatGpt?.choices.FirstOrDefault()?.message.content;
+
+                        await StorageJsInterop.SetValue(DialoguesModule.Key, Messages);
+
+                        ScrollToBottom();
+                    }
+                }
+                catch (Exception e)
+                {
+                    _enqueuedSnackbars?.EnqueueSnackbar(new SnackbarOptions()
+                    {
+                        Content = e.Message,
+                        Type = AlertTypes.Error,
+                        Closeable = true
+                    });
                 }
             }
             else
             {
-                _enqueuedSnackbars?.EnqueueSnackbar(new SnackbarOptions
+
+                var messageModule = new MessageModule(Guid.NewGuid().ToString(), "请稍后AI分析中。。。", true)
                 {
-                    Content = $"发送严重错误：" + await message.Content.ReadAsStringAsync(),
-                    Type = AlertTypes.Error,
-                    Closeable = true
-                });
+                    DialoguesKey = DialoguesModule.Key
+                };
+                Messages.Add(messageModule);
+
+                try
+                {
+                    var chatGpt = await ApiClient.CreateDALLEClient(ChatGptOptions.DDLLEHttpUrl, new
+                    {
+                        prompt = value,
+                        n=1,
+                        size=ChatGptOptions.DDLLEWidth+"x"+ ChatGptOptions.DDLLEHeight
+                    });
+
+                    var dto = $"![img]({chatGpt.data.FirstOrDefault()?.Url})";
+
+                    if (!string.IsNullOrEmpty(chatGpt.data.FirstOrDefault()?.Url))
+                    {
+                        messageModule.Content = dto;
+
+                        await StorageJsInterop.SetValue(DialoguesModule.Key, Messages);
+
+                        ScrollToBottom();
+                    }
+                }
+                catch (Exception e)
+                {
+                    _enqueuedSnackbars?.EnqueueSnackbar(new SnackbarOptions()
+                    {
+                        Content = e.Message,
+                        Type = AlertTypes.Error,
+                        Closeable = true
+                    });
+                }
             }
+
+
         }
         catch (Exception e)
         {

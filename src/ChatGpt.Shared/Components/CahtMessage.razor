@@ -26,11 +26,11 @@
                     </MCardTitle>
                 }
                 <MCardText>
-                    <MCard MinHeight="40" Class="container" Outlined>
+                    <MCard MinHeight="20" Class="container" Outlined>
                         <MButton Height="20" Icon OnClick="async () => await OnCopy.InvokeAsync(item)" Class="top-button">
                             <MIcon Small>mdi-content-copy</MIcon>
                         </MButton>
-                        <MMarkdownIt Style="margin: 5px; min-height: 10px" Source="@item.Content" Class="markdown-parser__basic"/>
+                        <MMarkdownIt Style="margin: 2px; min-height: 5px" Source="@item.Content" Class="markdown-parser__basic"/>
                     </MCard>
                 </MCardText>
             </MCard>
@@ -66,6 +66,7 @@
 
     .container {
         position: relative;
+        padding:5px !important;
     }
 
     .top-button {

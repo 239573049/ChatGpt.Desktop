@@ -4,12 +4,25 @@
          Color="transparent"
          Height="72"
          Inset>
-    <MTextField BackgroundColor="@(ChatGptOptions.Dark?"grey lighten-1":"#333333")"
+    <MTextField BackgroundColor="@(ChatGptOptions.Dark?"#ffffff":"grey lighten-1")"
                 Dense
                 Flat
                 HideDetails="@("true")"
+                Class="@(ChatGptOptions.Dark?"dark":"white")"
                 @bind-Value="value"
                 OnKeyDown="async (e) => await KeySubmit(e)"
                 Solo></MTextField>
-    <MButton Text OnClick="OnClick">发送</MButton>
+    <MButton Style="margin-left:8px;"  Text OnClick="OnClick">
+        <MIcon>fas fa-solid fa-paper-plane</MIcon>
+    </MButton>
 </MFooter>
+
+<style>
+    .dark input {
+        color: black !important;
+    }
+
+    .white input {
+        color: aliceblue !important;
+    }
+</style>
