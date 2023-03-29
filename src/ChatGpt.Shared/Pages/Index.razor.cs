@@ -185,6 +185,10 @@ public partial class Index
                 };
                 Messages.Add(messageModule);
 
+                StateHasChanged();
+
+                ScrollToBottom();
+
                 try
                 {
                     var chatGpt = await ApiClient.CreateDALLEClient(ChatGptOptions.DDLLEHttpUrl, new
