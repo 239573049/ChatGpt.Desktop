@@ -194,8 +194,8 @@ public partial class Index
                     var chatGpt = await ApiClient.CreateDALLEClient(ChatGptOptions.DDLLEHttpUrl, new
                     {
                         prompt = value,
-                        n=1,
-                        size=ChatGptOptions.DDLLEWidth+"x"+ ChatGptOptions.DDLLEHeight
+                        n = 1,
+                        size = ChatGptOptions.DDLLEWidth + "x" + ChatGptOptions.DDLLEHeight
                     });
 
                     var dto = $"![img]({chatGpt.data.FirstOrDefault()?.Url})";

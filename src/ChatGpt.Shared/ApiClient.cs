@@ -23,7 +23,7 @@ public class ApiClient
         HttpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
     }
 
-    public async Task<DALLEMoDto> CreateDALLEClient(string url,object value)
+    public async Task<DALLEMoDto> CreateDALLEClient(string url, object value)
     {
         var message = await HttpClient.PostAsJsonAsync(url, value);
 
@@ -44,7 +44,7 @@ public class ApiClient
         }
     }
 
-    public async Task<GetChatGPTDto> CreateChatGptClient(string url,object value)
+    public async Task<GetChatGPTDto> CreateChatGptClient(string url, object value)
     {
         var message = await HttpClient.PostAsJsonAsync(url, value);
 
@@ -63,5 +63,15 @@ public class ApiClient
         {
             throw new Exception(message: $"发送严重错误：" + await message.Content.ReadAsStringAsync());
         }
+    }
+
+    public async Task<DALLEMoDto> CreateDALLEClient(Uri url, object value)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<GetChatGPTDto> CreateChatGptClient(Uri url, object value)
+    {
+        throw new NotImplementedException();
     }
 }

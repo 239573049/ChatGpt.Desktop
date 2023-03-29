@@ -7,7 +7,7 @@
     {
         @foreach (var item in Messages)
         {
-            <MCard Class="message">
+            <MCard Class="message" Style="@(ChatGptOptions.Dark?"":"background-color: ghostwhite;")">
                 @if (item.ChatGpt)
                 {
                     <MCardTitle>
