@@ -36,7 +36,7 @@
       <AndroidPackageFormat>apk</AndroidPackageFormat>
       <AndroidCreatePackagePerAbi>True</AndroidCreatePackagePerAbi>
       <ApplicationId>com.token.chatgpt.app</ApplicationId>
-      <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
+      <ApplicationDisplayVersion>1.0.3</ApplicationDisplayVersion>
       <AndroidKeyStore>False</AndroidKeyStore>
       <AndroidSigningStorePass>010426</AndroidSigningStorePass>
     </PropertyGroup>
@@ -52,51 +52,53 @@
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|AnyCPU'">
       <AndroidCreatePackagePerAbi>True</AndroidCreatePackagePerAbi>
       <ApplicationId>com.token.chatgpt.app</ApplicationId>
-      <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
+      <ApplicationDisplayVersion>1.0.3</ApplicationDisplayVersion>
       <AndroidKeyStore>False</AndroidKeyStore>
       <AndroidSigningStorePass>010426</AndroidSigningStorePass>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
       <ApplicationId>com.token.chatgpt.app</ApplicationId>
-      <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
+      <ApplicationDisplayVersion>1.0.3</ApplicationDisplayVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-maccatalyst|AnyCPU'">
       <ApplicationId>com.token.chatgpt.app</ApplicationId>
-      <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
+      <ApplicationDisplayVersion>1.0.3</ApplicationDisplayVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-windows10.0.19041.0|AnyCPU'">
       <ApplicationId>com.token.chatgpt.app</ApplicationId>
-      <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
+      <ApplicationDisplayVersion>1.0.3</ApplicationDisplayVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
       <ApplicationId>com.token.chatgpt.app</ApplicationId>
-      <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
+      <ApplicationDisplayVersion>1.0.3</ApplicationDisplayVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-maccatalyst|AnyCPU'">
       <ApplicationId>com.token.chatgpt.app</ApplicationId>
-      <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
+      <ApplicationDisplayVersion>1.0.3</ApplicationDisplayVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-windows10.0.19041.0|AnyCPU'">
       <ApplicationId>com.token.chatgpt.app</ApplicationId>
-      <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
+      <ApplicationDisplayVersion>1.0.3</ApplicationDisplayVersion>
     </PropertyGroup>
-
-    <ItemGroup>
-        <!-- App Icon -->
-        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
-
-        <!-- Splash Screen -->
-        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+	
+	<ItemGroup>
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" ForegroundScale="0.65" Color="#FFFFFF" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		
+		<!-- Splash Screen -->
+        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#FFFFFF" BaseSize="128,128" />
 
         <!-- Images -->
         <MauiImage Include="Resources\Images\*" />
-        <MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+        <MauiImage Update="Resources\Images\dotnet_bot.svg" Color="#FFFFFF" BaseSize="168,208" />
 
         <!-- Custom Fonts -->
         <MauiFont Include="Resources\Fonts\*" />
