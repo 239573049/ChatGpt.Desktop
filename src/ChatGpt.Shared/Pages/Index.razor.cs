@@ -1,5 +1,10 @@
-﻿using System.Net;
+﻿using System.Diagnostics;
+using System.IO;
+using System.Net;
 using System.Net.Http.Json;
+using System.Numerics;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using BlazorComponent;
 using ChatGpt.Shared.Module;
 using Masa.Blazor.Popup.Components;
@@ -139,11 +144,12 @@ public partial class Index
                     model = "gpt-3.5-turbo", // 使用的模型
                     temperature = ChatGptOptions.Temperature,
                     max_tokens = ChatGptOptions.MaxTokens,
+                    stream = true,
                     user = "token",
                     messages
                 };
 
-                var messageModule = new MessageModule(Guid.NewGuid().ToString(), "请稍后AI分析中。。。", true)
+                var messageModule = new MessageModule(Guid.NewGuid().ToString(), string.Empty, true)
                 {
                     DialoguesKey = DialoguesModule.Key
                 };
@@ -155,16 +161,23 @@ public partial class Index
 
                 try
                 {
-                    var chatGpt = await ApiClient.CreateChatGptClient(ChatGptOptions.HttpUrl, values);
+                    //int i = 0;
 
-                    if (!string.IsNullOrEmpty(chatGpt?.choices.FirstOrDefault()?.message.content))
+                    await ApiClient.CreateChatGptClient(ChatGptOptions.HttpUrl, values, r =>
                     {
-                        messageModule.Content = chatGpt?.choices.FirstOrDefault()?.message.content;
-
-                        await StorageJsInterop.SetValue(DialoguesModule.Key, Messages);
-
+                        //i++;
+                        messageModule.Content += r;
+                        // 减少频繁渲染
+                        //if (i != 5) return;
+                        _ = InvokeAsync(StateHasChanged);
                         ScrollToBottom();
-                    }
+                        //i = 0;
+
+                    }, async _ =>
+                    {
+                        // 持久化
+                        await StorageJsInterop.SetValue(DialoguesModule.Key, Messages);
+                    });
                 }
                 catch (Exception e)
                 {

@@ -33,6 +33,8 @@ public class Choice
 
     public MessageDto message { get; set; }
 
+    public MessageDto delta { get; set; }
+
     public string finish_reason { get; set; }
 }
 
