@@ -1,31 +1,22 @@
 # ChatGpt.Desktop
 
-## 介绍
-Blazor实现的ChatGpt界面简洁的界面，让用户更容易理解，支持多个对话，
+English| [简体中文](./README.zh-CN.md)
 
-## 支持平台：
+## Introduction
+ChatGpt.Desktop is a simple and easy-to-understand interface implemented using Blazor, which supports multiple conversations. It is available on Android, iOS, Mac, Linux, Windows, and Web platforms.
 
-Android，IOS，Mac，Linux，Win，Web
+## Software Architecture
+Blazor is used as a cross-platform UI, and Masa Blazor interface is used.
 
-## 软件架构
-使用`Blazor`作为跨平台UI，
-使用Masa Blazor界面
+## Instructions
+1. Click the settings button in the upper right corner.
+2. Set the token. If you have a proxy server, you can modify the API address to your own proxy server.
+3. Save the settings.
+4. Send a message and get an answer.
+5. Messages will be saved in the browser cache and can be cleared in the settings for the current conversation.
 
-## 使用说明
-
-1.  打开右上角功能按钮点击设置
-1.  设置token，如果自己有代理服务器可以修改api地址为自己代理服务器
-1.  设置完成，保存，
-1.  发送消息，得到答案
-1.  消息会保存到浏览器缓存，可以在设置中清楚当前对话缓存
-
-## 搭建ChatGpt代理
-
-实现准备一台海外服务器，新加坡或者其他国家的，
-
-需要准备docker和docker compose的环境
-
-使用以下脚本部署代理服务，请注意代理服务只代理api.openai.com的接口，部署完成再应用中设置`ApiUrl`为服务器的地址，http://服务器ip:服务器端口//v1/chat/completions
+## Setting up ChatGpt Proxy
+To set up a ChatGpt proxy, you need to prepare a server overseas, such as in Singapore or another country. You also need to have Docker and Docker Compose installed. Use the following script to deploy the proxy service. Note that the proxy service only proxies the api.openai.com interface. After deployment, set the `ApiUrl` in the application to the server's address, http://server_ip:server_port//v1/chat/completions.
 
 ```yml
 services:
@@ -52,38 +43,25 @@ services:
       - 1800:80
 ```
 
-## 参与贡献
+## Contribute
+1. Fork this repository
+2. Create a new feature/xxx branch
+3. Submit your code
+4. Create a new Pull Request
 
-1.  Fork 本仓库
-2.  新建 feature/xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+Thanks to the following contributors:
+<a href="https://github.com/239573049/ChatGpt.Desktop/graphs/contributors">   <img src="https://contrib.rocks/image?repo=239573049/ChatGpt.Desktop" /> </a>
 
-感谢以下贡献者
-
-<a href="https://github.com/239573049/ChatGpt.Desktop/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=239573049/ChatGpt.Desktop" />
-</a>
-
-## 预览图
-
+## Preview
 ![img](./img/setting.png)
-
 ![img](./img/home.png)
-
 ![img](./img/home1.png)
 
-## 获取ChatGpt token
+## Get ChatGpt Token
+To use this application, you need a ChatGpt account and login to create a token. Visit the following link to create a token: https://platform.openai.com/account/api-keys
 
-实现需要一个ChatGpt账号并且登录然后访问一下地址，创建token
-https://platform.openai.com/account/api-keys
-
-
-## 结尾
-
-欢迎大佬给项目PR，来自热爱开源的token
-
-学习交流qq群：737776595
+## Conclusion
+Welcome to contribute to this project. From Token with love. Join our QQ group for learning and communication: 737776595.
 
 wx: ![ea3eb63ece772ca89b413d420032242](./img/wx.jpg)
 
