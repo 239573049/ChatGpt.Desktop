@@ -2,7 +2,7 @@
 
 public class ChatGptOptions
 {
-    public string HttpUrl { get; set; } = "http://8.222.184.163/v1/chat/completions?token=239573049";
+    public string HttpUrl { get; set; } = "https://api.openai.com/v1/chat/completions";
 
     /// <summary>
     /// 当前模型
@@ -12,7 +12,7 @@ public class ChatGptOptions
     /// <summary>
     /// DALLE模型Api
     /// </summary>
-    public string DDLLEHttpUrl { get; set; } = "http://8.222.184.163/v1/images/generations?token=239573049";
+    public string DDLLEHttpUrl { get; set; } = "https://api.openai.com/v1/images/generations";
 
     /// <summary>
     /// 图片宽度
@@ -27,7 +27,7 @@ public class ChatGptOptions
     /// <summary>
     /// Token
     /// </summary>
-    public string Token { get; set; } = "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";
+    public string Token { get; set; } = "";
 
     /// <summary>
     /// 
