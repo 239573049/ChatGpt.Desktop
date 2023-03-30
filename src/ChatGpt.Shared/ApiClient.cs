@@ -146,8 +146,4 @@ public class ApiClient
         }
     }
 
-    public async Task<DALLEMoDto> CreateDALLEClient(Uri url, object value)
-    {
-        throw new NotImplementedException();
-    }
 }
