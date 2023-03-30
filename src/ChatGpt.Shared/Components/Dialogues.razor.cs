@@ -18,7 +18,7 @@ public partial class Dialogues
     [Parameter]
     public EventCallback<DialoguesModule> DialoguesModuleChanged { get; set; }
 
-    public List<DialoguesModule>? DialoguesModules { get; set; } = new();
+    public List<DialoguesModule> DialoguesModules { get; set; } = new();
 
 
     private async Task CreateDialogues()

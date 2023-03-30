@@ -2,37 +2,33 @@
 @namespace ChatGpt.Shared
 @inject StorageJsInterop StorageJsInterop
 
-@foreach (var item in DialoguesModules)
-{
-    <MCard Outlined Class="dialogues">
-        <MCardTitle><span class="text-button" @onclick="async ()=> await OnClick.InvokeAsync(item)">@item.Title</span> <MIcon OnClick="async ()=>await OnClose(item)" Style="float:right;">mdi-close</MIcon></MCardTitle>
-    </MCard>
-}
-
-<MCard Outlined Class="dialogues">
-    <MCardTitle>
-        @*当点击新增显示输入框，输入框离开焦点显示新增按钮*@
-        @if (!_show)
-        {
-            <MButton Block OnClick="() => _show = true" Text>新增</MButton>
-        }
-        else
-        {
-            <MTextField @bind-Value="newDialoguesModule.Title"
-                        Solo Style="max-height: 36px" OnBlur="CreateDialogues">
-            </MTextField>
-        }
-    </MCardTitle>
-</MCard>
-
-<style>
-    .dialogues {
-        margin: 5px;
+<MList>
+    <MSubheader>聊天会话:</MSubheader>
+    @foreach (var item in DialoguesModules)
+    {
+        <MListItem Link @onclick="async ()=> await OnClick.InvokeAsync(item)">
+            <MListItemContent>
+                <MListItemTitle>
+                    @item.Title
+                    <MIcon OnClick="async ()=>await OnClose(item)" Style="float:right;">mdi-close</MIcon>
+                </MListItemTitle>
+            </MListItemContent>
+        </MListItem>
     }
-    
-    .text-button {
-        user-select: none;
-        cursor: pointer;
-        min-width: 180px;
-    }
-</style>
+
+    <MListItem>
+        <MListItemContent>
+            @*当点击新增显示输入框，输入框离开焦点显示新增按钮*@
+            @if (!_show)
+            {
+                <MButton Block OnClick="() => _show = true" Text>新增</MButton>
+            }
+            else
+            {
+                <MTextField @bind-Value="newDialoguesModule.Title"
+                            Solo Style="max-height: 36px" OnBlur="CreateDialogues">
+                </MTextField>
+            }
+        </MListItemContent>
+    </MListItem>
+</MList>
