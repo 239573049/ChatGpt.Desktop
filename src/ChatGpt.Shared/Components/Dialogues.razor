@@ -1,9 +1,11 @@
 ﻿@using ChatGpt.Shared.Module
+@using BlazorComponent.I18n
 @namespace ChatGpt.Shared
 @inject StorageJsInterop StorageJsInterop
+@inject I18n I18n
 
 <MList>
-    <MSubheader>聊天会话:</MSubheader>
+    <MSubheader>@I18n.T("Dialogues.Title")</MSubheader>
     @foreach (var item in DialoguesModules)
     {
         <MListItem Link @onclick="async ()=> await OnClick.InvokeAsync(item)">
@@ -21,11 +23,11 @@
             @*当点击新增显示输入框，输入框离开焦点显示新增按钮*@
             @if (!_show)
             {
-                <MButton Block OnClick="() => _show = true" Text>新增</MButton>
+                <MButton Block OnClick="OnCreate" Text>@I18n.T("Dialogues.Add.Label")</MButton>
             }
             else
             {
-                <MTextField @bind-Value="newDialoguesModule.Title"
+                <MTextField @ref="_textField" @bind-Value="newDialoguesModule.Title"
                             Solo Style="max-height: 36px" OnBlur="CreateDialogues">
                 </MTextField>
             }

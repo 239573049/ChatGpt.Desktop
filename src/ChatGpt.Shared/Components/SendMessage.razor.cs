@@ -14,10 +14,12 @@ partial class SendMessage
 
     private async Task KeySubmit(KeyboardEventArgs args)
     {
-        if (args.Key == "Enter")
+        // 监听CTRL+回车键
+        if (args.CtrlKey && args.Key == "Enter")
         {
             await OnClick();
         }
+
     }
 
     private async Task OnClick()

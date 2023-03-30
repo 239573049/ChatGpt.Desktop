@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using ChatGpt.Shared;
+﻿using ChatGpt.Shared;
 using Microsoft.Extensions.DependencyInjection;
 using Photino.Blazor;
 
@@ -14,21 +13,25 @@ internal class Program
 
         appBuilder.RootComponents.Add<App>("#app");
 
-        appBuilder.Services.AddBlazorDesktop()
-            .AddChatGpt()
+        appBuilder.Services
             .AddScoped((_) =>
         {
             var message = new HttpClientHandler();
             message.ServerCertificateCustomValidationCallback += (_, _, _, _) => true;
             return new HttpClient(message);
-        });
+        })
+            .AddChatGpt()
+            .AddI18nForServer("wwwroot/i18n"); ;
 
         var app = appBuilder.Build();
 
-        app.MainWindow
+        var window = app.MainWindow
             .SetTitle("ChatGpt Desktop")
-            .SetIconFile("./chatgpt.ico")
-            .SetSize(new Size(400, 600));
+            .SetIconFile("./chatgpt.ico");
+
+#if DEBUG
+        window.SetDevToolsEnabled(true);
+#endif
 
         AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
         {

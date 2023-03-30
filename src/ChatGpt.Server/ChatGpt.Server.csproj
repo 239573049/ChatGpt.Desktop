@@ -16,4 +16,10 @@
     <ProjectReference Include="..\ChatGpt.Shared\ChatGpt.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\i18n\zh-CN.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

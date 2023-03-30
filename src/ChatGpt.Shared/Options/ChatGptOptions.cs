@@ -40,6 +40,11 @@ public class ChatGptOptions
     public int MaxTokens { get; set; } = 2000;
 
     /// <summary>
+    /// 定义ChatGpt的系统角色
+    /// </summary>
+    public string System { get; set; }
+
+    /// <summary>
     /// 是否Dark主题
     /// </summary>
     public bool Dark { get; set; } = true;

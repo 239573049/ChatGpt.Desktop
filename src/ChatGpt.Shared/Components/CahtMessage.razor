@@ -1,6 +1,8 @@
-﻿@namespace ChatGpt.Shared
+﻿@using BlazorComponent.I18n
+@namespace ChatGpt.Shared
 
 @inject ChatGptJsInterop ChatGptJsInterop
+@inject I18n I18n
 
 <div id="content">
     @if (Messages != null)

@@ -1,7 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddChatGpt();
+builder.Services.AddChatGpt()
+    .AddI18nForServer("wwwroot/i18n");
 
 builder.Services.AddScoped((_) =>
 {

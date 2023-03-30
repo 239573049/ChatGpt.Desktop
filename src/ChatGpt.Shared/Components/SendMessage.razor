@@ -1,5 +1,6 @@
-﻿@namespace ChatGpt.Shared
-
+﻿@using BlazorComponent.I18n
+@namespace ChatGpt.Shared
+@inject I18n I18n
 <MFooter App
          Color="transparent"
          Height="72"
@@ -12,9 +13,18 @@
                 @bind-Value="value"
                 OnKeyDown="async (e) => await KeySubmit(e)"
                 Solo></MTextField>
-    <MButton Style="margin-left:8px;"  Text OnClick="OnClick">
-        <MIcon>fas fa-solid fa-paper-plane</MIcon>
-    </MButton>
+
+    <MTooltip Top>
+        <ActivatorContent>
+            <MButton Style="margin-left:8px;" @attributes="@context.Attrs" Text OnClick="OnClick">
+                <MIcon>fas fa-solid fa-paper-plane</MIcon>
+            </MButton>
+        </ActivatorContent>
+        <ChildContent>
+            @I18n.T("SendMessageHint")
+        </ChildContent>
+    </MTooltip>
+
 </MFooter>
 
 <style>

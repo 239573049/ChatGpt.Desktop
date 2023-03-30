@@ -4,51 +4,66 @@
 @inject StorageJsInterop StorageJsInterop
 @inject ChatGptJsInterop ChatGptJsInterop
 @inject ApiClient ApiClient
+@inject I18n I18n
 
 <MApp Dark="ChatGptOptions.Dark" Id="inspire">
     <MNavigationDrawer @bind-Value="MiniVisible" App Dark="ChatGptOptions.Dark">
-        <Dialogues OnClick="OnClickAsync" @bind-DialoguesModule="DialoguesModule"/>
+        <Dialogues OnClick="OnClickAsync" @bind-DialoguesModule="DialoguesModule" />
     </MNavigationDrawer>
 
     <MAppBar Dark="ChatGptOptions.Dark" App>
-        <MButton OnClick="() => MiniVisible = !MiniVisible" Icon>
-            <MIcon>
-                @(MiniVisible ? "mdi-dock-left" : "mdi-dock-right")
-            </MIcon>
-        </MButton>
+
+        <MTooltip Bottom>
+            <ActivatorContent>
+                <MButton @attributes="@context.Attrs" OnClick="() => MiniVisible = !MiniVisible" Icon>
+                    <MIcon>
+                        @(MiniVisible ? "mdi-dock-left" : "mdi-dock-right")
+                    </MIcon>
+                </MButton>
+            </ActivatorContent>
+            <ChildContent>
+                @(MiniVisible ? I18n.T("Index.MiniVisible.Dialogues.Hide") : I18n.T("Index.MiniVisible.Dialogues.Show"))
+            </ChildContent>
+        </MTooltip>
         <MToolbarTitle>@DialoguesModule?.Title</MToolbarTitle>
         <MSpacer></MSpacer>
-
-        <MButton Dark="ChatGptOptions.Dark" OnClick="SerDark" Icon>
-            <MIcon>
-                @(ChatGptOptions.Dark ? "mdi-white-balance-sunny" : "mdi-weather-night")
-            </MIcon>
-        </MButton>
         
-        <MMenu
-            Bottom
-            Left>
+        <Language OnLanguageChanged="OnLanguageChanged" />
+
+        <MTooltip Bottom>
             <ActivatorContent>
-                <MButton
-                    Dark
-                    Icon
-                    Color="@(ChatGptOptions.Dark ? "" : "rgba(32,33,35,.5)")"
-                    @attributes="@context.Attrs">
+                <MButton @attributes="@context.Attrs" Dark="ChatGptOptions.Dark" OnClick="SerDark" Icon>
+                    <MIcon>
+                        @(ChatGptOptions.Dark ? "mdi-white-balance-sunny" : "mdi-weather-night")
+                    </MIcon>
+                </MButton>
+            </ActivatorContent>
+            <ChildContent>
+                @(ChatGptOptions.Dark ? I18n.T("Dark.Hint") : I18n.T("Bright.Hint"))
+            </ChildContent>
+        </MTooltip>
+
+        <MMenu Bottom
+               Left>
+            <ActivatorContent>
+                <MButton Dark
+                          Icon
+                         Color="@(ChatGptOptions.Dark ? "" : "rgba(32,33,35,.5)")"
+                @attributes="@context.Attrs">
                     <MIcon>mdi-dots-vertical</MIcon>
                 </MButton>
             </ActivatorContent>
 
             <ChildContent>
                 <MList>
-                    <Settings @bind-Value="settingVisible" 
-                    OnSave="HandleOnSaveSetting" 
-                    OnCancel="HandleOnCancelSetting" 
+                    <Settings @bind-Value="settingVisible"
+                              OnSave="HandleOnSaveSetting"
+                              OnCancel="HandleOnCancelSetting"
                     @bind-ChatGptOptions="ChatGptOptions" />
-
                     <MListItem OnClick="OnClear">
                         <MListItemContent>
                             <MListItemTitle>
-                                清空当前对话
+                                @I18n.T("Dialogues.Empty.Hint")
                             </MListItemTitle>
                         </MListItemContent>
                     </MListItem>
@@ -60,7 +75,7 @@
     <MMain>
         <CahtMessage ChatGptOptions="ChatGptOptions" OnCopy="OnCopy" @bind-Messages="Messages" @ref="Message" />
     </MMain>
-    <SendMessage ChatGptOptions="ChatGptOptions" SubmitChanged="OnSubmit"/>
+    <SendMessage ChatGptOptions="ChatGptOptions" SubmitChanged="OnSubmit" />
     <PEnqueuedSnackbars @ref="_enqueuedSnackbars"></PEnqueuedSnackbars>
 </MApp>
 

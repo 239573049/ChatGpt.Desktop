@@ -10,13 +10,13 @@ public static class ServiceCollectionExtensions
     /// </summary>
     /// <param name="services"></param>
     /// <returns></returns>
-    public static IServiceCollection AddChatGpt(this IServiceCollection services)
+    public static IMasaBlazorBuilder AddChatGpt(this IServiceCollection services)
     {
-        services.AddMasaBlazor();
+        var masa = services.AddMasaBlazor();
         services.AddScoped<StorageJsInterop>();
         services.AddScoped<ChatGptJsInterop>();
         services.AddScoped<ApiClient>();
 
-        return services;
+        return masa;
     }
 }

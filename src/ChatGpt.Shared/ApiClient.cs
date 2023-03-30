@@ -50,12 +50,6 @@ public class ApiClient
         }
     }
 
-    public async Task CreateStream(string url, object value)
-    {
-        var message = await HttpClient.PostAsJsonAsync(url, value);
-        message.Content.ReadAsStreamAsync();
-    }
-
     public async Task CreateChatGptClient(string url, object value, Action<string?> result, Action<bool> complete)
     {
         var response = await HttpRequestRaw(url, value);
@@ -146,4 +140,23 @@ public class ApiClient
         }
     }
 
+    public async Task<DALLEMoDto> CreateDALLEClient(Uri url, object value)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task CreateStream(Uri url, object value)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task CreateChatGptClient(Uri url, object value, Action<string?> result, Action<bool> complete)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<HttpResponseMessage> HttpRequestRaw(Uri url, object postData, bool streaming)
+    {
+        throw new NotImplementedException();
+    }
 }

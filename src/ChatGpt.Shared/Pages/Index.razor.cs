@@ -1,14 +1,6 @@
-﻿using System.Diagnostics;
-using System.IO;
-using System.Net;
-using System.Net.Http.Json;
-using System.Numerics;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using BlazorComponent;
-using ChatGpt.Shared.Module;
-using Masa.Blazor.Popup.Components;
+﻿using BlazorComponent;
 using Masa.Blazor.Presets;
+using System.Globalization;
 
 namespace ChatGpt.Shared;
 
@@ -92,7 +84,7 @@ public partial class Index
             // 权限不足
             _enqueuedSnackbars?.EnqueueSnackbar(new SnackbarOptions()
             {
-                Content = "还未设置请求token",
+                Content = I18n.T("Error.NotChatGptToken"),
                 Type = AlertTypes.Warning,
                 Closeable = true
             });
@@ -116,6 +108,14 @@ public partial class Index
             if (ChatGptOptions.Model == ModelType.ChatGpt)
             {
                 List<object> messages = new();
+                if (!string.IsNullOrWhiteSpace(ChatGptOptions.System))
+                {
+                    messages.Add(new
+                    {
+                        role = "system",
+                        content = ChatGptOptions.System
+                    });
+                }
 
                 if (ChatGptOptions.InContext)
                 {
@@ -132,6 +132,7 @@ public partial class Index
                     messages.AddRange(query);
 
                 }
+
                 messages.Add(new
                 {
                     role = "user", // 角色
@@ -161,17 +162,17 @@ public partial class Index
 
                 try
                 {
-                    //int i = 0;
+                    int i = 0;
 
                     await ApiClient.CreateChatGptClient(ChatGptOptions.HttpUrl, values, r =>
                     {
-                        //i++;
+                        i++;
                         messageModule.Content += r;
                         // 减少频繁渲染
-                        //if (i != 5) return;
+                        if (i > 3) return;
                         _ = InvokeAsync(StateHasChanged);
                         ScrollToBottom();
-                        //i = 0;
+                        i = 0;
 
                     }, async _ =>
                     {
@@ -192,7 +193,7 @@ public partial class Index
             else
             {
 
-                var messageModule = new MessageModule(Guid.NewGuid().ToString(), "请稍后AI分析中。。。", true)
+                var messageModule = new MessageModule(Guid.NewGuid().ToString(), I18n.T("Wait.Hint"), true)
                 {
                     DialoguesKey = DialoguesModule.Key
                 };
@@ -207,20 +208,20 @@ public partial class Index
                     var chatGpt = await ApiClient.CreateDALLEClient(ChatGptOptions.DDLLEHttpUrl, new
                     {
                         prompt = value,
-                        n = 1,
+                        n = 2,
                         size = ChatGptOptions.DDLLEWidth + "x" + ChatGptOptions.DDLLEHeight
                     });
 
-                    var dto = $"![img]({chatGpt.data.FirstOrDefault()?.Url})";
 
-                    if (!string.IsNullOrEmpty(chatGpt.data.FirstOrDefault()?.Url))
+                    chatGpt.data.Select(x => $"![img]({x.Url})").ForEach(x =>
                     {
-                        messageModule.Content = dto;
+                        messageModule.Content = x;
+                    });
 
-                        await StorageJsInterop.SetValue(DialoguesModule.Key, Messages);
+                    await StorageJsInterop.SetValue(DialoguesModule.Key, Messages);
 
-                        ScrollToBottom();
-                    }
+                    ScrollToBottom();
+
                 }
                 catch (Exception e)
                 {
@@ -239,7 +240,7 @@ public partial class Index
         {
             _enqueuedSnackbars?.EnqueueSnackbar(new SnackbarOptions
             {
-                Content = $"发送严重错误：" + e.Message,
+                Content = I18n.T("Error.Prefix") + e.Message,
                 Type = AlertTypes.Error,
                 Closeable = true
             });
@@ -256,7 +257,7 @@ public partial class Index
         await ChatGptJsInterop.SetClipboard(message.Content);
         _enqueuedSnackbars?.EnqueueSnackbar(new SnackbarOptions()
         {
-            Content = $"内容已复制到粘贴板",
+            Content = I18n.T("Copy.Hint"),
             Type = AlertTypes.Info,
             Closeable = true
         });
@@ -272,6 +273,12 @@ public partial class Index
     {
         settingVisible = false;
     }
+
+    void OnLanguageChanged(CultureInfo culture)
+    {
+        I18n.SetCulture(culture);
+    }
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

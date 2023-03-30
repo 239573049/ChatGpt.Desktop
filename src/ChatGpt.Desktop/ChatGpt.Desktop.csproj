@@ -22,6 +22,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Content Update="wwwroot\i18n\en-US.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\i18n\zh-CN.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	  <Content Update="wwwroot\index.html">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
