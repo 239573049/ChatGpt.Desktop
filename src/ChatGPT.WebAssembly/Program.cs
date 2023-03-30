@@ -9,6 +9,6 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 await builder.Services
         .AddScoped((service) => new HttpClient())
         .AddChatGpt()
-        .AddI18nForWasmAsync(builder.HostEnvironment.BaseAddress + "wwwroot/i18n");
+        .AddI18nForWasmAsync(builder.HostEnvironment.BaseAddress + "i18n");
 
 await builder.Build().RunAsync();
