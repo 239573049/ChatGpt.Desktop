@@ -59,6 +59,12 @@ services:
 3.  提交代码
 4.  新建 Pull Request
 
+感谢以下贡献者
+
+<a href="https://github.com/239573049/ChatGpt.Desktop/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=239573049/ChatGpt.Desktop" />
+</a>
+
 ## 预览图
 
 ![img](./img/setting.png)
