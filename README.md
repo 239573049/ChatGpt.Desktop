@@ -50,6 +50,7 @@ services:
 4. Create a new Pull Request
 
 Thanks to the following contributors:
+
 <a href="https://github.com/239573049/ChatGpt.Desktop/graphs/contributors">   <img src="https://contrib.rocks/image?repo=239573049/ChatGpt.Desktop" /> </a>
 
 ## Preview
