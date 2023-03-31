@@ -5,9 +5,9 @@
     <meta charset="utf-8" />
     <title>ChatGPT.WebAssembly</title>
     <base href="/" />
-    <link href="css/app.css" rel="stylesheet" />
-    <link href="manifest.json" rel="manifest" />
-    <link href="_content/Masa.Blazor/css/masa-blazor.min.css" rel="stylesheet" />
+    <link href="./css/app.css" rel="stylesheet" />
+    <link href="./manifest.json" rel="manifest" />
+    <link href="./_content/Masa.Blazor/css/masa-blazor.min.css" rel="stylesheet" />
     <link href="https://cdn.masastack.com/npm/@mdi/font@7.1.96/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.masastack.com/npm/materialicons/materialicons.css" rel="stylesheet">
     <link href="https://cdn.masastack.com/npm/fontawesome/v5.0.13/css/all.css" rel="stylesheet">
@@ -28,9 +28,9 @@
         <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a>
     </div>
-    <script src="_framework/blazor.webassembly.js" autostart="false"></script>
-    <script src="_content/BlazorComponent/js/blazor-component.js"></script>
-    <script>navigator.serviceWorker.register('service-worker.js');</script>
+    <script src="./_framework/blazor.webassembly.js" autostart="false"></script>
+    <script src="./_content/BlazorComponent/js/blazor-component.js"></script>
+    <script>navigator.serviceWorker.register('./service-worker.js');</script>
     <script type="module">
         import { BrotliDecode } from 'https://code-token.oss-cn-beijing.aliyuncs.com/decode.min.js';
         Blazor.start({
