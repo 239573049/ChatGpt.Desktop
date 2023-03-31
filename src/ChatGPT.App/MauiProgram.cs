@@ -15,13 +15,14 @@ public static class MauiProgram
             });
 
         builder.Services.AddMauiBlazorWebView();
-        builder.Services.AddChatGpt()
+        builder.Services
             .AddScoped((_) =>
         {
             var message = new HttpClientHandler();
             message.ServerCertificateCustomValidationCallback += (_, _, _, _) => true;
             return new HttpClient(message);
-        });
+        }).AddChatGpt()
+        .AddI18nForServer("wwwroot/i18n");
 
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();

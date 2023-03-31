@@ -21,7 +21,7 @@ internal class Program
             return new HttpClient(message);
         })
             .AddChatGpt()
-            .AddI18nForServer("wwwroot/i18n"); ;
+            .AddI18nForServer("wwwroot/i18n");
 
         var app = appBuilder.Build();
 

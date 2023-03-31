@@ -112,7 +112,7 @@
                     <MTooltip Top>
                         <ActivatorContent>
                             <MTextField @attributes="@context.Attrs" @bind-Value="ChatGptOptions.System"
-                                    Label="@I18n.T("Setting.ChatGpt.System.Hint")"
+                                    Label="@I18n.T("Setting.ChatGpt.System.Label")"
                                         Dense
                                         Outlined
                                         HideDetails="@("auto")"/>
@@ -144,13 +144,13 @@
                         <MTooltip Top>
                             <ActivatorContent>
                                 <MTextField @attributes="@context.Attrs" @bind-Value="ChatGptOptions.InContextMaxMessage"
-                                        Label="@I18n.T("Setting.ChatGpt.InContextMaxMessage.Hint")"
+                                        Label="@I18n.T("Setting.ChatGpt.InContextMaxMessage.Label")"
                                             Dense
                                             Outlined
                                             HideDetails="@("auto")"/>
                             </ActivatorContent>
                             <ChildContent>
-                                @I18n.T("Setting.ChatGpt.InContextMaxMessage.Label")
+                                @I18n.T("Setting.ChatGpt.InContextMaxMessage.Hint")
                             </ChildContent>
                         </MTooltip>
                     </MCol>
