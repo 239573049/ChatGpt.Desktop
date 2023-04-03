@@ -4,17 +4,17 @@
 @inject ChatGptJsInterop ChatGptJsInterop
 @inject I18n I18n
 
-<div id="content">
+<div id="content" style="@(ChatGptOptions.Dark ? "background-color: #363636;" : "background-color: ghostwhite;")">
     @if (Messages != null)
     {
         @foreach (var item in Messages)
         {
-            <MCard Class="message" Style="@(ChatGptOptions.Dark?"":"background-color: ghostwhite;")">
+            <div style="@(ChatGptOptions.Dark ? "background-color: #363636;" : "background-color: ghostwhite;")">
                 @if (item.ChatGpt)
                 {
                     <MCardTitle>
                         <MAvatar>
-                            <MImage Src="https://blog-simple.oss-cn-shenzhen.aliyuncs.com/chatgpt.ico" Alt="Jack"></MImage>
+                            <MImage Src="@(string.IsNullOrEmpty(ChatGptOptions?.ChatGptAvatar) ? "https://blog-simple.oss-cn-shenzhen.aliyuncs.com/chatgpt.ico" : ChatGptOptions.ChatGptAvatar)" Alt="Jack"></MImage>
                         </MAvatar>
                     </MCardTitle>
                 }
@@ -22,20 +22,21 @@
                 {
                     <MCardTitle>
                         <MAvatar>
-                            <MImage 
-                                Src="@(string.IsNullOrEmpty(ChatGptOptions?.Avatar) ? "https://blog-simple.oss-cn-shenzhen.aliyuncs.com/Avatar.jpg" : ChatGptOptions.Avatar)" Alt="Jack"></MImage>
+                            <MImage
+                                Src="@(string.IsNullOrEmpty(ChatGptOptions?.Avatar) ? "https://blog-simple.oss-cn-shenzhen.aliyuncs.com/Avatar.jpg" : ChatGptOptions.Avatar)" Alt="Jack">
+                            </MImage>
                         </MAvatar>
                     </MCardTitle>
                 }
                 <MCardText>
-                    <MCard MinHeight="20" Class="container" Outlined>
+                    <MCard Dark="ChatGptOptions.Dark" MinHeight="20" Class="container" Outlined>
                         <MButton Height="20" Icon OnClick="async () => await OnCopy.InvokeAsync(item)" Class="top-button">
                             <MIcon Small>mdi-content-copy</MIcon>
                         </MButton>
                         <MMarkdownIt Style="margin: 2px; min-height: 5px" Source="@item.Content" Class="markdown-parser__basic"/>
                     </MCard>
                 </MCardText>
-            </MCard>
+            </div>
         }
     }
 </div>

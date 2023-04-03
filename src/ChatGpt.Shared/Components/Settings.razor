@@ -23,7 +23,6 @@
     <ChildContent>
         <MRow>
             <MCol Cols="12">
-
                 <MTooltip Top>
                     <ActivatorContent>
                         <MRadioGroup @attributes="@context.Attrs" @bind-Value="ChatGptOptions.Model"
@@ -231,6 +230,20 @@
                     </ActivatorContent>
                     <ChildContent>
                         @I18n.T("Setting.Avatar.Hint")
+                    </ChildContent>
+                </MTooltip>
+            </MCol>
+            <MCol Cols="12">
+                <MTooltip Top>
+                    <ActivatorContent>
+                        <MTextField  @attributes="@context.Attrs" @bind-Value="ChatGptOptions.ChatGptAvatar"
+                                    Label="@I18n.T("Setting.ChatGptAvatar.Label")"
+                                            Dense
+                                            Outlined
+                                    HideDetails="@("auto")" />
+                    </ActivatorContent>
+                    <ChildContent>
+                        @I18n.T("Setting.ChatGptAvatar.Hint")
                     </ChildContent>
                 </MTooltip>
             </MCol>

@@ -69,4 +69,9 @@ public class ChatGptOptions
     /// 用户头像
     /// </summary>
     public string Avatar { get; set; }
+
+    /// <summary>
+    /// ChatGpt头像
+    /// </summary>
+    public string ChatGptAvatar { get; set; }
 }

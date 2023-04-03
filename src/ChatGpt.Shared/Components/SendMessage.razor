@@ -5,9 +5,8 @@
          Color="transparent"
          Height="72"
          Inset>
-    <MTextField BackgroundColor="@(ChatGptOptions.Dark?"#ffffff":"grey lighten-1")"
-                Dense
-                Flat
+    <MTextField 
+                Dark="ChatGptOptions.Dark" 
                 HideDetails="@("true")"
                 Class="@(ChatGptOptions.Dark?"dark":"white")"
                 @bind-Value="value"
@@ -16,7 +15,7 @@
 
     <MTooltip Top>
         <ActivatorContent>
-            <MButton Style="margin-left:8px;" @attributes="@context.Attrs" Text OnClick="OnClick">
+            <MButton Dark="ChatGptOptions.Dark" Style="margin-left:8px;" @attributes="@context.Attrs" Text OnClick="OnClick">
                 <MIcon>fas fa-solid fa-paper-plane</MIcon>
             </MButton>
         </ActivatorContent>

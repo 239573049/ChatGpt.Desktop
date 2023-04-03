@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Masa.Blazor" Version="1.0.0-preview.10" />
+    <PackageReference Include="Masa.Blazor" Version="1.0.0-preview.12" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.3" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
   </ItemGroup>
