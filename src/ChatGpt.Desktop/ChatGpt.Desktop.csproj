@@ -23,10 +23,13 @@
 
 	<ItemGroup>
 	  <Content Update="wwwroot\i18n\en-US.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 	  </Content>
 	  <Content Update="wwwroot\i18n\zh-CN.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 	  </Content>
 	  <Content Update="wwwroot\index.html">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
