@@ -64,5 +64,3 @@ To use this application, you need a ChatGpt account and login to create a token.
 ## Conclusion
 Welcome to contribute to this project. From Token with love. Join our QQ group for learning and communication: 737776595.
 
-wx: ![ea3eb63ece772ca89b413d420032242](./img/wx.jpg)
-

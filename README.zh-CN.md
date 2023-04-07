@@ -87,5 +87,3 @@ https://platform.openai.com/account/api-keys
 
 学习交流qq群：737776595
 
-wx: ![ea3eb63ece772ca89b413d420032242](./img/wx.jpg)
-
