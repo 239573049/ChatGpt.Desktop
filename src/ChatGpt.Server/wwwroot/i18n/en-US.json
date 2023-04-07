@@ -4,6 +4,7 @@
   "Setting.Title": "ChatGpt Settings",
   "Setting.SaveText": "Save Configuration",
   "Setting.CancelText": "Close",
+  "Copy.Hint": "Copy success",
   "Setting.ModelType.ChatGpt": "ChatGpt3.5 Chat Model",
   "Setting.ModelType.DALLE": "DALL·E Image Model",
   "Setting.ModelType.Hint": "Switch the model used for conversation",

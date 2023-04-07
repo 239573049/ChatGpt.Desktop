@@ -8,6 +8,7 @@
   "Setting.ModelType.DALLE": "DALL·E图片模型",
   "Setting.ModelType.Hint": "切换对话使用的模型",
   "Setting.Token.Hint": "设置ChatGpt AI需要使用的Token！",
+  "Copy.Hint": "复制成功",
   "Setting.ChatGpt.HttpUrl.Hint": "设置ChatGpt AI请求的Url，这将是完整的请求Url！",
   "Setting.ChatGpt.MaxTokens.Hint": "设置ChatGpt AI请求响应返回的最大token数量！设置越大额度消耗越高",
   "Setting.ChatGpt.MaxTokens.Label": "最大Token",
