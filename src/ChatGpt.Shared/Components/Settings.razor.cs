@@ -21,4 +21,14 @@ public partial class Settings
 
     [Parameter]
     public EventCallback<ModalActionEventArgs> OnCancel { get; set; }
+
+    public ShortcutKey GetShortcutKey(string name)
+    {
+        return (ShortcutKey)Enum.Parse(typeof(ShortcutKey), name);
+    }
+
+    private List<string> _items = new()
+    {
+        nameof(ShortcutKey.CtrlEnter), nameof(ShortcutKey.Enter), nameof(ShortcutKey.Shift),nameof(ShortcutKey.ShiftEnter),
+    };
 }

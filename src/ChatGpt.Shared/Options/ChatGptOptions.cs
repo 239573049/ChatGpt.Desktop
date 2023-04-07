@@ -74,4 +74,9 @@ public class ChatGptOptions
     /// ChatGpt头像
     /// </summary>
     public string ChatGptAvatar { get; set; }
+
+    /// <summary>
+    /// 快捷键方式
+    /// </summary>
+    public ShortcutKey ShortcutKey { get; set; } = ShortcutKey.Enter;
 }

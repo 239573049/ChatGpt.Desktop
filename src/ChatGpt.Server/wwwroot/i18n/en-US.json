@@ -34,6 +34,7 @@
   "Setting.Avatar.Hint": "Set the URL of the image for the message you send, which can be an image under wwwroot.",
   "Setting.ChatGptAvatar.Hint": "Set the Url for the image ChatGpt sends messages to, you can wwwroot for the picture below.",
   "Setting.ChatGptAvatar.Label": "Set the Url for the image ChatGpt sends messages to, you can wwwroot for the picture below.",
+  "Setting.ShortcutKey.Label": "Select the shortcut sending mode",
   "Dialogues.Add.Label": "Click to Add",
   "Dialogues.Title": "Click to Add",
   "Dialogues.Default.Name": "Controller Defaults Dialog",

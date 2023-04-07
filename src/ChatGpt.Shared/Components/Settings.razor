@@ -63,9 +63,9 @@
 
                 <MCol Cols="12">
                     <MTooltip Top>
-                        <ActivatorContent>
-                            <MTextField @attributes="@context.Attrs" @bind-Value="ChatGptOptions.HttpUrl"
-                                        Label="ChatGpt3.5API"
+                    <ActivatorContent>
+                        <MTextField @attributes="@context.Attrs" @bind-Value="ChatGptOptions.HttpUrl"
+                                    Label="ChatGpt3.5API"
                                                 Dense
                                                 Outlined
                                         HideDetails="@("auto")" />
@@ -77,8 +77,8 @@
                 </MCol>
                 <MCol Cols="12">
                     <MTooltip Top>
-                        <ActivatorContent>
-                            <MTextField @attributes="@context.Attrs" @bind-Value="ChatGptOptions.MaxTokens"
+                    <ActivatorContent>
+                        <MTextField @attributes="@context.Attrs" @bind-Value="ChatGptOptions.MaxTokens"
                                     Label="@I18n.T("Setting.ChatGpt.MaxTokens.Label")"
                                                 Dense
                                                 Outlined
@@ -92,12 +92,12 @@
 
                 <MCol Cols="12">
                     <MTooltip Top>
-                        <ActivatorContent>
-                            <MTextField @attributes="@context.Attrs" @bind-Value="ChatGptOptions.Temperature"
+                    <ActivatorContent>
+                        <MTextField @attributes="@context.Attrs" @bind-Value="ChatGptOptions.Temperature"
                                     Label="@I18n.T("Setting.ChatGpt.Temperature.Label")"
-                                        Dense
-                                        Outlined
-                                        HideDetails="@("auto")"/>
+                                                Dense
+                                                Outlined
+                                        HideDetails="@("auto")" />
                         </ActivatorContent>
                         <ChildContent>
                             @I18n.T("Setting.ChatGpt.Temperature.Hint")
@@ -109,12 +109,12 @@
                 <MCol Cols="12">
 
                     <MTooltip Top>
-                        <ActivatorContent>
-                            <MTextField @attributes="@context.Attrs" @bind-Value="ChatGptOptions.System"
+                    <ActivatorContent>
+                        <MTextField @attributes="@context.Attrs" @bind-Value="ChatGptOptions.System"
                                     Label="@I18n.T("Setting.ChatGpt.System.Label")"
-                                        Dense
-                                        Outlined
-                                        HideDetails="@("auto")"/>
+                                                Dense
+                                                Outlined
+                                        HideDetails="@("auto")" />
                         </ActivatorContent>
                         <ChildContent>
                             @I18n.T("Setting.ChatGpt.System.Hint")
@@ -125,28 +125,28 @@
                 <MCol Cols="12">
 
                     <MTooltip Top>
-                        <ActivatorContent>
-                            <MSwitch @attributes="@context.Attrs" @bind-Value="ChatGptOptions.InContext"
+                    <ActivatorContent>
+                        <MSwitch @attributes="@context.Attrs" @bind-Value="ChatGptOptions.InContext"
                                  Label="@(ChatGptOptions.InContext ? @I18n.T("Setting.ChatGpt.InContext.Label.Disabled") :  @I18n.T("Setting.ChatGpt.InContext.Label.Enable"))">
-                            </MSwitch>
-                        </ActivatorContent>
-                        <ChildContent>
+                        </MSwitch>
+                    </ActivatorContent>
+                    <ChildContent>
                         @I18n.T("Setting.ChatGpt.InContext.Hint")
-                        </ChildContent>
-                    </MTooltip>
-                </MCol>
+                    </ChildContent>
+                </MTooltip>
+            </MCol>
 
                 @if (ChatGptOptions.InContext)
                 {
                     <MCol Cols="12">
 
                         <MTooltip Top>
-                            <ActivatorContent>
-                                <MTextField @attributes="@context.Attrs" @bind-Value="ChatGptOptions.InContextMaxMessage"
+                        <ActivatorContent>
+                            <MTextField @attributes="@context.Attrs" @bind-Value="ChatGptOptions.InContextMaxMessage"
                                         Label="@I18n.T("Setting.ChatGpt.InContextMaxMessage.Label")"
-                                            Dense
-                                            Outlined
-                                            HideDetails="@("auto")"/>
+                                                    Dense
+                                                    Outlined
+                                            HideDetails="@("auto")" />
                             </ActivatorContent>
                             <ChildContent>
                                 @I18n.T("Setting.ChatGpt.InContextMaxMessage.Hint")
@@ -157,18 +157,18 @@
                     <MCol Cols="12">
 
                         <MTooltip Top>
-                            <ActivatorContent>
-                                <MSwitch @attributes="@context.Attrs" @bind-Value="ChatGptOptions.CarryChatGptMessage"
-                                     Label="@(ChatGptOptions.CarryChatGptMessage ? 
-                                                @I18n.T("Setting.ChatGpt.CarryChatGptMessage.Label.Enable") : 
+                        <ActivatorContent>
+                            <MSwitch @attributes="@context.Attrs" @bind-Value="ChatGptOptions.CarryChatGptMessage"
+                                     Label="@(ChatGptOptions.CarryChatGptMessage ?
+                                                @I18n.T("Setting.ChatGpt.CarryChatGptMessage.Label.Enable") :
                                                 @I18n.T("Setting.ChatGpt.CarryChatGptMessage.Label.Disabled"))">
-                                </MSwitch>
-                            </ActivatorContent>
-                            <ChildContent>
-                                @I18n.T("Setting.ChatGpt.CarryChatGptMessage.Hint")
-                            </ChildContent>
-                        </MTooltip>
-                    </MCol>
+                            </MSwitch>
+                        </ActivatorContent>
+                        <ChildContent>
+                            @I18n.T("Setting.ChatGpt.CarryChatGptMessage.Hint")
+                        </ChildContent>
+                    </MTooltip>
+                </MCol>
                 }
             }
             else if (ModelType.DALLE == ChatGptOptions.Model)
@@ -176,12 +176,12 @@
                 <MCol Cols="12">
 
                     <MTooltip Top>
-                        <ActivatorContent>
-                                <MTextField @attributes="@context.Attrs" @bind-Value="ChatGptOptions.DDLLEHttpUrl"
+                    <ActivatorContent>
+                        <MTextField @attributes="@context.Attrs" @bind-Value="ChatGptOptions.DDLLEHttpUrl"
                                     Label="@I18n.T("Setting.ChatGpt.DDLLEHttpUrl.Label")"
-                                        Dense
-                                        Outlined
-                                        HideDetails="@("auto")"/>
+                                                Dense
+                                                Outlined
+                                        HideDetails="@("auto")" />
                         </ActivatorContent>
                         <ChildContent>
                             @I18n.T("Setting.ChatGpt.DDLLEHttpUrl.Hint")
@@ -190,12 +190,12 @@
                 </MCol>
                 <MCol Cols="12">
                     <MTooltip Top>
-                        <ActivatorContent>
-                            <MTextField @attributes="@context.Attrs" @bind-Value="ChatGptOptions.DDLLEWidth"
+                    <ActivatorContent>
+                        <MTextField @attributes="@context.Attrs" @bind-Value="ChatGptOptions.DDLLEWidth"
                                     Label="@I18n.T("Setting.ChatGpt.DDLLEWidth.Label")"
-                                        Dense
-                                        Outlined
-                                        HideDetails="@("auto")"/>
+                                                Dense
+                                                Outlined
+                                        HideDetails="@("auto")" />
                         </ActivatorContent>
                         <ChildContent>
                             @I18n.T("Setting.ChatGpt.DDLLEWidth.Hint")
@@ -204,11 +204,11 @@
                 </MCol>
                 <MCol Cols="12">
                     <MTooltip Top>
-                        <ActivatorContent>
-                            <MTextField @attributes="@context.Attrs" @bind-Value="ChatGptOptions.DDLLEHeight"
+                    <ActivatorContent>
+                        <MTextField @attributes="@context.Attrs" @bind-Value="ChatGptOptions.DDLLEHeight"
                                     Label="@I18n.T("Setting.ChatGpt.DDLLEHeight.Label")"
-                                        Dense
-                                        Outlined
+                                                Dense
+                                                Outlined
                                         HideDetails="@("auto")" />
                         </ActivatorContent>
                         <ChildContent>
@@ -222,7 +222,7 @@
             <MCol Cols="12">
                 <MTooltip Top>
                     <ActivatorContent>
-                        <MTextField  @attributes="@context.Attrs" @bind-Value="ChatGptOptions.Avatar"
+                        <MTextField @attributes="@context.Attrs" @bind-Value="ChatGptOptions.Avatar"
                                     Label="@I18n.T("Setting.Avatar.Label")"
                                             Dense
                                             Outlined
@@ -236,7 +236,7 @@
             <MCol Cols="12">
                 <MTooltip Top>
                     <ActivatorContent>
-                        <MTextField  @attributes="@context.Attrs" @bind-Value="ChatGptOptions.ChatGptAvatar"
+                        <MTextField @attributes="@context.Attrs" @bind-Value="ChatGptOptions.ChatGptAvatar"
                                     Label="@I18n.T("Setting.ChatGptAvatar.Label")"
                                             Dense
                                             Outlined
@@ -246,6 +246,15 @@
                         @I18n.T("Setting.ChatGptAvatar.Hint")
                     </ChildContent>
                 </MTooltip>
+            </MCol>
+            <MCol Cols="12">
+                <MSelect @bind-Value="ChatGptOptions.ShortcutKey"
+                         Items="_items"
+                         Label="@I18n.T("Setting.ShortcutKey.Label")"
+                         ItemValue="GetShortcutKey"
+                         ItemText="r=>r"
+                          >
+                </MSelect>
             </MCol>
 
         </MRow>

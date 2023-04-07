@@ -34,6 +34,7 @@
   "Setting.Avatar.Hint": "设置自己发送消息的图像的Url，可以是wwwroot下面的图片。",
   "Setting.ChatGptAvatar.Hint": "设置ChatGpt发送消息的图像的Url，可以是wwwroot下面的图片。",
   "Setting.ChatGptAvatar.Label": "ChatGpt头像Url（为空使用默认头像）",
+  "Setting.ShortcutKey.Label": "选择快捷发送方式",
   "Dialogues.Add.Label": "点击新增",
   "Dialogues.Title": "点击新增",
   "Dialogues.Default.Name": "默认对话",
