@@ -27,9 +27,9 @@ services:
       - 1080:80
 ```
 
-## 如何使用Web Server
+## How to use Web Server
 
-当前项目根目录下存在`docker-compose.yml`文件，可以在服务器直接运行，这是一个Blazor Server的项目镜像，如果将其部署到国外服务器就无需翻墙即可访问`ChatGpt Api`
+In the current project root directory there is a file 'docker-compose.yml', which can be run directly on the Server, it is a project image of Blazor Server, if it is deployed to a foreign server, there is no need to climb over the wall to access the ChatGpt Api
 
 ```yaml
 services:
